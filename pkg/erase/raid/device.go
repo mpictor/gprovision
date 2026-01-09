@@ -38,9 +38,9 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/hw/ioctl"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/hw/ioctl"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 const oneG = 1024 * 1024 * 1024

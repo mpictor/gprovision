@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //display a menu. if lcd is present, uses that; otherwise vga.

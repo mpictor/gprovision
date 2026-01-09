@@ -11,7 +11,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/common/strs"
 )
 
 type blkTestData struct {

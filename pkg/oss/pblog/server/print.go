@@ -15,8 +15,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/rkeep"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/common/rkeep"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 )
 
 func (a *allInOneSrvr) addLogEvent(le *pb.LogEvent) error {

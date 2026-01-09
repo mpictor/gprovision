@@ -10,7 +10,7 @@
 package appliance
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // To be used in testing. Allows assignment to normally-unassignable fields of Variant.

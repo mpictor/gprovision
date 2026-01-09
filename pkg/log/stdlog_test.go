@@ -11,7 +11,7 @@ import (
 	"log"
 	"testing"
 
-	ilog "github.com/purecloudlabs/gprovision/pkg/log"
+	ilog "github.com/mpictor/gprovision/pkg/log"
 )
 
 func TestStdlog(t *testing.T) {

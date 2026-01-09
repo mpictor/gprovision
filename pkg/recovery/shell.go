@@ -14,9 +14,9 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/stash"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/disk"
+	"github.com/mpictor/gprovision/pkg/common/stash"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
 //mount recovery, assemble/mount md0, drop to shell

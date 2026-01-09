@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"os/exec"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/uefi"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/uefi"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type Partitioner interface {

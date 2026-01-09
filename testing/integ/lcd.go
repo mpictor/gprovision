@@ -13,9 +13,9 @@ import (
 	fp "path/filepath"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/testing/vm"
 
 	"github.com/u-root/u-root/pkg/qemu"
 )

@@ -12,8 +12,8 @@ import (
 	"os"
 	fp "path/filepath"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	gtst "github.com/purecloudlabs/gprovision/testing"
+	"github.com/mpictor/gprovision/pkg/log"
+	gtst "github.com/mpictor/gprovision/testing"
 )
 
 // Creates a temp dir, optionally removing old dirs with same prefix. Returns a

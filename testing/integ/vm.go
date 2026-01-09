@@ -16,9 +16,9 @@ import (
 
 	"github.com/u-root/u-root/pkg/qemu"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/testing/vm"
 )
 
 //flags altering vm (from makefile):

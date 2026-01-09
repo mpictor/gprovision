@@ -19,14 +19,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/common/rkeep"
-	"github.com/purecloudlabs/gprovision/pkg/common/rlog"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
-	"github.com/purecloudlabs/gprovision/pkg/net/xfer"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/common/rkeep"
+	"github.com/mpictor/gprovision/pkg/common/rlog"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/net/xfer"
 )
 
 func init() {

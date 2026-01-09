@@ -26,7 +26,7 @@ import (
 	"github.com/u-root/u-root/pkg/uroot"
 	"github.com/u-root/u-root/pkg/uroot/initramfs"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
+	"github.com/mpictor/gprovision/build/paths"
 )
 
 type Initramfs mg.Namespace

@@ -6,18 +6,18 @@
 //
 
 // Service nic_config configures RFS, RSS, XPS for interfaces. Outputs IRQ
-// ban list for irqbalancer. See github.com/purecloudlabs/gprovision/pkg/hw/cpu, gprovision/pkg/hw/nic.
+// ban list for irqbalancer. See github.com/mpictor/gprovision/pkg/hw/cpu, gprovision/pkg/hw/nic.
 package main
 
 import (
 	"fmt"
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/hw/cpu"
-	"github.com/purecloudlabs/gprovision/pkg/hw/nic"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/hw/cpu"
+	"github.com/mpictor/gprovision/pkg/hw/nic"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 /* we need to set IRQs ourselves. to do this, we need to get

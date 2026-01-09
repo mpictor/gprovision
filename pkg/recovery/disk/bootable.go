@@ -20,11 +20,11 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/hw/uefi"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/hw/uefi"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //this file contains code related to making the system bootable - legacy or uefi

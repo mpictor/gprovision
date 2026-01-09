@@ -15,8 +15,8 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/ioctl"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/ioctl"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type BlockDev struct {

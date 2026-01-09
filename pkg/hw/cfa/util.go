@@ -15,8 +15,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa/serial"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/cfa/serial"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //int minimum function

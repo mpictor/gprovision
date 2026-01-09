@@ -12,7 +12,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type Model int

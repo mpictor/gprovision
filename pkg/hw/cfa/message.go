@@ -10,7 +10,7 @@ package cfa
 import (
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //functions in this file are what a user is most likely to need.

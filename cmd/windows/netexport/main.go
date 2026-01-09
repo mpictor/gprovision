@@ -6,7 +6,7 @@
 //
 
 // Netexport.exe exports network config data from windows. See
-// github.com/purecloudlabs/gprovision/pkg/netexport for additional details.
+// github.com/mpictor/gprovision/pkg/netexport for additional details.
 //
 // This is cross-compiled by the CI job.
 package main
@@ -19,13 +19,13 @@ import (
 	fp "path/filepath"
 	"sync"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance/altIdent"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/disktag"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
-	nx "github.com/purecloudlabs/gprovision/pkg/netexport"
-	netd "github.com/purecloudlabs/gprovision/pkg/systemd/networkd"
+	"github.com/mpictor/gprovision/pkg/appliance/altIdent"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/disktag"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
+	nx "github.com/mpictor/gprovision/pkg/netexport"
+	netd "github.com/mpictor/gprovision/pkg/systemd/networkd"
 )
 
 //in any binary with main.buildId string, it is set at compile time to $BUILD_INFO

@@ -10,8 +10,8 @@ package main
 import (
 	"flag"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/server"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/server"
 )
 
 var dbfile string

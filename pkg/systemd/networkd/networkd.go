@@ -6,7 +6,7 @@
 //
 
 //Package networkd can be used to write config files for systemd-networkd. Used
-//in conjunction with github.com/purecloudlabs/gprovision/pkg/netexport.
+//in conjunction with github.com/mpictor/gprovision/pkg/netexport.
 package networkd
 
 import (
@@ -20,8 +20,8 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	nx "github.com/purecloudlabs/gprovision/pkg/netexport"
+	"github.com/mpictor/gprovision/pkg/log"
+	nx "github.com/mpictor/gprovision/pkg/netexport"
 )
 
 // Export exports config to a tarball.

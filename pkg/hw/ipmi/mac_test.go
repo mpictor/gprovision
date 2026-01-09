@@ -10,7 +10,7 @@ package ipmi
 import (
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 const (

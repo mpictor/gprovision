@@ -16,7 +16,7 @@ import (
 
 	"github.com/magefile/mage/mg"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
+	"github.com/mpictor/gprovision/build/paths"
 )
 
 //targets for CI to run

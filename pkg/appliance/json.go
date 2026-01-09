@@ -13,8 +13,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/net/xfer"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/net/xfer"
 )
 
 func LoadJson(url string) {

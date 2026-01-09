@@ -11,12 +11,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/rkeep"
-	"github.com/purecloudlabs/gprovision/pkg/hw/beep"
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	"github.com/purecloudlabs/gprovision/pkg/hw/ipmi/uid"
-	"github.com/purecloudlabs/gprovision/pkg/hw/power"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/rkeep"
+	"github.com/mpictor/gprovision/pkg/hw/beep"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	"github.com/mpictor/gprovision/pkg/hw/ipmi/uid"
+	"github.com/mpictor/gprovision/pkg/hw/power"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 var MfgFatal = log.FailAction{

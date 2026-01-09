@@ -13,7 +13,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/kmsg"
+	"github.com/mpictor/gprovision/pkg/hw/kmsg"
 )
 
 type sigChan chan os.Signal

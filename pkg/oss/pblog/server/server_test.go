@@ -15,13 +15,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/common/rkeep"
-	"github.com/purecloudlabs/gprovision/pkg/common/rlog"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/common/rkeep"
+	"github.com/mpictor/gprovision/pkg/common/rlog"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/oss/pblog"
 )
 
 func TestServer(t *testing.T) {

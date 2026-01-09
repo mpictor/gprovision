@@ -13,7 +13,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 const MAX_DATA_LENGTH = 22

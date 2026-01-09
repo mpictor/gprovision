@@ -10,7 +10,7 @@ package testlog
 import (
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //func (tlog *TstLog) LinesMustMatch(lf LogFilter, want []string)

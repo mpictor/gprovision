@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 //func (rbs *radioButtonSet) render() LcdTxt

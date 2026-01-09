@@ -6,7 +6,7 @@
 //
 
 // Package netexport reads network config data from windows. The package
-// github.com/purecloudlabs/gprovision/pkg/netexport can then be used to writes config files compatible with
+// github.com/mpictor/gprovision/pkg/netexport can then be used to writes config files compatible with
 // systemd-networkd.
 //
 // Requires Powershell, SaveRestore.ps1 (Intel). Some data is retrieved from

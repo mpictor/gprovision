@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	gtst "github.com/purecloudlabs/gprovision/testing"
+	gtst "github.com/mpictor/gprovision/testing"
 )
 
 var runSysdTests bool

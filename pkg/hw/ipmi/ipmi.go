@@ -12,7 +12,7 @@ package ipmi
 import (
 	"os/exec"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 func Available() bool {

@@ -7,7 +7,7 @@
 
 // +build !release
 
-// Package testlog hijacks the output of github.com/purecloudlabs/gprovision/pkg/log, and can hijack
+// Package testlog hijacks the output of github.com/mpictor/gprovision/pkg/log, and can hijack
 // log.Cmd(). By default, this output prints through testing functions but
 // it can be stored in a buffer as well - for example, for analysis as part of the
 // test.
@@ -24,8 +24,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 //Conforms to log.Logger interface. Constructed via NewTestLog().

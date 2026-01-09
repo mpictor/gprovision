@@ -17,12 +17,12 @@ import (
 	fp "path/filepath"
 	"syscall"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/hw/block"
-	"github.com/purecloudlabs/gprovision/pkg/hw/block/partitioning"
-	"github.com/purecloudlabs/gprovision/pkg/hw/uefi"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/hw/block"
+	"github.com/mpictor/gprovision/pkg/hw/block/partitioning"
+	"github.com/mpictor/gprovision/pkg/hw/uefi"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type Disk struct {

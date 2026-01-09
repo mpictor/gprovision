@@ -8,9 +8,9 @@
 package mfg
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/oss/frd"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog"
-	"github.com/purecloudlabs/gprovision/pkg/oss/stash"
+	"github.com/mpictor/gprovision/pkg/oss/frd"
+	"github.com/mpictor/gprovision/pkg/oss/pblog"
+	"github.com/mpictor/gprovision/pkg/oss/stash"
 )
 
 func init() {

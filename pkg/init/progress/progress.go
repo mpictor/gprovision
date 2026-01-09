@@ -15,12 +15,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	"github.com/purecloudlabs/gprovision/pkg/hw/kmsg"
-	initconsts "github.com/purecloudlabs/gprovision/pkg/init/consts"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/lcd"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	"github.com/mpictor/gprovision/pkg/hw/kmsg"
+	initconsts "github.com/mpictor/gprovision/pkg/init/consts"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/lcd"
 )
 
 const (

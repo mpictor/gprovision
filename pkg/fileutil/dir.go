@@ -17,7 +17,7 @@ import (
 	fp "path/filepath"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 const (

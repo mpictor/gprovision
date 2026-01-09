@@ -14,7 +14,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type Priority uint
@@ -90,7 +90,7 @@ func (km *KmsgWithPrio) Printf(f string, va ...interface{}) {
 	km.write(msg)
 }
 
-// Like Printf, but writes to kmsg and then via package github.com/purecloudlabs/gprovision/pkg/log - does not
+// Like Printf, but writes to kmsg and then via package github.com/mpictor/gprovision/pkg/log - does not
 // write to stdout/stderr itself, to avoid output duplication
 func (km *KmsgWithPrio) Logf(f string, va ...interface{}) {
 	var msg string

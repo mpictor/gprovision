@@ -12,7 +12,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 //func (ifaces ifMap) load(cfg io.ReadSeeker) (err error)

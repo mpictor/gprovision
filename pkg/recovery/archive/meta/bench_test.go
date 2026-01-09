@@ -31,11 +31,11 @@ var megs = flag.Float64("s", 5.0, "megs")
 // go test -bench . -xzpath /path/to/PRODUCT.Os.Plat.2019-12-10.8682.upd -s 1 -benchtime 10s
 // goos: linux
 // goarch: amd64
-// pkg: github.com/purecloudlabs/gprovision/pkg/recovery/archive/meta
+// pkg: github.com/mpictor/gprovision/pkg/recovery/archive/meta
 // BenchmarkXZ/internal-16                       20         580680936 ns/op
 // BenchmarkXZ/external-16                      200          76486254 ns/op
 // PASS
-// ok      github.com/purecloudlabs/gprovision/pkg/recovery/archive/meta  35.221s
+// ok      github.com/mpictor/gprovision/pkg/recovery/archive/meta  35.221s
 func BenchmarkXZ(b *testing.B) {
 	b.Run("internal", benchmarkIntXZ)
 	b.Run("external", benchmarkExtXZ)

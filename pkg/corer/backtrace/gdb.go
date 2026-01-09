@@ -20,9 +20,9 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/corer/opts"
-	"github.com/purecloudlabs/gprovision/pkg/corer/stream"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/corer/opts"
+	"github.com/mpictor/gprovision/pkg/corer/stream"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 func Upload(cfg *opts.Opts, core string) {

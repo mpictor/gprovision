@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
-//Test app for github.com/purecloudlabs/gprovision/pkg/hw/ipmi/uid, blinking the IPMI UID light.
+//Test app for github.com/mpictor/gprovision/pkg/hw/ipmi/uid, blinking the IPMI UID light.
 package main
 
 import (
@@ -13,7 +13,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/ipmi/uid"
+	"github.com/mpictor/gprovision/pkg/hw/ipmi/uid"
 )
 
 func main() {

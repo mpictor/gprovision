@@ -20,11 +20,11 @@ import (
 	"github.com/u-root/u-root/pkg/qemu"
 	"github.com/u-root/u-root/pkg/vmtest"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
-	"github.com/purecloudlabs/gprovision/testing/fakeupd"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/build/paths"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/testing/fakeupd"
+	"github.com/mpictor/gprovision/testing/vm"
 )
 
 func TestFactoryRestore(t *testing.T)  { testfr(t, false, false, false) }

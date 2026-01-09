@@ -16,10 +16,10 @@ import (
 	fp "path/filepath"
 	"sync"
 
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/common/rlog"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/common/rlog"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 )
 
 var mockOnce sync.Once

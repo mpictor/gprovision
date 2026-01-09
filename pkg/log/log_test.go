@@ -13,9 +13,9 @@ import (
 	"os"
 	"sync"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
-	"github.com/purecloudlabs/gprovision/pkg/log/lcd"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log/lcd"
 )
 
 func Example() {

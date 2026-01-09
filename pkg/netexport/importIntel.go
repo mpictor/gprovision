@@ -19,8 +19,8 @@ import (
 	"strconv"
 	"strings"
 
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type IntelMap map[string]*WinNic

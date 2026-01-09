@@ -13,7 +13,7 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // Copy a file. Assumes any dirs have already been created. Copies metadata.

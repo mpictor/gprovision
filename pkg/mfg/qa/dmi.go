@@ -12,10 +12,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/dmi"
-	"github.com/purecloudlabs/gprovision/pkg/hw/ipmi"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/mfg/mfgflags"
+	"github.com/mpictor/gprovision/pkg/hw/dmi"
+	"github.com/mpictor/gprovision/pkg/hw/ipmi"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/mfg/mfgflags"
 )
 
 type DmiMap map[string]string

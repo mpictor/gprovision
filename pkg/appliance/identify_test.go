@@ -10,8 +10,8 @@ package appliance
 import (
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/dmi"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/hw/dmi"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 func TestIdentify(t *testing.T) {

@@ -1,5 +1,8 @@
 # gprovision
-[![GoDoc](https://godoc.org/github.com/purecloudlabs/gprovision?status.svg)](https://godoc.org/github.com/purecloudlabs/gprovision)
+> [!NOTE]
+> This is the code from github.com/purecloudlabs/gprovision, but updated to use go.mod rather than Gopkg.lock. While this changes the _method_ of tracking dependencies, the dependencies themselves have not been updated in this commit. Some have known vulnerabilities, so exercise caution.
+
+[![GoDoc](https://godoc.org/github.com/mpictor/gprovision?status.svg)](https://godoc.org/github.com/mpictor/gprovision)
 
 Source code related to factory restore and provisioning (aka manufacture or imaging). Also includes buildroot files.
 

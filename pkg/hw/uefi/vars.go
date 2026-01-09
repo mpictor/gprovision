@@ -19,7 +19,7 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //http://kurtqiao.github.io/uefi/2015/01/13/uefi-boot-manager.html

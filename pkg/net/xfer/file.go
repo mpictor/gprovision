@@ -20,8 +20,8 @@ import (
 	"syscall"
 	"time"
 
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //retrieves file, either on local fs or via http/https

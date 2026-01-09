@@ -12,7 +12,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Reads from path, passing through an xz decompressor. Returned function is for

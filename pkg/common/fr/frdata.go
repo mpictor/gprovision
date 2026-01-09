@@ -9,8 +9,8 @@
 package fr
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Interface for a mechanism storing data for use by factory restore

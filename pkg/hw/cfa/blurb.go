@@ -11,7 +11,7 @@ import (
 	"bytes"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //stuff dealing with chunks of text that may not fit on a single line

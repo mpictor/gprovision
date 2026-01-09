@@ -14,10 +14,10 @@ import (
 	fp "path/filepath"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	hk "github.com/purecloudlabs/gprovision/pkg/init/housekeeping"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	hk "github.com/mpictor/gprovision/pkg/init/housekeeping"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 const (

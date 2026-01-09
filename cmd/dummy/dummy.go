@@ -29,11 +29,11 @@ import (
 	fp "path/filepath"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/common/rlog"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
-	fconsts "github.com/purecloudlabs/gprovision/testing/fakeupd/consts"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/common/rlog"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
+	fconsts "github.com/mpictor/gprovision/testing/fakeupd/consts"
 
 	"github.com/u-root/u-root/pkg/mount"
 	"golang.org/x/sys/unix"

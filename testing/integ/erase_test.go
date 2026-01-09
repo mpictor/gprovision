@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/testing/vm"
 
 	"github.com/u-root/u-root/pkg/qemu"
 )
@@ -143,7 +143,7 @@ func TestErase(t *testing.T) {
 func setupEraseHelper(t *testing.T, tmpdir string, qopts *qemu.Options, verify bool) string {
 	// erase_integ: avoid unwanted deps in init pkg
 	irfs := Initramfs(tmpdir, "", []string{"erase_integ"})
-	irfs.Commands[0].Packages = []string{"github.com/purecloudlabs/gprovision/testing/integ/helper/erase"}
+	irfs.Commands[0].Packages = []string{"github.com/mpictor/gprovision/testing/integ/helper/erase"}
 	irfs.InitCmd = "erase"
 	path, err := irfs.Build()
 	if err != nil {

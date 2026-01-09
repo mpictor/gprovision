@@ -12,8 +12,8 @@ import (
 	"io/ioutil"
 	fp "path/filepath"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // Functions in this file are so that apps in the image don't

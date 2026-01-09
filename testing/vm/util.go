@@ -18,8 +18,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/rlog"
-	gtst "github.com/purecloudlabs/gprovision/testing"
+	"github.com/mpictor/gprovision/pkg/common/rlog"
+	gtst "github.com/mpictor/gprovision/testing"
 
 	"github.com/u-root/u-root/pkg/qemu"
 	"github.com/u-root/u-root/pkg/uroot"

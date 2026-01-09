@@ -13,17 +13,17 @@ import (
 	fp "path/filepath"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/common/fr"
-	"github.com/purecloudlabs/gprovision/pkg/common/stash"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/hw/uefi"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	steps "github.com/purecloudlabs/gprovision/pkg/mfg/configStep"
-	"github.com/purecloudlabs/gprovision/pkg/mfg/qa"
-	"github.com/purecloudlabs/gprovision/pkg/net/xfer"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/disk"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/common/fr"
+	"github.com/mpictor/gprovision/pkg/common/stash"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/hw/uefi"
+	"github.com/mpictor/gprovision/pkg/log"
+	steps "github.com/mpictor/gprovision/pkg/mfg/configStep"
+	"github.com/mpictor/gprovision/pkg/mfg/qa"
+	"github.com/mpictor/gprovision/pkg/net/xfer"
+	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
 //FIXME template every url, allowing to use the proto/IP/prefix the json came from

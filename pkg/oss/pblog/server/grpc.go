@@ -12,8 +12,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"

@@ -15,8 +15,8 @@ import (
 	"os/exec"
 	fp "path/filepath"
 
-	"github.com/purecloudlabs/gprovision/pkg/corer/opts"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/corer/opts"
+	"github.com/mpictor/gprovision/pkg/log"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"

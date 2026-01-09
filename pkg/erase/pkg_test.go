@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 //func getSEtime(info []byte, enhanced bool) (t time.Duration)

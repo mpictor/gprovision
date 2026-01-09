@@ -13,9 +13,9 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/disk"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
 func prepare(plat *appliance.Variant, disks []*disk.Disk) {

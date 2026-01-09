@@ -13,7 +13,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 
 	"golang.org/x/sys/unix"
 )

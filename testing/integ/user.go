@@ -13,11 +13,11 @@ import (
 
 	uq "github.com/u-root/u-root/pkg/qemu"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	gtst "github.com/purecloudlabs/gprovision/testing"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/build/paths"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log"
+	gtst "github.com/mpictor/gprovision/testing"
+	"github.com/mpictor/gprovision/testing/vm"
 )
 
 type KBuildOpts struct {

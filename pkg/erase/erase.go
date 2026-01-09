@@ -33,17 +33,17 @@ import (
 	"sync"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/erase/raid"
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	"github.com/purecloudlabs/gprovision/pkg/hw/udev"
-	hk "github.com/purecloudlabs/gprovision/pkg/init/housekeeping"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	logflags "github.com/purecloudlabs/gprovision/pkg/log/flags"
-	"github.com/purecloudlabs/gprovision/pkg/log/lcd"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/disk"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/erase/raid"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	"github.com/mpictor/gprovision/pkg/hw/udev"
+	hk "github.com/mpictor/gprovision/pkg/init/housekeeping"
+	"github.com/mpictor/gprovision/pkg/log"
+	logflags "github.com/mpictor/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log/lcd"
+	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
 const (

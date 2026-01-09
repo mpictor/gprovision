@@ -32,7 +32,7 @@
 // the contents of string `aj_default`, defined in identify.go.
 //
 // To override aj_default, create a file appliance.json in the dir listed above
-// ($GOPATH/src/github.com/purecloudlabs/gprovision/proprietary/data/appliance) with content like the
+// ($GOPATH/src/github.com/mpictor/gprovision/proprietary/data/appliance) with content like the
 // following, a portion of aj_default. Note that appliance.json overrides
 // aj_default, rather than adding to it.
 //

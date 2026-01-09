@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 //func (s *step) Run() (err error)

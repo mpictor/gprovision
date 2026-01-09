@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 type consoleLog struct {

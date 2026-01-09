@@ -11,8 +11,8 @@ package rlog
 import (
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Sets up a remote logger on demand.

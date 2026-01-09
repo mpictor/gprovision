@@ -14,9 +14,9 @@ import (
 	fp "path/filepath"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/guid"
-	"github.com/purecloudlabs/gprovision/pkg/hw/block"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/guid"
+	"github.com/mpictor/gprovision/pkg/hw/block"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type EfiDppMediaSubType EfiDevPathProtoSubType

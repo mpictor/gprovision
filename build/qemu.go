@@ -22,7 +22,7 @@ import (
 
 	"github.com/magefile/mage/sh"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
+	"github.com/mpictor/gprovision/build/paths"
 )
 
 //downloads/extracts qemu tarball

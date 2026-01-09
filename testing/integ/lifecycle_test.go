@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	fconsts "github.com/purecloudlabs/gprovision/testing/fakeupd/consts"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	fconsts "github.com/mpictor/gprovision/testing/fakeupd/consts"
+	"github.com/mpictor/gprovision/testing/vm"
 )
 
 func TestLifecycle_Legacy(t *testing.T) { testLifecycle(t, false) }

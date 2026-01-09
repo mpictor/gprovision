@@ -11,8 +11,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/rkeep"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/rkeep"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 const (

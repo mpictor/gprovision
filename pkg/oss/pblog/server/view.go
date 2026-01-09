@@ -16,7 +16,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 )
 
 type devStruct struct {

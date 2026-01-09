@@ -18,8 +18,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/corer/testhelper"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/corer/testhelper"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 //func findExeByName(corePath string) (exe string)

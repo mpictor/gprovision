@@ -13,7 +13,7 @@ import (
 	"net"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // IPNet is a wrapper around net.IPNet allowing us to extend the functionality.

@@ -13,7 +13,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/fileutil/kver"
+	"github.com/mpictor/gprovision/pkg/fileutil/kver"
 )
 
 var buildId string

@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/common/strs"
 )
 
 //func (rl *resultList)moveOrAddFront(item *imageResult)

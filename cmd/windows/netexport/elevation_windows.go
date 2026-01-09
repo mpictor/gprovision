@@ -10,7 +10,7 @@ package main
 import (
 	"unsafe"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 
 	win "golang.org/x/sys/windows"
 )

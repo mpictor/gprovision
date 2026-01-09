@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
-// Appliance-schema generates a json schema for github.com/purecloudlabs/gprovision/pkg/appliance or
-// github.com/purecloudlabs/gprovision/pkg/mfg/qa.
+// Appliance-schema generates a json schema for github.com/mpictor/gprovision/pkg/appliance or
+// github.com/mpictor/gprovision/pkg/mfg/qa.
 package main
 
 import (
@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/appliance"
 
 	"github.com/alecthomas/jsonschema"
 )

@@ -16,8 +16,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa/serial"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/cfa/serial"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //consts related to packet transmission

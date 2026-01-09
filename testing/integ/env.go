@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	gtst "github.com/purecloudlabs/gprovision/testing"
+	gtst "github.com/mpictor/gprovision/testing"
 )
 
 func EnvFromSys(cpus int, kvm bool) {

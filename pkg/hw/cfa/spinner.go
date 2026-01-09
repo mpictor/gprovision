@@ -10,7 +10,7 @@ package cfa
 import (
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Spinner is a message + ASCII progress spinner. Start with Display(), update

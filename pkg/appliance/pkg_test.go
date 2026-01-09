@@ -15,12 +15,12 @@ import (
 	fp "path/filepath"
 	"testing"
 
-	"github.com/santhosh-tekuri/jsonschema"
+	"github.com/santhosh-tekuri/jsonschema/v2"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
+	"github.com/mpictor/gprovision/build/paths"
 )
 
-//load json from disk, compare with bindata version
+// load json from disk, compare with bindata version
 func TestBindataProprietary(t *testing.T) {
 	aj := fp.Join(paths.RepoRoot, "proprietary/data/appliance/appliance.json")
 	if _, err := os.Stat(aj); err != nil {
@@ -36,7 +36,7 @@ func TestBindataProprietary(t *testing.T) {
 	}
 }
 
-//check that json is compatible with our struct
+// check that json is compatible with our struct
 func TestUnmarshal(t *testing.T) {
 	j := getJson()
 	err := loadJson(j)
@@ -79,7 +79,7 @@ func TestPersistence(t *testing.T) {
 	}
 }
 
-//test against the appliance schema
+// test against the appliance schema
 func TestApplianceJsonConformance(t *testing.T) {
 	schema, err := jsonschema.Compile("schemas/appliance.json")
 	if err != nil {
@@ -107,7 +107,7 @@ func TestApplianceJsonConformance(t *testing.T) {
 	})
 }
 
-//test against the platform_facts schema
+// test against the platform_facts schema
 func TestPlatFactsJsonConformance(t *testing.T) {
 	schema, err := jsonschema.Compile("schemas/platform_facts.json")
 	if err != nil {

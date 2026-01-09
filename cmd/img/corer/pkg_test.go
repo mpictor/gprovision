@@ -14,11 +14,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/corer/opts"
-	"github.com/purecloudlabs/gprovision/pkg/corer/testhelper"
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/corer/opts"
+	"github.com/mpictor/gprovision/pkg/corer/testhelper"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 
 	"github.com/rjeczalik/notify"
 )

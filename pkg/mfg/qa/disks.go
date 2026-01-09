@@ -10,9 +10,9 @@ package qa
 import (
 	"fmt"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/block"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/mfg/mfgflags"
+	"github.com/mpictor/gprovision/pkg/hw/block"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/mfg/mfgflags"
 )
 
 type Disk struct {

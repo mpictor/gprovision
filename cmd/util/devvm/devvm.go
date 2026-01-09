@@ -8,7 +8,7 @@
 // Cmd devvm re-uses integ test logic to spin up VMs for dev work. Since it's
 // for dev, there are no timeouts unlike integ.
 //
-// go run github.com/purecloudlabs/gprovision/pkg/testing/integ/run/devvm.go -img /path/to/PRODUCT.Os.Plat.2019-12-19.8704.upd -tmp /var/tmp -lcd
+// go run github.com/mpictor/gprovision/pkg/testing/integ/run/devvm.go -img /path/to/PRODUCT.Os.Plat.2019-12-19.8704.upd -tmp /var/tmp -lcd
 package main
 
 import (
@@ -19,11 +19,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/rlog"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	gtst "github.com/purecloudlabs/gprovision/testing"
-	"github.com/purecloudlabs/gprovision/testing/integ"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/pkg/common/rlog"
+	"github.com/mpictor/gprovision/pkg/log"
+	gtst "github.com/mpictor/gprovision/testing"
+	"github.com/mpictor/gprovision/testing/integ"
+	"github.com/mpictor/gprovision/testing/vm"
 )
 
 func main() {

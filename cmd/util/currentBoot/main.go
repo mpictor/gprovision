@@ -9,8 +9,8 @@
 package main
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/hw/uefi"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/uefi"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //must run as root, as efi vars are not accessible otherwise

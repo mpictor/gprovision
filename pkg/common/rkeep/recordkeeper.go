@@ -10,8 +10,8 @@
 package rkeep
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Some sort of external mechanism recording details about units imaged.

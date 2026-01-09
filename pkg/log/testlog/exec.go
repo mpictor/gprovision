@@ -14,7 +14,7 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //represents a Cmd in CmdMap

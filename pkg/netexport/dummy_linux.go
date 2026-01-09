@@ -11,7 +11,7 @@ import (
 	"os"
 	"strings"
 
-	inet "github.com/purecloudlabs/gprovision/pkg/net"
+	inet "github.com/mpictor/gprovision/pkg/net"
 )
 
 //file contains dummy functions to prevent compile errors, allow tests to run

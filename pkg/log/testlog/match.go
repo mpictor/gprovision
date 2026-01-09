@@ -81,7 +81,7 @@ func (tlog *TstLog) linesMustMatchCleaned(filterFn LineFilterer, cleanFn LineCle
 // UpdateGolden writes matching golden files that need updated. Test(s) still fail; re-run to verify.
 //
 // Example:
-//   go test github.com/purecloudlabs/gprovision/pkg/hw/cfa -run PressAnyKey2 -updateGolden testdata/TestPressAnyKey2.golden
+//   go test github.com/mpictor/gprovision/pkg/hw/cfa -run PressAnyKey2 -updateGolden testdata/TestPressAnyKey2.golden
 // This will update the correct file regardless of current working dir.
 var UpdateGolden = flag.String("updateGolden", "", "during testing, allow updating this golden file")
 

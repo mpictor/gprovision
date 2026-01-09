@@ -11,9 +11,9 @@ import (
 	"net"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/hw/nic"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/hw/nic"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 func (s *Specs) GetNicInfo() {

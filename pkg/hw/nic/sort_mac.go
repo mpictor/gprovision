@@ -13,7 +13,7 @@ import (
 	"net"
 	"sort"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/common/strs"
 )
 
 var be = binary.BigEndian

@@ -21,10 +21,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	dt "github.com/purecloudlabs/gprovision/pkg/disktag"
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	dt "github.com/mpictor/gprovision/pkg/disktag"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 const (

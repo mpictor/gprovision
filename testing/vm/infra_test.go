@@ -16,9 +16,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/mfg/mdata"
-	gtst "github.com/purecloudlabs/gprovision/testing"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/mfg/mdata"
+	gtst "github.com/mpictor/gprovision/testing"
 )
 
 //ensure the template is functional and that it produces valid json

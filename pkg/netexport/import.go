@@ -17,8 +17,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	inet "github.com/purecloudlabs/gprovision/pkg/net"
+	"github.com/mpictor/gprovision/pkg/log"
+	inet "github.com/mpictor/gprovision/pkg/net"
 )
 
 const (

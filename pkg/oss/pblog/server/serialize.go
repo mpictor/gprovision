@@ -8,7 +8,7 @@
 package server
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 )
 
 type Persister interface {

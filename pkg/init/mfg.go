@@ -13,9 +13,9 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/power"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/mfg"
+	"github.com/mpictor/gprovision/pkg/hw/power"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/mfg"
 
 	"github.com/u-root/u-root/pkg/mount"
 )

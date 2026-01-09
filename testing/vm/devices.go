@@ -16,9 +16,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	gtst "github.com/purecloudlabs/gprovision/testing"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log"
+	gtst "github.com/mpictor/gprovision/testing"
 
 	"github.com/u-root/u-root/pkg/qemu"
 	"github.com/u-root/u-root/pkg/vmtest"

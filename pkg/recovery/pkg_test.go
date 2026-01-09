@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/common/strs"
 )
 
 //func Hostify(id string) string

@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 // Test helper function returning logStack. Only suitable for testing - ignores

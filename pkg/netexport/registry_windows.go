@@ -13,9 +13,9 @@ import (
 	"net"
 	"strings"
 
-	msguid "github.com/purecloudlabs/gprovision/pkg/guid"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	inet "github.com/purecloudlabs/gprovision/pkg/net"
+	msguid "github.com/mpictor/gprovision/pkg/guid"
+	"github.com/mpictor/gprovision/pkg/log"
+	inet "github.com/mpictor/gprovision/pkg/net"
 
 	reg "golang.org/x/sys/windows/registry"
 )

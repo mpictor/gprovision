@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 func Example() {

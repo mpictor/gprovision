@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 type gpt struct {

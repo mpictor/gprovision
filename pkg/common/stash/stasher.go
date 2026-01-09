@@ -8,9 +8,9 @@
 package stash
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	steps "github.com/purecloudlabs/gprovision/pkg/mfg/configStep"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/log"
+	steps "github.com/mpictor/gprovision/pkg/mfg/configStep"
 )
 
 // Stasher securely stores secrets and allows agonizing abominable alliteration.

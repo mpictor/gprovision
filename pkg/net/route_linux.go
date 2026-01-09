@@ -15,9 +15,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/hw/nic"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/hw/nic"
+	"github.com/mpictor/gprovision/pkg/log"
 
 	"github.com/vishvananda/netlink"
 	"golang.org/x/sys/unix"

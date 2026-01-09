@@ -11,8 +11,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // Called from a goroutine, updates lcd with size of a file.

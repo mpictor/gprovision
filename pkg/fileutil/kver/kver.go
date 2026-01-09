@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 /*

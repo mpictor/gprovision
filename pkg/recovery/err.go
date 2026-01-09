@@ -8,9 +8,9 @@
 package recovery
 
 import (
-	"github.com/purecloudlabs/gprovision/pkg/common/rkeep"
-	"github.com/purecloudlabs/gprovision/pkg/hw/power"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/rkeep"
+	"github.com/mpictor/gprovision/pkg/hw/power"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 var RecFatal = log.FailAction{

@@ -28,8 +28,8 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/net/xfer"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/net/xfer"
 
 	"github.com/google/shlex"
 )

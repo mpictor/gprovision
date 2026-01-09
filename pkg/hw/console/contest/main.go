@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/console"
+	"github.com/mpictor/gprovision/pkg/hw/console"
 )
 
 func main() {

@@ -22,13 +22,13 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	dt "github.com/purecloudlabs/gprovision/pkg/disktag"
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/archive/meta"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/disk"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/history"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	dt "github.com/mpictor/gprovision/pkg/disktag"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/recovery/archive/meta"
+	"github.com/mpictor/gprovision/pkg/recovery/disk"
+	"github.com/mpictor/gprovision/pkg/recovery/history"
 )
 
 var decompressBuf = "/buf"

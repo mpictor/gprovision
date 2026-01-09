@@ -12,12 +12,12 @@ package main
 import (
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/hw/power"
-	"github.com/purecloudlabs/gprovision/pkg/hw/udev"
-	ginit "github.com/purecloudlabs/gprovision/pkg/init"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/disk"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/hw/power"
+	"github.com/mpictor/gprovision/pkg/hw/udev"
+	ginit "github.com/mpictor/gprovision/pkg/init"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
 //set eraseHelper=verify to verify pattern

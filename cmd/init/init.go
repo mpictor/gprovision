@@ -6,13 +6,13 @@
 //
 
 // Command init replaces the sh script /init in an initramfs, doing the normal early
-// userspace tasks. See github.com/purecloudlabs/gprovision/pkg/init for details.
+// userspace tasks. See github.com/mpictor/gprovision/pkg/init for details.
 package main
 
 import (
-	ini "github.com/purecloudlabs/gprovision/pkg/init"
-	"github.com/purecloudlabs/gprovision/pkg/init/progress"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	ini "github.com/mpictor/gprovision/pkg/init"
+	"github.com/mpictor/gprovision/pkg/init/progress"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //in any binary with main.buildId string, it is set at compile time to $BUILD_INFO

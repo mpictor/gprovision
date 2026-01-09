@@ -8,17 +8,17 @@
 package networkd
 
 /*
-This file pulls in github.com/purecloudlabs/gprovision/pkg/appliance, which is linux-specific thanks to various dependencies.
+This file pulls in github.com/mpictor/gprovision/pkg/appliance, which is linux-specific thanks to various dependencies.
 Go treats the _linux suffix specially - as a result, it doesn't try to compile this for windows.
 */
 
 import (
 	"fmt"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/hw/nic"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	nx "github.com/purecloudlabs/gprovision/pkg/netexport"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/hw/nic"
+	"github.com/mpictor/gprovision/pkg/log"
+	nx "github.com/mpictor/gprovision/pkg/netexport"
 )
 
 // Defaults creates a set of config files with platform default names, DHCP, and current device's MACs.

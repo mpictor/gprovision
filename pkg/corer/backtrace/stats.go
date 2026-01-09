@@ -14,7 +14,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 func duration(tv syscall.Timeval) time.Duration {

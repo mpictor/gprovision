@@ -11,7 +11,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 // Type of function called after fatal event has been logged. This could cause

@@ -15,9 +15,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/block"
-	"github.com/purecloudlabs/gprovision/pkg/hw/dmi"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/block"
+	"github.com/mpictor/gprovision/pkg/hw/dmi"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // cause bindata.go to be generated from files in the data dir

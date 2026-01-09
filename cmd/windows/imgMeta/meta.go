@@ -14,9 +14,9 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
-	"github.com/purecloudlabs/gprovision/pkg/recovery/archive/meta"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/recovery/archive/meta"
 )
 
 func init() {

@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	tlog "github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	tlog "github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 //func (l *Lcd) backlightSinStep(curStep *uint, nrSteps uint)

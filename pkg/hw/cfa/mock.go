@@ -20,7 +20,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 var MockVerbose bool = true
@@ -333,7 +333,7 @@ func decode(in string) string {
 	return decodeOp(in).String()
 }
 
-//satisfied by github.com/purecloudlabs/gprovision/pkg/log/testlog
+//satisfied by github.com/mpictor/gprovision/pkg/log/testlog
 type Tlog interface {
 	TstErrf(f string, va ...interface{})
 	TstLogf(f string, va ...interface{})

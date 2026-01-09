@@ -30,7 +30,7 @@ import (
 	"github.com/magefile/mage/sh"
 	"github.com/magefile/mage/target"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
+	"github.com/mpictor/gprovision/build/paths"
 )
 
 func BuildAll(ctx context.Context) error {

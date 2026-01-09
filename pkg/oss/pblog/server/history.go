@@ -16,7 +16,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 )
 
 const timeFormat = "01/02/2006-03:04:05 PM"

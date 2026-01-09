@@ -10,7 +10,7 @@ package nic
 import (
 	"io/ioutil"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Set IfAlias on a nic. Unless overwrite is true, first checks that no alias is set.

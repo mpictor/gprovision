@@ -7,19 +7,19 @@
 
 // Service corer listens for fs events on given dir, and if the events are
 // for a coredump, it creates a backtrace via gdb. The backtrace as well as the
-// core are uploaded to s3. See packages under github.com/purecloudlabs/gprovision/pkg/corer for details.
+// core are uploaded to s3. See packages under github.com/mpictor/gprovision/pkg/corer for details.
 package main
 
 import (
 	"strings"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/corer/backtrace"
-	"github.com/purecloudlabs/gprovision/pkg/corer/opts"
-	"github.com/purecloudlabs/gprovision/pkg/corer/stream"
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/corer/backtrace"
+	"github.com/mpictor/gprovision/pkg/corer/opts"
+	"github.com/mpictor/gprovision/pkg/corer/stream"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 
 	"github.com/rjeczalik/notify"
 	"golang.org/x/sys/unix"

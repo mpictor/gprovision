@@ -10,7 +10,7 @@ package lcd
 import (
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //will it crash if things are unset? should not

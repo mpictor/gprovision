@@ -14,7 +14,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 var tag string

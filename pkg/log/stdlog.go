@@ -10,7 +10,7 @@ package log
 import (
 	"log"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 // AdaptStdlog redirects output from the system pkg "log" to this logger.

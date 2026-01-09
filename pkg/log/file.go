@@ -13,7 +13,7 @@ import (
 	fp "path/filepath"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/flags"
+	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
 type fileLog struct {

@@ -10,8 +10,8 @@ package nic
 import (
 	"os/exec"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/cpu"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/cpu"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 var rssProtos = []string{"tcp4", "tcp6", "udp4", "udp6", "sctp4", "sctp6"}

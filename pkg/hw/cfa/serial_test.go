@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 //func GetPacket(r ReadFlusher, DbgPktErr, DbgRW bool) (p *Packet, err error)

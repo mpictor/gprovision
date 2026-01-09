@@ -12,12 +12,12 @@ import (
 	"html/template"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/common/rkeep"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	steps "github.com/purecloudlabs/gprovision/pkg/mfg/configStep"
-	"github.com/purecloudlabs/gprovision/pkg/mfg/mfgflags"
-	"github.com/purecloudlabs/gprovision/pkg/net/xfer"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/common/rkeep"
+	"github.com/mpictor/gprovision/pkg/log"
+	steps "github.com/mpictor/gprovision/pkg/mfg/configStep"
+	"github.com/mpictor/gprovision/pkg/mfg/mfgflags"
+	"github.com/mpictor/gprovision/pkg/net/xfer"
 )
 
 //used to fill in html template

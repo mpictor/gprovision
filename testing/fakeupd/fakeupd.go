@@ -21,9 +21,9 @@ import (
 	fp "path/filepath"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/init/consts"
+	"github.com/mpictor/gprovision/build/paths"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/init/consts"
 )
 
 //create a tar.xz with sha256

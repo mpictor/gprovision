@@ -14,9 +14,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/testing/vm"
 
 	"github.com/u-root/u-root/pkg/vmtest"
 )

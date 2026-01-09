@@ -14,8 +14,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/cpu"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/cpu"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //grep -E "^ *(CPU|$(ls /sys/class/net/en*/device/msi_irqs/|grep -v ^/|xargs|tr ' ' '|'))" /proc/interrupts

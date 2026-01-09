@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Return true if running on CI. Currently only detects Jenkins. For cleanup.

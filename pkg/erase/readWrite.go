@@ -13,9 +13,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/erase/raid"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/erase/raid"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 const (

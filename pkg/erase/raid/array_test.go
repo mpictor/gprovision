@@ -10,7 +10,7 @@ package raid
 import (
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/log/testlog"
+	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
 //func FindArrays(devices []*Device) (arrays []*Array)

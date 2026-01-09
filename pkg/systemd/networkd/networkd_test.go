@@ -17,10 +17,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
-	"github.com/purecloudlabs/gprovision/pkg/hw/nic"
-	inet "github.com/purecloudlabs/gprovision/pkg/net"
-	nx "github.com/purecloudlabs/gprovision/pkg/netexport"
+	"github.com/mpictor/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/hw/nic"
+	inet "github.com/mpictor/gprovision/pkg/net"
+	nx "github.com/mpictor/gprovision/pkg/netexport"
 )
 
 //func (nic WinNic) toNetD() (cfgs []configFile)

@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 )
 
 func TestHoldDoc(t *testing.T) {

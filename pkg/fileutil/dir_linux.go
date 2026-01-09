@@ -16,8 +16,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/id"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/id"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // Return free space for FS containing dir, or -1 in the event of an error

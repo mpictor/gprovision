@@ -23,11 +23,11 @@ import (
 	"github.com/u-root/u-root/pkg/uroot/initramfs"
 	"github.com/u-root/u-root/pkg/vmtest"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	gtst "github.com/purecloudlabs/gprovision/testing"
-	"github.com/purecloudlabs/gprovision/testing/vm"
+	"github.com/mpictor/gprovision/build/paths"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	"github.com/mpictor/gprovision/pkg/log"
+	gtst "github.com/mpictor/gprovision/testing"
+	"github.com/mpictor/gprovision/testing/vm"
 )
 
 //Defines the base vm used for 'devvm' and lifecycle tests.

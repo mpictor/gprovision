@@ -17,11 +17,11 @@ import (
 	fp "path/filepath"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/common"
-	"github.com/purecloudlabs/gprovision/pkg/common/stash"
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	steps "github.com/purecloudlabs/gprovision/pkg/mfg/configStep"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog"
+	"github.com/mpictor/gprovision/pkg/common"
+	"github.com/mpictor/gprovision/pkg/common/stash"
+	"github.com/mpictor/gprovision/pkg/log"
+	steps "github.com/mpictor/gprovision/pkg/mfg/configStep"
+	"github.com/mpictor/gprovision/pkg/oss/pblog"
 )
 
 func UseImpl() {

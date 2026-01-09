@@ -18,11 +18,11 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/stash"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	dt "github.com/purecloudlabs/gprovision/pkg/disktag"
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/common/stash"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	dt "github.com/mpictor/gprovision/pkg/disktag"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 // Hostify converts a string, typically the device serial number, into a string

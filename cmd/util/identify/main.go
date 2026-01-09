@@ -6,7 +6,7 @@
 //
 
 // Command identify identifies a hardware device from dmi data, using
-// github.com/purecloudlabs/gprovision/pkg/appliance. Once frequently used, it now exists only for use in
+// github.com/mpictor/gprovision/pkg/appliance. Once frequently used, it now exists only for use in
 // troubleshooting.
 package main
 
@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/purecloudlabs/gprovision/pkg/appliance"
+	"github.com/mpictor/gprovision/pkg/appliance"
 )
 
 var buildId string

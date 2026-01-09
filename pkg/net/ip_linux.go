@@ -11,8 +11,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/nic"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/nic"
+	"github.com/mpictor/gprovision/pkg/log"
 
 	"github.com/vishvananda/netlink"
 )

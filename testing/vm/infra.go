@@ -28,11 +28,11 @@ import (
 	"github.com/u-root/u-root/pkg/qemu"
 	"github.com/u-root/u-root/pkg/vmtest"
 
-	"github.com/purecloudlabs/gprovision/pkg/common/rlog"
-	"github.com/purecloudlabs/gprovision/pkg/common/strs"
-	pbsrvr "github.com/purecloudlabs/gprovision/pkg/oss/pblog/server"
-	gtst "github.com/purecloudlabs/gprovision/testing"
-	"github.com/purecloudlabs/gprovision/testing/fakeupd"
+	"github.com/mpictor/gprovision/pkg/common/rlog"
+	"github.com/mpictor/gprovision/pkg/common/strs"
+	pbsrvr "github.com/mpictor/gprovision/pkg/oss/pblog/server"
+	gtst "github.com/mpictor/gprovision/testing"
+	"github.com/mpictor/gprovision/testing/fakeupd"
 )
 
 //waits for vm to exit or for the given time to elapse

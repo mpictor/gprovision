@@ -13,7 +13,7 @@ package uefi
 go get github.com/dvyukov/go-fuzz/go-fuzz
 go get github.com/dvyukov/go-fuzz/go-fuzz-build
 
-go-fuzz-build -func FuzzParseFilePathList github.com/purecloudlabs/gprovision/pkg/hw/uefi
+go-fuzz-build -func FuzzParseFilePathList github.com/mpictor/gprovision/pkg/hw/uefi
 go-fuzz -bin=./uefi-fuzz.zip -workdir=fuzz
 ...
 */

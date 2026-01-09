@@ -14,8 +14,8 @@ import (
 	fp "path/filepath"
 	"strings"
 
-	futil "github.com/purecloudlabs/gprovision/pkg/fileutil"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	futil "github.com/mpictor/gprovision/pkg/fileutil"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //return true if the system booted via UEFI (as opposed to legacy)

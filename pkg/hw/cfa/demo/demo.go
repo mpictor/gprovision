@@ -18,8 +18,8 @@ import (
 	"runtime/trace"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa"
-	"github.com/purecloudlabs/gprovision/pkg/hw/cfa/serial"
+	"github.com/mpictor/gprovision/pkg/hw/cfa"
+	"github.com/mpictor/gprovision/pkg/hw/cfa/serial"
 )
 
 const longMsg = "Data Erase: unrecoverable failure. Data MAY remain. Contact customer support to discuss options."

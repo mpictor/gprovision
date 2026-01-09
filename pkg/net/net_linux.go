@@ -15,9 +15,9 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/purecloudlabs/gprovision/pkg/hw/ioctl"
-	"github.com/purecloudlabs/gprovision/pkg/hw/nic"
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/hw/ioctl"
+	"github.com/mpictor/gprovision/pkg/hw/nic"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //Enable any network interface, even DIAG if not hidden

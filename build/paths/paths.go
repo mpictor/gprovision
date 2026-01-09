@@ -18,7 +18,7 @@ import (
 
 	"github.com/magefile/mage/sh"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/log"
 )
 
 //paths shared by jobs, as well as path-related utilty functions

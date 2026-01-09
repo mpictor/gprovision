@@ -11,8 +11,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/purecloudlabs/gprovision/pkg/log"
-	"github.com/purecloudlabs/gprovision/pkg/oss/pblog/pb"
+	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/prologic/bitcask"

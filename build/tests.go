@@ -22,8 +22,8 @@ import (
 
 	"github.com/magefile/mage/mg"
 
-	"github.com/purecloudlabs/gprovision/build/paths"
-	gtst "github.com/purecloudlabs/gprovision/testing"
+	"github.com/mpictor/gprovision/build/paths"
+	gtst "github.com/mpictor/gprovision/testing"
 )
 
 /* Env vars
