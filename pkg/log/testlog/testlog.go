@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build !release
+//go:build !release
 
 // Package testlog hijacks the output of github.com/mpictor/gprovision/pkg/log, and can hijack
 // log.Cmd(). By default, this output prints through testing functions but

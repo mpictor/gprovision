@@ -7,7 +7,7 @@
 
 // not for production use
 
-// +build !release
+//go:build !release
 
 package paths
 

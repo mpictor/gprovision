@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build linux,release
+//go:build linux,release
 
 // above means linux AND release
 // so this is only built for linux release builds (opposite of native.go)

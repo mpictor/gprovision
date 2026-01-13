@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build gofuzz
+//go:build gofuzz
 
 package uefi
 

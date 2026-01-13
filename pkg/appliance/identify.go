@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build !light
+//go:build !light
 
 package appliance
 

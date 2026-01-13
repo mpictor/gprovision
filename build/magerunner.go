@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build ignore
+//go:build ignore
 
 /* runs mage build system
 usage:

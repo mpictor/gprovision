@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build !mfg
+//go:build !mfg
 
 package init
 

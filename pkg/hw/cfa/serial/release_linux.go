@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build release
+//go:build release
 
 package serial
 

@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build !release
+//go:build !release
 
 //Package testhelper does setup for tests requiring a core dump.
 package testhelper

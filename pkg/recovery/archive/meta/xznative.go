@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build !linux !release
+//go:build !linux !release
 
 // Above means (NOT linux) OR (NOT release); for linux, assume xz is available.
 // Still build on linux for non-release builds (i.e. testing, benchmarks).

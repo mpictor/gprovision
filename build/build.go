@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-// +build mage
+//go:build mage
 
 /*
  build file for mage build system
