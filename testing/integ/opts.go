@@ -15,8 +15,8 @@ import (
 	fp "path/filepath"
 	"time"
 
+	"github.com/u-root/gobusybox/src/pkg/golang"
 	"github.com/u-root/u-root/pkg/cpio"
-	"github.com/u-root/u-root/pkg/golang"
 	"github.com/u-root/u-root/pkg/qemu"
 	"github.com/u-root/u-root/pkg/uroot"
 	"github.com/u-root/u-root/pkg/uroot/builder"
@@ -119,7 +119,7 @@ func Initramfs(tmpdir, combinedCpio string, tags []string, dirs ...string) *irfs
 					},
 				},
 			},
-			Env:        golang.Environ{ctx},
+			Env:        &golang.Environ{Context: ctx},
 			ExtraFiles: flist,
 		},
 	}
@@ -136,7 +136,7 @@ func (i *irfs) Build() (path string, err error) {
 	}
 	if i.BaseArchive == nil {
 		log.Logf("using default archive")
-		i.BaseArchive = uroot.DefaultRamfs.Reader()
+		i.BaseArchive = uroot.DefaultRamfs().Reader()
 	}
 	if len(i.InitCmd) == 0 {
 		i.InitCmd = "init"
@@ -148,7 +148,7 @@ func (i *irfs) Build() (path string, err error) {
 	var outputFile string
 	if i.OutputFile == nil {
 		outputFile = fp.Join(i.TempDir, "initramfs.cpio")
-		w, err := initramfs.CPIO.OpenWriter(logger, outputFile, "", "")
+		w, err := initramfs.CPIO.OpenWriter(logger, outputFile)
 		if err != nil {
 			return "", err
 		}
@@ -171,9 +171,8 @@ func Mfgopts(t gtst.TB, tmpdir, mfgurl string, serOut io.WriteCloser) (*vmtest.O
 	base := BaselineVM(false, M, t, tmpdir)
 	irfs := Initramfs(tmpdir, "", []string{"mfg", "release"}, "initramfs", "initramfs_mfg")
 	opts := &vmtest.Options{
-		QEMUOpts:   *base,
-		BuildOpts:  irfs.Opts,
-		DontSetEnv: true,
+		QEMUOpts:  *base,
+		BuildOpts: irfs.Opts,
 	}
 	opts.QEMUOpts.Devices = append(opts.QEMUOpts.Devices, vm.ArbitraryKArgs{"mfgurl=" + mfgurl})
 	opts.QEMUOpts.SerialOutput = serOut
@@ -203,9 +202,8 @@ func FRopts(t gtst.TB, tmpdir string) *vmtest.Options {
 	)
 	irfs := Initramfs(tmpdir, "", []string{"release"}, "initramfs")
 	opts := &vmtest.Options{
-		QEMUOpts:   *qopts,
-		BuildOpts:  irfs.Opts,
-		DontSetEnv: true,
+		QEMUOpts:  *qopts,
+		BuildOpts: irfs.Opts,
 	}
 	opts.QEMUOpts.SerialOutput = nil
 	return opts

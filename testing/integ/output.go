@@ -18,7 +18,7 @@ import (
 	"strings"
 
 	"github.com/u-root/u-root/pkg/qemu"
-	"github.com/u-root/u-root/pkg/uroot/logger"
+	"github.com/u-root/u-root/pkg/ulog"
 
 	"github.com/mpictor/gprovision/pkg/log"
 	gtst "github.com/mpictor/gprovision/testing"
@@ -106,7 +106,7 @@ func (ne *NoEscape) Write(b []byte) (int, error) {
 //without use/redirection of std log.
 type UrootLoggerAdapter struct{}
 
-var _ logger.Logger = (*UrootLoggerAdapter)(nil)
+var _ ulog.Logger = (*UrootLoggerAdapter)(nil)
 
 func (*UrootLoggerAdapter) Printf(format string, v ...interface{}) {
 	log.Logf(format, v...)

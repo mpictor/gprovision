@@ -64,7 +64,7 @@ func (r *HddResolver) Resolve(basePath string) (string, error) {
 			}
 		}
 	}
-	err = mount.Mount(r.BlkInfo.Device, basePath, r.BlkInfo.FsType.String(), "", 0)
+	_, err = mount.Mount(r.BlkInfo.Device, basePath, r.BlkInfo.FsType.String(), "", 0)
 	if err == nil {
 		r.mountPoint = basePath
 	}

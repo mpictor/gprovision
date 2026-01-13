@@ -64,7 +64,7 @@ func fakeSysd() {
 	}
 	//can't merely write to console - must write to serial port.
 	//before we can do that, remount root without the readonly flag
-	err := mount.Mount("", "/", "", "", unix.MS_REMOUNT)
+	_, err := mount.Mount("", "/", "", "", unix.MS_REMOUNT)
 	if err != nil {
 		log.Logln(err)
 		time.Sleep(time.Minute)

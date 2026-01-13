@@ -259,7 +259,7 @@ func (fs *Filesystem) MountErr() (path string, err error) {
 
 	// Try u-root's Mount(). Not sure if it'll work on things like NTFS-3g
 	// (FUSE), so if this reports an error try with the mount binary.
-	err = mount.Mount(fs.blkdev, fs.mountPoint, fs.mountType, opts, 0)
+	_, err = mount.Mount(fs.blkdev, fs.mountPoint, fs.mountType, opts, 0)
 	if err == nil {
 		log.Logf("mount %s on %s", fs.blkdev, fs.mountPoint)
 		fs.mounted = true

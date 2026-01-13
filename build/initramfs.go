@@ -212,7 +212,7 @@ func getCAbundle() string {
 //Wrapper around uroot.CreateInitramfs()
 func CreateInitramfs(outCpio, tmpdir string, baseArchive io.ReaderAt, files []string, existingInit bool) error {
 	logger := log.New(os.Stderr, "initramfs: ", 0)
-	out, err := initramfs.CPIO.OpenWriter(logger, outCpio, "", "")
+	out, err := initramfs.CPIO.OpenWriter(logger, outCpio)
 	if err != nil {
 		return err
 	}

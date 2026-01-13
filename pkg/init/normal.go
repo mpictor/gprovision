@@ -89,7 +89,7 @@ func checkExtUsb() []string {
 		if prevChecked(checked, fs) {
 			continue
 		}
-		err = mount.Mount(fs.Device, consts.ExtDir, fs.FsType.String(), "", unix.MS_RDONLY)
+		_, err = mount.Mount(fs.Device, consts.ExtDir, fs.FsType.String(), "", unix.MS_RDONLY)
 		if err != nil {
 			log.Logf("error %s searching %s for emergency-mode files", err, fs.Device)
 			continue
@@ -176,7 +176,7 @@ func switchroot(rootDev string, uproc *os.Process) {
 	if err != nil && !os.IsExist(err) {
 		log.Logf("failed to create newroot: %s", err)
 	}
-	err = mount.Mount(rootDev, consts.NewRoot, "ext4", "", unix.MS_RDONLY)
+	_, err = mount.Mount(rootDev, consts.NewRoot, "ext4", "", unix.MS_RDONLY)
 	if err != nil {
 		log.Logf("failed to mount newroot: %s", err)
 		return

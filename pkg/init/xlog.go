@@ -99,7 +99,7 @@ func outputTo9p() bool {
 		log.Logf("Couldn't create /testdata: %v", err)
 		return false
 	}
-	err = mount.Mount("tmpdir", "/testdata", "9p", "", 0)
+	_, err = mount.Mount("tmpdir", "/testdata", "9p", "", 0)
 	if err != nil {
 		log.Logf("Couldn't mount /testdata: %s", err)
 		return false
