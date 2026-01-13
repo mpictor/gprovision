@@ -23,7 +23,7 @@ import (
 	nx "github.com/mpictor/gprovision/pkg/netexport"
 )
 
-//func (nic WinNic) toNetD() (cfgs []configFile)
+// func (nic WinNic) toNetD() (cfgs []configFile)
 func TestExport(t *testing.T) {
 	mac, err := net.ParseMAC("00:26:FD:A0:0D:51")
 	if err != nil {
@@ -140,7 +140,7 @@ func (cfgs ifConfig) check(t *testing.T, req ifRequirements) (failed bool) {
 	return
 }
 
-//capitalize (or call) to print loaded config (for comparison with input file)
+// capitalize (or call) to print loaded config (for comparison with input file)
 func testPrintComplexCfg(t *testing.T) {
 	ifmap := importJson("data/complex.json")
 	out, err := json.MarshalIndent(ifmap, "", "    ")
@@ -150,7 +150,7 @@ func testPrintComplexCfg(t *testing.T) {
 	t.Log(string(out))
 }
 
-//set up complex config (loaded from json) and check that the output files match
+// set up complex config (loaded from json) and check that the output files match
 func TestComplexExport(t *testing.T) {
 	requirements := []ifRequirements{
 		{17, 0, true, false, 0, 0, 0},
@@ -197,7 +197,7 @@ func importJson(j string) (ifmap nx.IfMap) {
 	return
 }
 
-//func defaults(sortedNics []nic.Nic,platform *appliance.Variant) (ifaces nx.IfMap)
+// func defaults(sortedNics []nic.Nic,platform *appliance.Variant) (ifaces nx.IfMap)
 func TestDefaults(t *testing.T) {
 	macs := []string{"00:1b:21:c6:d0:10", "d4:3d:7e:2d:25:05", "ba:fa:1f:78:e6:3d", "d4:3d:7e:77:88:99"}
 	ni := appliance.NICInfo{

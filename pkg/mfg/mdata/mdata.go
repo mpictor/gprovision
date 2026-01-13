@@ -26,7 +26,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
-//FIXME template every url, allowing to use the proto/IP/prefix the json came from
+// FIXME template every url, allowing to use the proto/IP/prefix the json came from
 type MfgDataStruct struct {
 	ApplianceJsonUrl   string         `json:",omitempty"`
 	Files              []*xfer.TVFile // .Dest is relative to root of recovery volume, i.e. Image/pkg.name.version.upd
@@ -103,7 +103,7 @@ func isImage(name string) bool {
 	return strings.HasPrefix(name, strs.ImgPrefix()) && strings.HasSuffix(name, ".upd")
 }
 
-//checks a path to ensure it's a sane destination path
+// checks a path to ensure it's a sane destination path
 func checkDest(d string) {
 	for {
 		//remove leading slashes
@@ -155,15 +155,15 @@ func (m *MfgDataStruct) FRConfig(recov common.Pather, noDelete bool, bootArgs st
 	}
 }
 
-//implements StashData
+// implements StashData
 var _ common.StashData = (*MfgDataStruct)(nil)
 
-//StashData.CredEP()
+// StashData.CredEP()
 func (m *MfgDataStruct) CredEP() string {
 	return m.CredentialEndpoint
 }
 
-//StashData.StashFileList()
+// StashData.StashFileList()
 func (m *MfgDataStruct) StashFileList() (tvf []common.TransferableVerifiableFile) {
 	for _, s := range m.StashFiles {
 		tvf = append(tvf, s)

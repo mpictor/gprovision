@@ -33,7 +33,7 @@ func init() {
 	log.SetPrefix("test")
 }
 
-//func QASummary(img Img, detected Specs, plat appliance.Variant) (d qavData)
+// func QASummary(img Img, detected Specs, plat appliance.Variant) (d qavData)
 func TestQASummary(t *testing.T) {
 	if !rkeep.HaveRKeeper() || !rlog.HaveRLMock() || !rlog.HaveRLogSetup() {
 		t.Skip("requires unavailable functionality")
@@ -106,7 +106,7 @@ func TestQASummary(t *testing.T) {
 	})
 }
 
-//create a TVFile struct, backed by small file with valid checksum
+// create a TVFile struct, backed by small file with valid checksum
 func dummyTV(t *testing.T) *xfer.TVFile {
 	f, err := ioutil.TempFile("", "go-test-qa")
 	if err != nil {
@@ -140,7 +140,7 @@ func dummyTV(t *testing.T) *xfer.TVFile {
 	return img
 }
 
-//func (d qavData) Hardcopy()
+// func (d qavData) Hardcopy()
 func TestHardcopy(t *testing.T) {
 	if !rkeep.HaveRKeeper() || !rlog.HaveRLMock() || !rlog.HaveRLogSetup() {
 		t.Skip("requires unavailable functionality")

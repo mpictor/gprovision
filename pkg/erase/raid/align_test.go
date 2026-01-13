@@ -22,7 +22,7 @@ type alignedReadTestData struct {
 	expectError  bool
 }
 
-//func (d * Device) AlignedRead(at, size int64) (buf []byte, err error)
+// func (d * Device) AlignedRead(at, size int64) (buf []byte, err error)
 func TestAlignedRead(t *testing.T) {
 	d := new(Device)
 	d.fd, d.devSize = createTestFile(t)
@@ -30,7 +30,7 @@ func TestAlignedRead(t *testing.T) {
 	defer d.fd.Close()
 
 	testData := []alignedReadTestData{
-		/* at, reqSize, resBufSize, resBufBegins, expectError */
+		// at, reqSize, resBufSize, resBufBegins, expectError
 		{0, 512, 512, []byte{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1}, false},
 		{4, 512, 512, []byte{0x0, 0x0, 0x0, 0x1}, false},
 		{32766, 512, 2, []byte{0x1f, 0xff}, false},
@@ -40,7 +40,7 @@ func TestAlignedRead(t *testing.T) {
 		{32769, 512, 0, nil, true},
 	}
 
-	for _, a := range []int{512, 1024, 4096, 8192, 16384 /*,32768*/} {
+	for _, a := range []int{512, 1024, 4096, 8192, 16384} {
 		t.Logf("testing with required alignment == %d", a)
 		d.fd.(*alignedFile).requiredAlignment = a
 		d.alignment = 0
@@ -70,9 +70,8 @@ func TestAlignedRead(t *testing.T) {
 	}
 }
 
-/* alignedFile implements our ReadWriteSeekCloser using
- * os.File, but overrides Seek and Read to force alignment
- */
+// alignedFile implements our ReadWriteSeekCloser using
+// os.File, but overrides Seek and Read to force alignment
 type alignedFile struct {
 	f                 *os.File
 	requiredAlignment int

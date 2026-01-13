@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package mfg is used to validate the hardware of freshly-assembled units and
-//to image them.
+// Package mfg is used to validate the hardware of freshly-assembled units and
+// to image them.
 package mfg
 
 import (
@@ -88,8 +88,8 @@ func Main() {
 	Manuf(mfgUrl)
 }
 
-//Used to identify platform if appliance package fails. Useful for prototypes,
-//if the prototype is similar enough to an existing variant.
+// Used to identify platform if appliance package fails. Useful for prototypes,
+// if the prototype is similar enough to an existing variant.
 func mfgIdentFallback() (string, error) {
 	ident := os.Getenv("PROTO_IDENT")
 	if ident != "" {

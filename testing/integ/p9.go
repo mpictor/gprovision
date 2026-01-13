@@ -43,7 +43,7 @@ type P9RecovOpts struct {
 	rec, imgName string
 }
 
-//Writes files to a dir that'll be shared via 9p as the recovery volume
+// Writes files to a dir that'll be shared via 9p as the recovery volume
 func (p9 *P9RecovOpts) Setup() {
 	//write files
 	p9.rec = fp.Join(p9.Tmpdir, strs.RecVolName())

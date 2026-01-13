@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package udev allows starting udev and finding udevd if running.
+// Package udev allows starting udev and finding udevd if running.
 package udev
 
 import (
@@ -19,7 +19,7 @@ import (
 
 var ExecErr = fmt.Errorf("execution error")
 
-//Start udevd, return its os.Process so it can be killed later.
+// Start udevd, return its os.Process so it can be killed later.
 func Start() (*os.Process, error) {
 	udevd := exec.Command("udevd", "--resolve-names=never")
 	log.Logf("Running %v...", udevd.Args)
@@ -45,9 +45,9 @@ func Start() (*os.Process, error) {
 	return udevd.Process, nil
 }
 
-//return true if udevd appears to be running
-//udev could already be running, particularly if we're in emergency mode.
-//naive impl, would see any process with name/args ending in 'udevd' as being the udev daemon
+// return true if udevd appears to be running
+// udev could already be running, particularly if we're in emergency mode.
+// naive impl, would see any process with name/args ending in 'udevd' as being the udev daemon
 func IsRunning() bool {
 	out, err := exec.Command("/bin/busybox", "ps", "aux").Output()
 	if err != nil {

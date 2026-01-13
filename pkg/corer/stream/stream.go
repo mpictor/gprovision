@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package stream contains chainable functions acting on sizeable data streams
-//such as cores. It can write a local copy, compress, and/or upload to s3.
+// Package stream contains chainable functions acting on sizeable data streams
+// such as cores. It can write a local copy, compress, and/or upload to s3.
 package stream
 
 import (
@@ -62,7 +62,7 @@ func Write(cfg *opts.Opts, suffix string, stream io.Reader) (err error) {
 	return err
 }
 
-//compress, pass output to 'nextFn' (typically Upload)
+// compress, pass output to 'nextFn' (typically Upload)
 func Compress(opts *opts.Opts, uncompressed string, nextFn NextFn) (err error) {
 	upName := fp.Base(uncompressed)
 	if opts.CompressExt != "" {
@@ -99,11 +99,11 @@ func Compress(opts *opts.Opts, uncompressed string, nextFn NextFn) (err error) {
 	return nextFn(opts, upName, stream)
 }
 
-/*S3 upload does introspection and will find the Seek() method if it exists.
-While pipes are files and thus have a seek method, it can't be used. Using it
-causes the s3 upload to barf.
-To avoid this, create our own type with a Read() method for io.Reader - but no Seek().
-*/
+// S3 upload does introspection and will find the Seek() method
+// if it exists. While pipes are files and thus have a seek
+// method, it can't be used. Using it causes the s3 upload to
+// barf. To avoid this, create our own type with a Read() method
+// for io.Reader - but no Seek().
 type unseekableReader struct {
 	rdr io.Reader
 }
@@ -112,7 +112,7 @@ func (u *unseekableReader) Read(p []byte) (int, error) { return u.rdr.Read(p) }
 
 var _ io.Reader = &unseekableReader{}
 
-//try to write buf to a local file, then upload
+// try to write buf to a local file, then upload
 // in the unlikely event file creation fails, go straight from the buffer
 func LocalCopy(cfg *opts.Opts, localpath string, buf io.Reader) error {
 	var stream io.Reader

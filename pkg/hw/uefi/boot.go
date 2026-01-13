@@ -36,15 +36,14 @@ type BootEntry struct {
 	autoBoot bool
 }
 
-/* use forward slashes in -l path.
-   binary need not have efi extension.
-   args (-@) only work in a file, and the file MUST be UTF-16.
+// use forward slashes in -l path.
+// binary need not have efi extension.
+// args (-@) only work in a file, and the file MUST be UTF-16.
+//
+// echo -n -e "a\0r\0g\0=\0v\0a\0l\0" >args && \
+// efibootmgr -c -d /dev/sda -p 1 -L "norm_boot" -l "/norm_boot" -@ args
 
-   echo -n -e "a\0r\0g\0=\0v\0a\0l\0" >args && \
-   efibootmgr -c -d /dev/sda -p 1 -L "norm_boot" -l "/norm_boot" -@ args
-*/
-
-//add a boot entry. efibootmgr sets it as primary
+// add a boot entry. efibootmgr sets it as primary
 func AddBootEntry(b BootEntry) {
 	create := exec.Command("efibootmgr")
 	if b.autoBoot {
@@ -94,13 +93,11 @@ func RemoveBootEntry(num uint16) error {
 	return err
 }
 
-/*
-efibootmgr's output is thoroughly horrible
-read efi variables directly instead of using efibootmgr to show entries
-*/
+// efibootmgr's output is thoroughly horrible
+// read efi variables directly instead of using efibootmgr to show entries
 
-//for uefi, do we care about having multiple partitions each containing norm_boot?
-//secure boot?
+// for uefi, do we care about having multiple partitions each containing norm_boot?
+// secure boot?
 
 func (entries BootEntryVars) OursPresent() bool {
 	ours := entries.Ours()
@@ -143,12 +140,11 @@ func fixMissing(baseEntry BootEntry, haveNormal, haveFR, haveErase bool, extraOp
 	}
 	if !haveNormal {
 		b := baseEntry
-		/* for legacy units, we pass the root volume's uuid as a boot arg. however,
-		   that uuid will change with each factory restore as the fs is created anew.
-		   if the uefi boot entry is updated, that means the "nvram" (actually flash)
-		   is written, and getting into a factory restore loop could wear out the flash.
-		   to avoid this, we use LABEL=... instead
-		*/
+		// for legacy units, we pass the root volume's uuid as a boot arg. however,
+		// that uuid will change with each factory restore as the fs is created anew.
+		// if the uefi boot entry is updated, that means the "nvram" (actually flash)
+		// is written, and getting into a factory restore loop could wear out the flash.
+		// to avoid this, we use LABEL=... instead
 		b.Args = strings.Join([]string{b.Args, "real_root=LABEL=" + strs.PriVolName(), extraOpts}, " ")
 		b.Label = BootLabelNorm
 		b.autoBoot = true

@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package dmi reads DMI (aka SMBIOS) data via dmidecode.
+// Package dmi reads DMI (aka SMBIOS) data via dmidecode.
 package dmi
 
 import (
@@ -21,7 +21,7 @@ import (
 type DmiStrMap map[string]string
 type DmiTypeMap map[int][]byte
 
-//cache data so it's not necessary to call dmidecode over and over. has the side effect of making mocking easy.
+// cache data so it's not necessary to call dmidecode over and over. has the side effect of making mocking easy.
 type dmiCache struct {
 	strings   DmiStrMap
 	types     DmiTypeMap
@@ -37,7 +37,7 @@ func init() {
 	}
 }
 
-//effectively mocks this package by pre-populating the cache and only allowing cache lookups
+// effectively mocks this package by pre-populating the cache and only allowing cache lookups
 func TestingMock(s DmiStrMap, t DmiTypeMap) {
 	cache = dmiCache{
 		strings:   s,
@@ -76,7 +76,7 @@ func (d dmiCache) str(key string) string {
 	return str
 }
 
-//Return all entries for a given dmi type, same format as produced by 'dmidecode -t <n>'.
+// Return all entries for a given dmi type, same format as produced by 'dmidecode -t <n>'.
 func Entries(dmiType int) []byte {
 	return cache.entries(dmiType)
 }
@@ -97,9 +97,9 @@ func (d dmiCache) entries(dmiType int) []byte {
 	return out
 }
 
-//return data for line matching fieldName in given struct type
-//fieldName must be all non-whitespace chars at beginning of desired line, i.e. "SKU Number:".
-//Using "SKU" would result in the returned string beginning with "Number: "
+// return data for line matching fieldName in given struct type
+// fieldName must be all non-whitespace chars at beginning of desired line, i.e. "SKU Number:".
+// Using "SKU" would result in the returned string beginning with "Number: "
 func Field(dmiType int, fieldName string) (field string) {
 	return cache.field(dmiType, fieldName)
 }
@@ -107,7 +107,7 @@ func (d dmiCache) field(dmiType int, fieldName string) (field string) {
 	return d.fieldN(dmiType, 0, fieldName)
 }
 
-//Nth entry for a particular type, with N starting at 0
+// Nth entry for a particular type, with N starting at 0
 func FieldN(dmiType, entry int, fieldName string) (field string) {
 	return cache.fieldN(dmiType, entry, fieldName)
 }

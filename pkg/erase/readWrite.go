@@ -30,8 +30,8 @@ func init() {
 	prepPattern = fmt.Sprintf("~~erase begins %s~~", time.Now())
 }
 
-//write a pattern into the buffer
-//3 patterns - 0x55, 0xAA, 0x00
+// write a pattern into the buffer
+// 3 patterns - 0x55, 0xAA, 0x00
 func fillPattern(buf []byte, p int) {
 	switch p {
 	case 0:
@@ -49,7 +49,7 @@ func fillPattern(buf []byte, p int) {
 	}
 }
 
-//prepare the disk - write a pattern in certain places. (every 100M?)
+// prepare the disk - write a pattern in certain places. (every 100M?)
 func prepare(d *raid.Device, recov common.Pather) {
 	var err error
 	name := d.Dev()
@@ -85,8 +85,8 @@ func prepare(d *raid.Device, recov common.Pather) {
 	}
 }
 
-//count the number of occurences of the prep pattern
-//used to ensure that prepare() worked, as well as in verify()
+// count the number of occurences of the prep pattern
+// used to ensure that prepare() worked, as well as in verify()
 func countPrepPattern(d *raid.Device, recov common.Pather) int {
 	var err error
 	name := d.Dev()
@@ -120,8 +120,8 @@ func countPrepPattern(d *raid.Device, recov common.Pather) int {
 	return patternCount
 }
 
-//verify erasure - check if the pattern written by prepare exists anywhere
-//if it does, this is an unrecoverable failure
+// verify erasure - check if the pattern written by prepare exists anywhere
+// if it does, this is an unrecoverable failure
 func verify(d *raid.Device, recov common.FS) {
 	if _, err := d.Open(); err != nil {
 		log.Logf("open for verify: %s", err)

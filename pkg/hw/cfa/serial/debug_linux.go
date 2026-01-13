@@ -24,7 +24,7 @@ var Output io.Writer
 // also true, functions will trace upon entry.
 var TraceEnter = false
 
-//If exit is true, sets Output to os.Stderr, nil if false; sets TraceEnter to value of in.
+// If exit is true, sets Output to os.Stderr, nil if false; sets TraceEnter to value of in.
 func Debug(exit, enter bool) {
 	if exit {
 		Output = os.Stderr
@@ -38,7 +38,7 @@ func Debug(exit, enter bool) {
 // unless it's a slice. Assumes last arg to returned func is of type error. Not
 // present in release builds.
 //
-//ex: defer tracef("Read(b)")(" [b=%q]  =(%d,%s)", b, &n, &err)
+// ex: defer tracef("Read(b)")(" [b=%q]  =(%d,%s)", b, &n, &err)
 // (defer'd call to the function returned by tracef)
 func tracef(f string, va ...interface{}) func(rfmt string, vb ...interface{}) {
 	if Output == nil {

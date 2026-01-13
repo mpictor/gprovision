@@ -9,12 +9,12 @@
 // functionality implied by the binaries' name(s) is not present. Used in
 // integration testing.
 //
-// Fake systemd
+// # Fake systemd
 //
 // This cmd is compiled and written to /usr/lib/systemd/systemd in a fake .upd
 // file, printing out messages to show that it was executed.
 //
-// Fake chpasswd
+// # Fake chpasswd
 //
 // This cmd is compiled and written to /bin/chpasswd in a fake .upd file. Note
 // that while it is in the fake update tarball, it runs from within factory

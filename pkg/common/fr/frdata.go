@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Interface for a mechanism storing data for use by factory restore
+// Interface for a mechanism storing data for use by factory restore
 package fr
 
 import (
@@ -13,7 +13,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//Interface for a mechanism storing data for use by factory restore
+// Interface for a mechanism storing data for use by factory restore
 type FRData interface {
 	//Volatile storage of unit info for use by other methods. Never persisted.
 	SetUnit(u common.Unit)
@@ -64,7 +64,7 @@ func SetImpl(f FRData) {
 
 func HaveImpl() bool { return fRDataImpl != nil }
 
-//Volatile storage of unit info for use by other methods. Never persisted.
+// Volatile storage of unit info for use by other methods. Never persisted.
 func SetUnit(u common.Unit) {
 	if fRDataImpl != nil {
 		fRDataImpl.SetUnit(u)
@@ -73,7 +73,7 @@ func SetUnit(u common.Unit) {
 	}
 }
 
-//Load FRData from user-inserted media or from recovery volume; return error if unable to decode
+// Load FRData from user-inserted media or from recovery volume; return error if unable to decode
 func ReadRecoveryOr(userFiles []string) error {
 	if fRDataImpl != nil {
 		return fRDataImpl.ReadRecoveryOr(userFiles)
@@ -82,7 +82,7 @@ func ReadRecoveryOr(userFiles []string) error {
 	return common.ENil
 }
 
-//Store FRData. Does not use user-inserted media.
+// Store FRData. Does not use user-inserted media.
 func Persist() error {
 	if fRDataImpl != nil {
 		return fRDataImpl.Persist()
@@ -91,7 +91,7 @@ func Persist() error {
 	return common.ENil
 }
 
-//Load persisted FRData.
+// Load persisted FRData.
 func Read() error {
 	if fRDataImpl != nil {
 		return fRDataImpl.Read()
@@ -100,7 +100,7 @@ func Read() error {
 	return common.ENil
 }
 
-//Delete persisted FRData if its persist flag is unset.
+// Delete persisted FRData if its persist flag is unset.
 func Delete() error {
 	if fRDataImpl != nil {
 		return fRDataImpl.Delete()
@@ -158,7 +158,7 @@ func AdditionalBootArgs() string {
 	return ""
 }
 
-//Set url used for external logging. Used for first (in-house) factory restore.
+// Set url used for external logging. Used for first (in-house) factory restore.
 func SetXLog(url string) {
 	if fRDataImpl != nil {
 		fRDataImpl.SetXLog(url)

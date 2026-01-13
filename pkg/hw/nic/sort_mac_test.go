@@ -95,7 +95,7 @@ func TestSortMacs3(t *testing.T) {
 	}
 }
 
-//tests that a sorted list remains sorted and that the individual macs come out unchanged
+// tests that a sorted list remains sorted and that the individual macs come out unchanged
 func TestSortedMacs(t *testing.T) {
 	data := []string{"0c:c4:7a:6b:96:cc", "0c:c4:7a:6b:96:cd", "0c:c4:7a:6b:96:ce", "0c:c4:7a:6b:96:cf"}
 	var macs []net.HardwareAddr

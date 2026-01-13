@@ -24,7 +24,7 @@ var (
 	xzId = [6]byte{0xfd, 0x37, 0x7a, 0x58, 0x5a, 0x00} // fd 37 7a 58 5a 00 -> xz archive
 )
 
-//return n bytes from beginning of file
+// return n bytes from beginning of file
 func ReadHeader(fname string, n int64) (head []byte, err error) {
 	f, err := os.Open(fname)
 	if err != nil {
@@ -38,7 +38,7 @@ func ReadHeader(fname string, n int64) (head []byte, err error) {
 	return
 }
 
-//checks for XZ header
+// checks for XZ header
 func IsXZ(fname string) bool {
 	head, err := ReadHeader(fname, int64(len(xzId)))
 	if err != nil {

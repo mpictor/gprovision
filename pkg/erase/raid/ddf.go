@@ -155,7 +155,7 @@ func (d *Device) restoreDDF() (err error) {
 	return
 }
 
-//find primary and secondary LBA offsets and convert from LBA into bytewise offsets (*512)
+// find primary and secondary LBA offsets and convert from LBA into bytewise offsets (*512)
 func findOffsets(anchor []byte) (pri, sec lba) {
 	//field sizes: 4, 4, 24, 8, 4, 4, 1, 1, 1, 13, 32, 8(pri), 8(sec), ...
 	//pri starts at 96
@@ -189,7 +189,7 @@ func endiannessSwap(buf ...byte) (rb []byte) {
 	return
 }
 
-//convert an LBA offset into a byte-offset, using device logical sector size
+// convert an LBA offset into a byte-offset, using device logical sector size
 func (d *Device) lba2byte(offs lba) (offsb int64, err error) {
 	if d.sectorSize == 0 {
 		d.sectorSize, err = ioctl.BlkGetSectorSize(d.fd)

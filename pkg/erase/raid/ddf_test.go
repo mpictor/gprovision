@@ -8,27 +8,8 @@
 package raid
 
 import (
-	//"os"
-	//"syscall"
 	"testing"
 )
-
-/* works on some comps, fails on others...??
-func TestLba2byte(t *testing.T) {
-	var d Device
-	var err error
-	//for testing, open READ ONLY - so can't use d.Fd()
-	d.fd, err = os.OpenFile("/dev/sda", syscall.O_DIRECT|os.O_RDONLY, 0400)
-	if err != nil {
-		t.Fatal(err)
-	}
-	var sector uint64 = 512
-
-	d.lba2byte(0)
-	if d.sectorSize != sector {
-		t.Errorf("ioctl returned unexpected value. want %d, got %d", sector, d.sectorSize)
-	}
-}*/
 
 func TestHasSig(t *testing.T) {
 	buf := make([]byte, 512)
@@ -51,7 +32,7 @@ func TestHasSig(t *testing.T) {
 
 }
 
-/* real data from Intel S2400 with LSI ESRT2 */
+// real data from Intel S2400 with LSI ESRT2
 var lsiAnchorHeader = [512]byte{
 	0xde, 0x11, 0xde, 0x11, 0x9c, 0x93, 0xd8, 0x08,
 	0x4c, 0x53, 0x49, 0x20, 0x20, 0x20, 0x20, 0x20,

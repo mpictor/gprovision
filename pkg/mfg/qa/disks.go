@@ -30,7 +30,7 @@ func (d Disk) String() string {
 
 type Disks []*Disk
 
-//return total number of disks in list
+// return total number of disks in list
 func (ds Disks) Qty() (q int) {
 	for _, d := range ds {
 		q += d.Quantity
@@ -198,7 +198,7 @@ outer:
 	return len(remaining) == 0
 }
 
-//compare model, vendor
+// compare model, vendor
 func (a Disk) compareMV(b *Disk) bool {
 	return a.Model == b.Model && a.Vendor == b.Vendor
 }

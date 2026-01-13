@@ -30,8 +30,8 @@ type dhcp46 struct {
 	v6 bool
 }
 
-//get ipv4 and ipv6 addresses for interfaces
-//return comma-separated list of interfaces we care about - these are for use with powershell
+// get ipv4 and ipv6 addresses for interfaces
+// return comma-separated list of interfaces we care about - these are for use with powershell
 func (ifmap IfMap) GetAddrs() (err error) {
 	//seems microsoft uses this for several different virtual interfaces
 	MSFT, err := net.ParseMAC("00:00:00:00:00:00:00:e0")
@@ -106,30 +106,29 @@ func (ifmap IfMap) getPersistentRoutes() error {
 	return ifmap.parseRoutes(routeout)
 }
 
-/*
-ifIndex DestinationPrefix   NextHop      RouteMetric   PolicyStore
-------- -----------------   -------      -----------   -----------
-26      0.0.0.0/0           10.155.8.1           256   Persiste...
-13      0.0.0.0/0           10.155.8.1           256   Persiste...
-14      ::/0                27::1                256   Persiste...
-*/
+// ifIndex DestinationPrefix   NextHop      RouteMetric   PolicyStore
+// ------- -----------------   -------      -----------   -----------
+// 26      0.0.0.0/0           10.155.8.1           256   Persiste...
+// 13      0.0.0.0/0           10.155.8.1           256   Persiste...
+// 14      ::/0                27::1                256   Persiste...
 
-/*get-netroute -policystore persistentstore|convertto-csv -notypeinformation|select -skip 1
-"ifIndex","Publish","Store","AddressFamily","Caption","Description","ElementName","InstanceID","AdminDistance",
-"DestinationAddress","IsStatic","RouteMetric","TypeOfRoute","DestinationPrefix","InterfaceAlias","InterfaceIndex",
-"NextHop","PreferredLifetime","ValidLifetime","PSComputerName"
-"26","No","PersistentStore","IPv4",,,,":8:8:8:9:55<@55;:8;??8B8;55:",,
-,,"256","3","0.0.0.0/0","Port 5 - VLAN 88","26",
-"10.155.8.1","10675199.02:48:05.4775807","10675199.02:48:05.4775807",
+// get-netroute -policystore persistentstore|convertto-csv -notypeinformation|select -skip 1
+// "ifIndex","Publish","Store","AddressFamily","Caption","Description","ElementName","InstanceID","AdminDistance",
+// "DestinationAddress","IsStatic","RouteMetric","TypeOfRoute","DestinationPrefix","InterfaceAlias","InterfaceIndex",
+// "NextHop","PreferredLifetime","ValidLifetime","PSComputerName"
+// "26","No","PersistentStore","IPv4",,,,":8:8:8:9:55<@55;:8;??8B8;55:",,
+// ,,"256","3","0.0.0.0/0","Port 5 - VLAN 88","26",
+// "10.155.8.1","10675199.02:48:05.4775807","10675199.02:48:05.4775807",
+//
+// http://wutils.com/wmi/root/standardcimv2/msft_netroute/
+//
+// TypeOfRoute 2/3/4 -> ['Administrator Defined Route', 'Computed Route', 'Actual Route']
+//
+// fields we don't care about: Publish,Store,AddressFamily,Caption,Description,ElementName,InstanceID,AdminDistance,InterfaceAlias,InterfaceIndex,PreferredLifetime,ValidLifetime,PSComputerName
+// get-netroute -policystore persistentstore|select ifIndex,DestinationAddress,IsStatic,RouteMetric,TypeOfRoute,DestinationPrefix,NextHop|convertto-csv -notypeinformation|select -skip 1
+//
+// 	0          1              2          3           4            5               6
 
-http://wutils.com/wmi/root/standardcimv2/msft_netroute/
-
-TypeOfRoute 2/3/4 -> ['Administrator Defined Route', 'Computed Route', 'Actual Route']
-
-fields we don't care about: Publish,Store,AddressFamily,Caption,Description,ElementName,InstanceID,AdminDistance,InterfaceAlias,InterfaceIndex,PreferredLifetime,ValidLifetime,PSComputerName
-get-netroute -policystore persistentstore|select ifIndex,DestinationAddress,IsStatic,RouteMetric,TypeOfRoute,DestinationPrefix,NextHop|convertto-csv -notypeinformation|select -skip 1
-                                                    0          1              2          3           4            5               6
-*/
 var defaultRoute4, defaultRoute6 *net.IPNet
 var single4, single6 net.IPMask
 

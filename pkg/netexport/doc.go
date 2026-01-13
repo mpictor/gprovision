@@ -6,8 +6,8 @@
 //
 
 // Package netexport reads network config data from windows. The package
-// github.com/mpictor/gprovision/pkg/netexport can then be used to writes config files compatible with
-// systemd-networkd.
+// ../pkg/systemd/networkd can then be used to write config files compatible
+// with systemd-networkd.
 //
 // Requires Powershell, SaveRestore.ps1 (Intel). Some data is retrieved from
 // the registry, while other data comes from the output of SaveRestore.ps1 or

@@ -23,7 +23,7 @@ import (
 
 //paths shared by jobs, as well as path-related utilty functions
 
-//vars the user may wish to modify. override in another file.
+// vars the user may wish to modify. override in another file.
 var (
 	// If you have proprietary cmds, set this variable and put the code in
 	// subdirs (img,windows,util). Those commands will be used in the same
@@ -46,7 +46,7 @@ var (
 	MfgName = "provision.pxe"
 )
 
-//other vars the user is less likely to want to modify
+// other vars the user is less likely to want to modify
 var (
 	RepoRoot, ImportPath, WorkDir, ArtifactDir string
 
@@ -164,7 +164,7 @@ func init() {
 	BlobstoreLinter = BlobstorePrefix + "golangci-lint"
 }
 
-//expands pattern via go list - note that pattern isn't a shell glob
+// expands pattern via go list - note that pattern isn't a shell glob
 func Pkglist(patterns ...string) ([]string, error) {
 	args := []string{"list"}
 	args = append(args, patterns...)

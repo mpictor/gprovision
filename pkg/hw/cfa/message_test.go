@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (l *Lcd) PressAnyKey(desc string, seconds int)
+// func (l *Lcd) PressAnyKey(desc string, seconds int)
 func TestPressAnyKey(t *testing.T) {
 	wg := new(sync.WaitGroup)
 	tlog := testlog.NewTestLog(t, true, false)

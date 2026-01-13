@@ -13,14 +13,13 @@ import (
 	"io"
 )
 
-/* http://www.unicode.org/faq/utf_bom.html#BOM
-Bytes		Encoding Form
-00 00 FE FF  UTF-32, big-endian
-FF FE 00 00  UTF-32, little-endian
-FE FF        UTF-16, big-endian
-FF FE        UTF-16, little-endian
-EF BB BF     UTF-8
-*/
+// http://www.unicode.org/faq/utf_bom.html#BOM
+// Bytes		Encoding Form
+// 00 00 FE FF  UTF-32, big-endian
+// FF FE 00 00  UTF-32, little-endian
+// FE FF        UTF-16, big-endian
+// FF FE        UTF-16, little-endian
+// EF BB BF     UTF-8
 
 type UtfVariant uint
 
@@ -33,7 +32,7 @@ const (
 	Utf8
 )
 
-//Check for UTF byte order mark; if present, seeks past it
+// Check for UTF byte order mark; if present, seeks past it
 func DetectBOM(fd io.ReadSeeker) (v UtfVariant, err error) {
 	pos, err := fd.Seek(0, 1)
 	if err != nil {

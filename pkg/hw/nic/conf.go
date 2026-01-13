@@ -21,7 +21,7 @@ const (
 
 var confname = irqdir + "/override.conf"
 
-//return true if bans have already been written out for irqbalance
+// return true if bans have already been written out for irqbalance
 func NICsAlreadyConfigured() bool {
 	_, err := os.Stat(confname)
 	if err != nil {
@@ -31,7 +31,7 @@ func NICsAlreadyConfigured() bool {
 	return strings.Contains(string(content), generated)
 }
 
-//write bans for irqbalance to systemd override file
+// write bans for irqbalance to systemd override file
 func WriteIRQBalanceBans(irqs []uint64) {
 	template := generated + os.Args[0] + "\n[Service]\nEnvironment=\"IRQBALANCE_ARGS=%s\"\n"
 	var args string

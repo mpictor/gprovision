@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Abstraction for strings that implementors will likely wish to change.
+// Abstraction for strings that implementors will likely wish to change.
 package strs
 
 import (
@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//Abstraction for strings that implementors will likely wish to change.
+// Abstraction for strings that implementors will likely wish to change.
 type Stringer interface {
 	//Dir within the image where config data is stored. Likely under /etc.
 	ConfDir() string
@@ -48,7 +48,7 @@ type Stringer interface {
 
 var stringImpl Stringer
 
-//Override defaults.
+// Override defaults.
 func SetStringer(b Stringer) {
 	if stringImpl != nil {
 		log.Log("strs: overriding non-nil impl")
@@ -56,7 +56,7 @@ func SetStringer(b Stringer) {
 	stringImpl = b
 }
 
-//Dir within the image where config data is stored. Likely under /etc.
+// Dir within the image where config data is stored. Likely under /etc.
 func ConfDir() string {
 	if stringImpl != nil {
 		return stringImpl.ConfDir()
@@ -64,7 +64,7 @@ func ConfDir() string {
 	return "/etc/provisioning"
 }
 
-//Prefix used for env vars.
+// Prefix used for env vars.
 func EnvPrefix() string {
 	if stringImpl != nil {
 		return stringImpl.EnvPrefix()
@@ -72,7 +72,7 @@ func EnvPrefix() string {
 	return "PROVISION_"
 }
 
-//Name of the recovery volume.
+// Name of the recovery volume.
 func RecVolName() string {
 	if stringImpl != nil {
 		return stringImpl.RecVolName()
@@ -80,7 +80,7 @@ func RecVolName() string {
 	return "RECOVERY"
 }
 
-//Name of the primary volume.
+// Name of the primary volume.
 func PriVolName() string {
 	if stringImpl != nil {
 		return stringImpl.PriVolName()
@@ -88,7 +88,7 @@ func PriVolName() string {
 	return "PRIMARY"
 }
 
-//Prefix used in creating hostname. Note hostname charset restrictions.
+// Prefix used in creating hostname. Note hostname charset restrictions.
 func HostPrefix() string {
 	if stringImpl != nil {
 		return stringImpl.HostPrefix()
@@ -96,7 +96,7 @@ func HostPrefix() string {
 	return "gp-"
 }
 
-//Name of file whose absence triggers factory restore.
+// Name of file whose absence triggers factory restore.
 func FlagFile() string {
 	if stringImpl != nil {
 		return stringImpl.FlagFile()
@@ -104,7 +104,7 @@ func FlagFile() string {
 	return "boot.normal"
 }
 
-//name of boot kernel
+// name of boot kernel
 func BootKernel() string {
 	if stringImpl != nil {
 		return stringImpl.BootKernel()
@@ -112,7 +112,7 @@ func BootKernel() string {
 	return "norm_boot"
 }
 
-//name of provisioning/mfg kernel
+// name of provisioning/mfg kernel
 func MfgKernel() string {
 	if stringImpl != nil {
 		return stringImpl.MfgKernel()
@@ -129,7 +129,7 @@ func ImgPrefix() string {
 	return "WIDGET.LNX.SHINY."
 }
 
-//prefix to require on MAC addresses
+// prefix to require on MAC addresses
 func MacOUI() string {
 	if stringImpl != nil {
 		return stringImpl.MacOUI()
@@ -137,7 +137,7 @@ func MacOUI() string {
 	return "56:78:90"
 }
 
-//like MacOUI, but as bytes
+// like MacOUI, but as bytes
 func MacOUIBytes() []byte {
 	if stringImpl != nil {
 		return stringImpl.MacOUIBytes()

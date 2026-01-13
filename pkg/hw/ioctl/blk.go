@@ -7,14 +7,14 @@
 
 package ioctl
 
-//BLKSSZGET
+// BLKSSZGET
 func BlkGetSectorSize(f FDer) (uint64, error) {
 	BLKSSZGET := 0x1268
 	s, err := Ioctl1(f.Fd(), BLKSSZGET)
 	return uint64(s), err
 }
 
-//BLKGETSIZE64
+// BLKGETSIZE64
 func BlkGetSize64(f FDer) (uint64, error) {
 	BLKGETSIZE64 := 0x80081272
 	return Ioctl1(f.Fd(), BLKGETSIZE64)

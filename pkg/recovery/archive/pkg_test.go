@@ -73,16 +73,16 @@ func TestUpdSort(t *testing.T) {
 		"PRODUCT.Os.Platform-02.2015-02-33.1593.gho",
 		"PRODUCT.Os.Platform-02.2014-05-33.1594.gho",
 		"PRODUCT.Os.Platform-02.2014-05-33.1593.gho",
-		/* order the bad updates appear in may vary, so don't care as long as they are last
-		"PRODUCT.Os.Platform-02.2015-02-a3.1593.gho",
-		"PRODUCT.Os.Platform-02.2015-02-03.193o.gho",
-		"PRODUCT.Os.Platform-02.2015-02-3.1593.gho",
-		"PRODUCT.Os.Platform-02.2015-02033.1593.gho",*/
+		// order the bad updates appear in may vary, so don't care as long as they are last
+		// "PRODUCT.Os.Platform-02.2015-02-a3.1593.gho",
+		// "PRODUCT.Os.Platform-02.2015-02-03.193o.gho",
+		// "PRODUCT.Os.Platform-02.2015-02-3.1593.gho",
+		// "PRODUCT.Os.Platform-02.2015-02033.1593.gho",
 	}
 	testUpdSort(t, "New Test 1", unsorted1, sorted1, false)
 }
 
-//func validateExtractUpd(updPath string) (err error)
+// func validateExtractUpd(updPath string) (err error)
 func TestValidationLowMem(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	lowMemoryDevice = true
@@ -154,8 +154,8 @@ func create10McompressedDummy(t *testing.T, shaChecksum bool) string {
 	return f.Name()
 }
 
-//func ApplyUpdate(target *disk.Filesystem)
-//creates xz-compressed tarball for applyUpd to extract, checks output file name/size to verify decompress worked
+// func ApplyUpdate(target *disk.Filesystem)
+// creates xz-compressed tarball for applyUpd to extract, checks output file name/size to verify decompress worked
 func TestExtract(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	lowMemoryDevice = true

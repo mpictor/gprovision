@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package vm contains utility functions used in integ tests with qemu VMs.
+// Package vm contains utility functions used in integ tests with qemu VMs.
 package vm
 
 import (
@@ -35,7 +35,7 @@ import (
 	"github.com/mpictor/gprovision/testing/fakeupd"
 )
 
-//waits for vm to exit or for the given time to elapse
+// waits for vm to exit or for the given time to elapse
 func Wait(t gtst.TB, vm *qemu.VM, dly time.Duration) {
 	done := make(chan struct{})
 	var err error
@@ -59,10 +59,10 @@ func Wait(t gtst.TB, vm *qemu.VM, dly time.Duration) {
 	}
 }
 
-//default remotelog addr format, for pblog
+// default remotelog addr format, for pblog
 var LogAddrFmt string = "10.0.2.2:%d"
 
-//override to do any additional credential endpoint setup if not using pblog
+// override to do any additional credential endpoint setup if not using pblog
 var setCredEP = func(*Mockinfra) {}
 
 // Set up log server and webserver, and create fake update.
@@ -151,7 +151,7 @@ func MockInfra(tb gtst.TB, tmpDir, krnl string, createUpd bool, updPath, sn stri
 	return infra
 }
 
-//data used to populate manufData json and to serve other files used by mfg
+// data used to populate manufData json and to serve other files used by mfg
 type Mockinfra struct {
 	t                      gtst.TB
 	tmpDir, sn             string
@@ -167,7 +167,7 @@ type Mockinfra struct {
 	manufData []byte //template output, json
 }
 
-//data that is available to template
+// data that is available to template
 type TmplData struct {
 	Mem, CPUs              int
 	FPort                  int
@@ -215,7 +215,7 @@ const (
 	updDir = "/linux_mfg/Image/"
 )
 
-//must implement http.Handler interface
+// must implement http.Handler interface
 var _ http.Handler = (*Mockinfra)(nil)
 
 // Override to add additional endpoints. Returns true if handled, false otherwise.
@@ -327,7 +327,7 @@ func (m *Mockinfra) Setup() {
 	m.prepareTmpl()
 }
 
-//Create manufData.json from template. Data source is m.TmplData.
+// Create manufData.json from template. Data source is m.TmplData.
 func (m *Mockinfra) prepareTmpl() {
 	tmpl := template.New("manufData")
 	//override the default delims because of embedded templates we don't want to touch
@@ -346,7 +346,7 @@ func (m *Mockinfra) prepareTmpl() {
 	m.manufData = tbuf.Bytes()
 }
 
-//create tar.xz in-memory with a single file. optional: executable, xz sha256 checksum
+// create tar.xz in-memory with a single file. optional: executable, xz sha256 checksum
 func tarXzBuf(name string, content []byte, t gtst.TB, exe, sha bool) []byte {
 	tbuf, xbuf := &bytes.Buffer{}, &bytes.Buffer{}
 	var mode int64 = 0644

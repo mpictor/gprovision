@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package block contains functions dealing with linux block devices and the underlying hardware.
+// Package block contains functions dealing with linux block devices and the underlying hardware.
 package block
 
 import (
@@ -78,7 +78,7 @@ const (
 )
 
 func FsFromStr(s string) FsType {
-	/* some of these probably won't ever be encountered */
+	// some of these probably won't ever be encountered
 	switch strings.ToLower(s) {
 	case "ext2":
 		fallthrough
@@ -151,7 +151,7 @@ func DetermineFSType(device string) FsType {
 	return bi.FsType
 }
 
-//a function that returns false if given bi should be filtered out
+// a function that returns false if given bi should be filtered out
 type BlkIncludeFn func(bi BlkInfo) bool
 
 func BFiltNotRecovery(bi BlkInfo) bool {
@@ -162,7 +162,7 @@ func BFiltNotRecovery(bi BlkInfo) bool {
 	return accept
 }
 
-//return a BlkInfo for each blockdevice containing a filesystem we recognize
+// return a BlkInfo for each blockdevice containing a filesystem we recognize
 func GetFilesystems(blkfilter BlkIncludeFn, devfilter DevIncludeFn) []BlkInfo {
 	var infos []BlkInfo
 	for _, d := range FilterBlockDevs(devfilter) {

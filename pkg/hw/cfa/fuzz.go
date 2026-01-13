@@ -13,14 +13,12 @@ import (
 	"bytes"
 )
 
-/*
-go get github.com/dvukov/go-fuzz/go-fuzz
-go get github.com/dvukov/go-fuzz/go-fuzz-build
-
-go-fuzz-build -func FuzzGetPacket github.com/mpictor/gprovision/pkg/hw/cfa
-go-fuzz -bin=./cfa-fuzz.zip -workdir=fuzz
-...
-*/
+// go get github.com/dvukov/go-fuzz/go-fuzz
+// go get github.com/dvukov/go-fuzz/go-fuzz-build
+//
+// go-fuzz-build -func FuzzGetPacket github.com/mpictor/gprovision/pkg/hw/cfa
+// go-fuzz -bin=./cfa-fuzz.zip -workdir=fuzz
+// ...
 
 func FuzzGetPacket(data []byte) int {
 	buf := bytes.NewBuffer(data)

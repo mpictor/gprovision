@@ -40,7 +40,7 @@ type ImgMeta struct {
 	Stream    string
 }
 
-//Disktag returns disktag name for given platform.
+// Disktag returns disktag name for given platform.
 func (im *ImgMeta) Disktag(plat string) string {
 	if strings.Count(im.ImgName, "HW") != 1 {
 		log.Logf("meta: invalid ImgName %s", im.ImgName)

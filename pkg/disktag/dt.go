@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package disktag encodes and decodes disktags.
+// Package disktag encodes and decodes disktags.
 package disktag
 
 import (
@@ -33,7 +33,7 @@ func Get() string {
 	return strings.TrimSuffix(tag, ".disktag")
 }
 
-//convert image prefix (w/o .upd) to disktag prefix
+// convert image prefix (w/o .upd) to disktag prefix
 func ImgToDTag(img string) (dtag string) {
 	dtag = strings.Replace(img, "HW", platformName, 1)
 	return

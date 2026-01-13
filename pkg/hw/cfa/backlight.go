@@ -11,11 +11,10 @@ import (
 	"math"
 )
 
-/* backlight functions
- * uses hand picked values; display brightness is non-linear
- * low values like 5 --> display off
- * values higher than 50 result in almost identical brightness
- */
+// backlight functions
+// uses hand picked values; display brightness is non-linear
+// low values like 5 --> display off
+// values higher than 50 result in almost identical brightness
 
 func (l *Lcd) SetBacklight(bright uint8) error {
 	if l == nil {
@@ -30,13 +29,13 @@ func (l *Lcd) setBacklight(bright uint8) (err error) {
 	return
 }
 
-//bright - dim - bright - dim ...
+// bright - dim - bright - dim ...
 func (l *Lcd) toggleBacklight(b *uint8) error {
 	*b = 100 - *b
 	return l.setBacklight(*b)
 }
 
-//set brightness via sine wave
+// set brightness via sine wave
 func (l *Lcd) backlightSinStep(curStep *uint, nrSteps uint) error {
 	if *curStep >= nrSteps {
 		*curStep = 0

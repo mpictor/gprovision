@@ -31,10 +31,10 @@ const (
 	//multicast is same as v6Unicast, except ...\8 - not useful?
 )
 
-//maps from FriendlyName to a NetCfgInstanceId guid
+// maps from FriendlyName to a NetCfgInstanceId guid
 var guidMap map[string]string
 
-//maps from guid to net_luid (need net_luid for v6 IPs)
+// maps from guid to net_luid (need net_luid for v6 IPs)
 var luidMap map[string]string
 
 func init() {
@@ -42,7 +42,7 @@ func init() {
 	luidMap = make(map[string]string)
 }
 
-//given interface index, return interface guid
+// given interface index, return interface guid
 func guidFromName(name string) string {
 	if len(guidMap) == 0 {
 		populateGuidMap()
@@ -92,7 +92,7 @@ func populateGuidMap() {
 	}
 }
 
-//given interface guid, return interface's NET_LUID
+// given interface guid, return interface's NET_LUID
 func luidFromGuid(guid string) string {
 	if len(luidMap) == 0 {
 		populateLuidMap()
@@ -148,7 +148,7 @@ func populateLuidMap() {
 
 }
 
-//comma-delimited list of persistent IP addresses for the interface
+// comma-delimited list of persistent IP addresses for the interface
 func PersistentIPs(name string) (ips []inet.IPNet, dhcp dhcp46) {
 	guid := guidFromName(name)
 	v4 := ifIPv4Addrs(guid)
@@ -167,7 +167,7 @@ func PersistentIPs(name string) (ips []inet.IPNet, dhcp dhcp46) {
 	return
 }
 
-//get ipv6 addresses for a given interface; unfortunately much different than ipv4
+// get ipv6 addresses for a given interface; unfortunately much different than ipv4
 func ifIPv6Addrs(guid string) (ips []inet.IPNet) {
 	//https://stackoverflow.com/questions/8155700/how-to-add-persistent-ipv6-address-in-vista-windows7
 	k, err := reg.OpenKey(reg.LOCAL_MACHINE, v6Unicast, reg.READ)
@@ -212,7 +212,7 @@ func ifIPv6Addrs(guid string) (ips []inet.IPNet) {
 	return ips
 }
 
-//inject colons into IP, trim 0's - returning canonical format
+// inject colons into IP, trim 0's - returning canonical format
 func xlateIPv6(rawip string) net.IP {
 	ip := ""
 	rlen := len(rawip)
@@ -235,18 +235,16 @@ type ipv6data struct {
 }
 
 func parseV6Data(data []byte) ipv6data {
-	/* https://stackoverflow.com/questions/8155700/how-to-add-persistent-ipv6-address-in-vista-windows7
-	   typedef struct _UNKNOWN {
-	     ULONG            ValidLifetime;
-	     ULONG            PreferredLifetime;
-	     NL_PREFIX_ORIGIN PrefixOrigin;
-	     NL_SUFFIX_ORIGIN SuffixOrigin;
-	     UINT8            OnLinkPrefixLength; //16
-	     BOOLEAN          SkipAsSource;
-	     UCHAR            Unknown[28];
-	   } UNKNOWN;
-
-	*/
+	// https://stackoverflow.com/questions/8155700/how-to-add-persistent-ipv6-address-in-vista-windows7
+	//    typedef struct _UNKNOWN {
+	//      ULONG            ValidLifetime;
+	//      ULONG            PreferredLifetime;
+	//      NL_PREFIX_ORIGIN PrefixOrigin;
+	//      NL_SUFFIX_ORIGIN SuffixOrigin;
+	//      UINT8            OnLinkPrefixLength; //16
+	//      BOOLEAN          SkipAsSource;
+	//      UCHAR            Unknown[28];
+	//    } UNKNOWN;
 	v6d := ipv6data{
 		// validLife:  le.Uint32(data[:4])
 		// preferLife: le.Uint32(data[4:8])
@@ -300,7 +298,7 @@ func ifIPv4Addrs(guid string) (ips []inet.IPNet) {
 	return ips
 }
 
-//retrieve comma-delimited list of dns servers
+// retrieve comma-delimited list of dns servers
 func PersistentDNS(name string) string {
 	guid := guidFromName(name)
 	v4 := ifDNSbyType(guid, v4Interfaces)
@@ -315,7 +313,7 @@ func PersistentDNS(name string) string {
 	return v6
 }
 
-//returns comma-delimited list of DNS servers
+// returns comma-delimited list of DNS servers
 func ifDNSbyType(guid, ipType string) string {
 	//[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{1D1BD1A2-0FD9-41E9-BBB5-A98BAC570B2A}]
 	k, err := reg.OpenKey(reg.LOCAL_MACHINE, ipType+`\`+guid, reg.READ)

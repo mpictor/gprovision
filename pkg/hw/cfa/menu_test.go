@@ -15,8 +15,8 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (l *Lcd) Menu(items []LcdTxt, timeout time.Duration, keyPolling bool) Choice
-//uses golden files
+// func (l *Lcd) Menu(items []LcdTxt, timeout time.Duration, keyPolling bool) Choice
+// uses golden files
 func TestMenu(t *testing.T) {
 	testdata := []struct {
 		name    string
@@ -98,7 +98,7 @@ func TestMenu(t *testing.T) {
 				return
 			}
 			lcd.dev.MinPktInterval = time.Microsecond
-			mkg := NewMockKeygen(lcd, tlog, td.keys, td.ticks /*td.syncHeadroom*/, 0)
+			mkg := NewMockKeygen(lcd, tlog, td.keys, td.ticks, 0)
 			mkg.Drainable(mkg.SyncTick)
 			tdist := NewTickDistrib(mkg.SyncTick, 2)
 			mkg.Run(td.timeout)
@@ -126,8 +126,8 @@ func TestMenu(t *testing.T) {
 	}
 }
 
-//func (m *menu) draw()
-//uses golden files
+// func (m *menu) draw()
+// uses golden files
 func TestDraw(t *testing.T) {
 	testdata := []struct {
 		name     string
@@ -249,7 +249,7 @@ func TestDraw(t *testing.T) {
 	}
 }
 
-//func (v *view) update(k KeyActivity)
+// func (v *view) update(k KeyActivity)
 func TestUpdate(t *testing.T) {
 	testdata := []struct {
 		name  string

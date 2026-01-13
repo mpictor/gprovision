@@ -26,7 +26,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/init/consts"
 )
 
-//create a tar.xz with sha256
+// create a tar.xz with sha256
 func Make(tmpdir, kern, logger string) ([]byte, error) {
 	ibuf := &bytes.Buffer{}
 	u := &upd{
@@ -112,7 +112,7 @@ func (u *upd) createDirs(dirs ...string) error {
 	return nil
 }
 
-//in fake .upd, writes a systemd "init" where our init expects to find it
+// in fake .upd, writes a systemd "init" where our init expects to find it
 func (u *upd) addFakeSysd() error {
 	return u.addFakeBinary(consts.RealInit)
 }
@@ -121,7 +121,7 @@ func (u *upd) addFakeChpasswd() error {
 	return u.addFakeBinary("/bin/chpasswd")
 }
 
-//first call adds binary, others add symlinks
+// first call adds binary, others add symlinks
 func (u *upd) addFakeBinary(dest string) error {
 	if len(u.fakeMulti) > 0 {
 		err := u.tr.WriteHeader(&tar.Header{

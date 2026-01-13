@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Test app for github.com/mpictor/gprovision/pkg/hw/ipmi/uid, blinking the IPMI UID light.
+// Test app for github.com/mpictor/gprovision/pkg/hw/ipmi/uid, blinking the IPMI UID light.
 package main
 
 import (
@@ -29,8 +29,7 @@ func main() {
 	}()
 	time.Sleep(*total)
 	close(done)
-	/* pausing here is not strictly necessary, but exiting immediately after close()
-	   would mean the goroutine didn't get to do any cleanup if there was any.
-	*/
+	// pausing here is not strictly necessary, but exiting immediately after close()
+	// would mean the goroutine didn't get to do any cleanup if there was any.
 	time.Sleep(time.Second / 10)
 }

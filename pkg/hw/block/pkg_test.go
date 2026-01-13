@@ -20,7 +20,7 @@ type blkTestData struct {
 	expectErr bool
 }
 
-//func parseBlkidOut(dev string, out []byte) (bi BlkInfo, err error)
+// func parseBlkidOut(dev string, out []byte) (bi BlkInfo, err error)
 func TestBlkIdParse(t *testing.T) {
 	testData := []blkTestData{
 		{`/dev/sda1: LABEL="boot0" UUID="dfdc3f4f-5eeb-48b1-9a9a-d0440383408a" TYPE="ext4"`,
@@ -83,7 +83,7 @@ func findBlk() (partPair, error) {
 	return pair, os.ErrInvalid
 }
 
-//func PartParent(dev string) string
+// func PartParent(dev string) string
 func TestParent(t *testing.T) {
 	pair, err := findBlk()
 	if err != nil {
@@ -95,7 +95,7 @@ func TestParent(t *testing.T) {
 	}
 }
 
-//func IsDev(dev string) bool
+// func IsDev(dev string) bool
 func TestIsDev(t *testing.T) {
 	pair, err := findBlk()
 	if err != nil {
@@ -112,7 +112,7 @@ func TestIsDev(t *testing.T) {
 	}
 }
 
-//func IsPart(dev string) bool
+// func IsPart(dev string) bool
 func TestIsPart(t *testing.T) {
 	pair, err := findBlk()
 	if err != nil {

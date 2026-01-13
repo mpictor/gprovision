@@ -19,12 +19,12 @@ import (
 
 type Priority uint
 
-//Convert facility/severity into priority
+// Convert facility/severity into priority
 func Prio(f Facility, s Severity) Priority {
 	return Priority(f*8) + Priority(s)
 }
 
-//Facility values a la RFC5424. Incomplete list.
+// Facility values a la RFC5424. Incomplete list.
 type Facility uint
 
 const (
@@ -34,7 +34,7 @@ const (
 	FacLocal0          = 16
 )
 
-//Severity values a la RFC5424. Incomplete list.
+// Severity values a la RFC5424. Incomplete list.
 type Severity uint
 
 const (

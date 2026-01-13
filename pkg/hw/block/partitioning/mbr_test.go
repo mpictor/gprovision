@@ -14,7 +14,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (m *mbr) commands() (cmds string)
+// func (m *mbr) commands() (cmds string)
 func TestMBRCommands(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	p := NewMbr("/dev/null")

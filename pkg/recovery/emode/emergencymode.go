@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package emode checks any emergency-mode files to determine whether they are updates, json data, or unknown.
+// Package emode checks any emergency-mode files to determine whether they are updates, json data, or unknown.
 package emode
 
 import (
@@ -80,7 +80,7 @@ const (
 	ReasonNoMatch    = "none are for this device"
 )
 
-//never returns
+// never returns
 func MustPowerCycle(reason string) {
 	hk.Preboots.Perform(false)
 	time.Sleep(time.Second)

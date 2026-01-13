@@ -17,7 +17,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//log ipmi macs
+// log ipmi macs
 func LogMacs() {
 	var macs []string
 	chs := GetChannels()

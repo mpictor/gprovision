@@ -15,8 +15,8 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (r *route) adjustMetric(newMetric uint64, prevTries int)
-//note that we're only testing if this fails, not whether it can succeed
+// func (r *route) adjustMetric(newMetric uint64, prevTries int)
+// note that we're only testing if this fails, not whether it can succeed
 func TestAdjMetric(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 
@@ -54,7 +54,7 @@ func TestAdjMetric(t *testing.T) {
 	}
 }
 
-//func GetRouteThroughIface(iface, destip string) Route
+// func GetRouteThroughIface(iface, destip string) Route
 func TestGetRouteThroughIface(t *testing.T) {
 	// ip r g 8.8.8.8 oif enp4s0
 	// 8.8.8.8 via 10.254.64.161 dev enp4s0 src 10.254.64.174 uid 1000

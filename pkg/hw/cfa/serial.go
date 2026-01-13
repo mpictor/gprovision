@@ -20,7 +20,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//consts related to packet transmission
+// consts related to packet transmission
 const (
 	MaxTries           = 5                      //number of re-transmissions before giving up
 	PktResponseWaitMax = 300 * time.Millisecond //pdf says 250mS + OS overhead
@@ -29,7 +29,7 @@ const (
 var ERetry = fmt.Errorf("Reached max number of retries")
 var EPacket = fmt.Errorf("Bad packet")
 
-//SerialDev translates Crystalfontz-compatible packets into serial byte streams
+// SerialDev translates Crystalfontz-compatible packets into serial byte streams
 // and vice versa. It intercepts and decodes incoming key reporting and polling
 // packets, populating Events. Other packets go into In.
 type SerialDev struct {
@@ -58,7 +58,7 @@ type SerialPort interface {
 	Flush() error
 }
 
-//set up port, init channels, start bg process
+// set up port, init channels, start bg process
 func SerialSetup(dev string) (sd *SerialDev, err error) {
 	sd = &SerialDev{MinPktInterval: 10 * time.Millisecond}
 	sd.port, err = serial.Open(dev)
@@ -76,10 +76,8 @@ func SerialSetup(dev string) (sd *SerialDev, err error) {
 	return
 }
 
-/*
-Stuffs incoming events into event channel, and other packets into the packet
-channel. Must run in background.
-*/
+// Stuffs incoming events into event channel, and other packets into the packet
+// channel. Must run in background.
 func (sd *SerialDev) handleIncoming(wg *sync.WaitGroup) {
 	if wg != nil {
 		defer wg.Done()
@@ -162,7 +160,7 @@ func (sd *SerialDev) Close() error {
 	return sd.port.Close()
 }
 
-//Send a packet, retrying up to MaxTries
+// Send a packet, retrying up to MaxTries
 func (sd *SerialDev) sendPktRetry(pkt *pktNoCrc) (*Packet, error) {
 	//getPkt introduces a delay when there is no response so do not add additional delay here
 	for r := MaxTries; r >= 0; r-- {
@@ -182,7 +180,7 @@ func (sd *SerialDev) sendPktRetry(pkt *pktNoCrc) (*Packet, error) {
 	return nil, ERetry
 }
 
-//send packet, wait for response. no retries.
+// send packet, wait for response. no retries.
 func (sd *SerialDev) sendPkt(pkt *pktNoCrc) (p *Packet, err error) {
 	err = sd.sendOnly(pkt)
 	if err == nil {
@@ -191,7 +189,7 @@ func (sd *SerialDev) sendPkt(pkt *pktNoCrc) (p *Packet, err error) {
 	return
 }
 
-//send packet, do not wait for response
+// send packet, do not wait for response
 func (sd *SerialDev) sendOnly(pkt *pktNoCrc) (err error) {
 	now := time.Now()
 	last := sd.getPktTime()
@@ -203,7 +201,7 @@ func (sd *SerialDev) sendOnly(pkt *pktNoCrc) (err error) {
 	return
 }
 
-//get matching incoming packet with timeout
+// get matching incoming packet with timeout
 func (sd *SerialDev) getPkt(cmd Command, maxWait time.Duration) (p *Packet) {
 	for {
 		select {
@@ -234,7 +232,7 @@ func (sd *SerialDev) getPktTime() time.Time {
 	return sd.lastPkt
 }
 
-//sends ping command with random-ish data, expects it back
+// sends ping command with random-ish data, expects it back
 func (sd *SerialDev) ping() (match bool, err error) {
 	p := &pktNoCrc{command: Cmd_Ping}
 
@@ -250,13 +248,13 @@ func (sd *SerialDev) ping() (match bool, err error) {
 	return match, err
 }
 
-//type passed to Read() and badPacket(); subset of SerialPort
+// type passed to Read() and badPacket(); subset of SerialPort
 type ReadFlusher interface {
 	Read([]byte) (int, error)
 	Flush() error
 }
 
-//Stuffs incoming data from the serial port into packets. Checks packet type, verifies CRC.
+// Stuffs incoming data from the serial port into packets. Checks packet type, verifies CRC.
 func GetPacket(r ReadFlusher, DbgPktErr, DbgRW bool) (p *Packet, err error) {
 	//NOTE: do not do buf.ReadFrom(r) - it will block. interpose an io.LimitReader.
 	buf := pktbuf()
@@ -346,7 +344,7 @@ func GetPacket(r ReadFlusher, DbgPktErr, DbgRW bool) (p *Packet, err error) {
 	return
 }
 
-//log bad packet, flush r
+// log bad packet, flush r
 func badPacket(cmd Command, buf *bytes.Buffer, r ReadFlusher, desc string, DbgRW bool) (*Packet, error) {
 	if DbgRW {
 		log.Logf("%s with cmd %s, buf=%v", desc, cmd, buf.Bytes())

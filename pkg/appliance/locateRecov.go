@@ -20,11 +20,10 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-/*  locate* functions
- *
- *  look through available devices for one with correct size, connection type, etc
- *  return dev string, i.e. '/dev/sdc'
- */
+// locate* functions
+//
+// look through available devices for one with correct size, connection type, etc
+// return dev string, i.e. '/dev/sdc'
 
 func locateByLabel(media recoveryMediaS) (fsIdent, fsType, fsOpts string) {
 	path := "/dev/disk/by-label/" + strs.RecVolName()
@@ -47,8 +46,8 @@ func locateByLabel(media recoveryMediaS) (fsIdent, fsType, fsOpts string) {
 	return
 }
 
-//9p2k virtfs, qemu/kvm
-//validate9p is not called from locate func
+// 9p2k virtfs, qemu/kvm
+// validate9p is not called from locate func
 func locate9PvirtRecov(media recoveryMediaS) (fsIdent, fsType, fsOpts string) {
 	fsIdent = strs.RecVolName()
 	fsType = media.FsType
@@ -67,13 +66,12 @@ func (m recoveryMediaS) FsOpts() (fsOpts string) {
 	return
 }
 
-/*  validate* functions
- *
- *  check given device to ensure it meets requirements specific to a platform for one with correct size, connection type, etc
- *  return dev string, i.e. '/dev/sdc'
- */
+//  validate* functions
+//
+//  check given device to ensure it meets requirements specific to a platform for one with correct size, connection type, etc
+//  return dev string, i.e. '/dev/sdc'
 
-//check if CFEX device (Portwell CAF-2000)
+// check if CFEX device (Portwell CAF-2000)
 func validateCFEX(dev string) (err error) {
 	//appears to be a SATA device
 	link := "/sys/block/" + stripDev(dev)
@@ -101,7 +99,7 @@ func validateSATA(dev string) (err error) {
 	return
 }
 
-//check if USB device
+// check if USB device
 func validateUSB(dev string) (err error) {
 	link := "/sys/block/" + stripDev(dev)
 	dest, _ := os.Readlink(link)

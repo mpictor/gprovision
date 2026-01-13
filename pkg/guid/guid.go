@@ -16,10 +16,10 @@ import (
 	"github.com/google/uuid"
 )
 
-//A mixed-endianness guid, as used by MS and UEFI.
+// A mixed-endianness guid, as used by MS and UEFI.
 type MixedGuid [16]byte
 
-//Converts MixedGuid to a uuid.UUID
+// Converts MixedGuid to a uuid.UUID
 func (m MixedGuid) ToStdEnc() (u uuid.UUID) {
 	u[0], u[1], u[2], u[3] = m[3], m[2], m[1], m[0]
 	u[4], u[5] = m[5], m[4]
@@ -28,7 +28,7 @@ func (m MixedGuid) ToStdEnc() (u uuid.UUID) {
 	return
 }
 
-//Converts uuid.UUID to MixedGuid
+// Converts uuid.UUID to MixedGuid
 func FromStdEnc(u uuid.UUID) (m MixedGuid) {
 	m[0], m[1], m[2], m[3] = u[3], u[2], u[1], u[0]
 	m[4], m[5] = u[5], u[4]

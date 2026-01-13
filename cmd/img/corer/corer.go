@@ -25,7 +25,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-//in any binary with main.buildId string, it is set at compile time to $BUILD_INFO
+// in any binary with main.buildId string, it is set at compile time to $BUILD_INFO
 var buildId string
 
 func main() {

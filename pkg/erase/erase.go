@@ -169,20 +169,21 @@ func Erase(recov common.FS) {
 	success(recov)
 }
 
-/*hdparm -I output
- *
-...
-Security:
-       Master password revision code = 65534
-               supported
-       not     enabled
-       not     locked
-       not     frozen
-       not     expired: security count
-               supported: enhanced erase
-       274min for SECURITY ERASE UNIT. 274min for ENHANCED SECURITY ERASE UNIT.
-*
-*/
+// hdparm -I output
+//
+//	*
+//
+// ...
+// Security:
+//
+//	Master password revision code = 65534
+//	        supported
+//	not     enabled
+//	not     locked
+//	not     frozen
+//	not     expired: security count
+//	        supported: enhanced erase
+//	274min for SECURITY ERASE UNIT. 274min for ENHANCED SECURITY ERASE UNIT.
 func eraseDisk(d *raid.Device, wg *sync.WaitGroup, eraseCh chan<- time.Duration, recov common.FS) {
 	defer wg.Done()
 	prepare(d, recov)
@@ -227,7 +228,7 @@ func overwrite(d *raid.Device, eraseCh chan<- time.Duration) {
 	}
 }
 
-//use hdparm + ATA SECURE ERASE to erase the disk
+// use hdparm + ATA SECURE ERASE to erase the disk
 func tryhdp(d *raid.Device, eraseCh chan<- time.Duration) error {
 	log.Logf("%s: trying ATA SECURE ERASE command", d.Dev())
 	drvInfo := exec.Command("hdparm", "-I", d.Dev())
@@ -269,7 +270,7 @@ func tryhdp(d *raid.Device, eraseCh chan<- time.Duration) error {
 	return err
 }
 
-//hdparm seems to fail intermittently, so try to run it several times
+// hdparm seems to fail intermittently, so try to run it several times
 func tryExec(ex *exec.Cmd, max int, wait time.Duration) (combinedOutput []byte, err error) {
 	count := 1
 	for count <= max {
@@ -283,9 +284,8 @@ func tryExec(ex *exec.Cmd, max int, wait time.Duration) (combinedOutput []byte, 
 		count++
 		time.Sleep(wait)
 
-		/* exec.Cmd struct retains some state data; running
-		 * a second time will result in errors... so start over
-		 */
+		// exec.Cmd struct retains some state data; running
+		// a second time will result in errors... so start over
 		args := ex.Args
 		ex = new(exec.Cmd)
 		ex.Args = args

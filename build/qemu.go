@@ -25,7 +25,7 @@ import (
 	"github.com/mpictor/gprovision/build/paths"
 )
 
-//downloads/extracts qemu tarball
+// downloads/extracts qemu tarball
 func qemu(ctx context.Context) error {
 	os.Mkdir(paths.QDir, 0755)
 	_, err := os.Stat(paths.QemuSys)
@@ -158,7 +158,7 @@ func (w *wrappedExecErr) Error() string {
 	return str
 }
 
-//set up env vars for a run of qemu
+// set up env vars for a run of qemu
 func qemuEnv(kernel string, uefi bool) []string {
 	var env []string
 	env = append(env, fmt.Sprintf("%s=%s", "INFRA_ROOT", paths.RepoRoot))

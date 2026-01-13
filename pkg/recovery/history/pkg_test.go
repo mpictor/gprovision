@@ -17,7 +17,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/common/strs"
 )
 
-//func (rl *resultList)moveOrAddFront(item *imageResult)
+// func (rl *resultList)moveOrAddFront(item *imageResult)
 func TestMoaf(t *testing.T) {
 	results = append(results,
 		&ImageResult{Image: "img1"},
@@ -39,7 +39,7 @@ func TestMoaf(t *testing.T) {
 	}
 }
 
-//func RecordBootState(imgName string, success bool, severity uint)
+// func RecordBootState(imgName string, success bool, severity uint)
 func TestRecordBootState(t *testing.T) {
 	ti := time.Now()
 	splat := strings.SplitAfter(strs.ImgPrefix(), ".")

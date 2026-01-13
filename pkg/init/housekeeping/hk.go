@@ -5,12 +5,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package housekeeping works with lists of tasks to be performed in the future.
-//Like defer, it is last-in first-out. Tasks can be removed from a list via
-//filter functions, then assigning the filtered result to the list. To process
-//the list of tasks, call Perform. Its bool arg indicates success/fail of the
-//current process - for example, factory restore. Most tasks will ignore this
-//bool, but some do use it. One example is the history package.
+// Package housekeeping works with lists of tasks to be performed in the future.
+// Like defer, it is last-in first-out. Tasks can be removed from a list via
+// filter functions, then assigning the filtered result to the list. To process
+// the list of tasks, call Perform. Its bool arg indicates success/fail of the
+// current process - for example, factory restore. Most tasks will ignore this
+// bool, but some do use it. One example is the history package.
 package housekeeping
 
 import (
@@ -33,7 +33,7 @@ type HkList struct{ tasks []*HkTask }
 
 type HkFilter func(t *HkTask) bool
 
-//return subset of given list where filter matches (only positives)
+// return subset of given list where filter matches (only positives)
 func (hl *HkList) Filter(filter HkFilter) HkList {
 	var out HkList
 	for _, entry := range hl.tasks {
@@ -44,7 +44,7 @@ func (hl *HkList) Filter(filter HkFilter) HkList {
 	return out
 }
 
-//return subset of given list where filter does not match (remove positives)
+// return subset of given list where filter does not match (remove positives)
 func (hl *HkList) FilterOut(filter HkFilter) HkList {
 	//simply invert the filter
 	return hl.Filter(func(t *HkTask) bool { return !filter(t) })
@@ -71,9 +71,9 @@ func (hl *HkList) AddFirst(t *HkTask) {
 	hl.tasks = append([]*HkTask{t}, hl.tasks...)
 }
 
-//Adds to the list functions to finish the log, unmount filesystems, and sync disks.
-//These functions are always inserted at the beginning of the list.
-//To avoid an import cycle, the unmount function must be passed in.
+// Adds to the list functions to finish the log, unmount filesystems, and sync disks.
+// These functions are always inserted at the beginning of the list.
+// To avoid an import cycle, the unmount function must be passed in.
 func AddPrebootDefaults(unmountFunc func(bool)) {
 	// These must be the _last_ things run, so we add them at the beginning of
 	// the list. Added in reverse order.

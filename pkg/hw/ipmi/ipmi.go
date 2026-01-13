@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package ipmi interacts with the platform BMC. User privileges can be checked,
-//passwords changed, MACs retrieved, etc.
+// Package ipmi interacts with the platform BMC. User privileges can be checked,
+// passwords changed, MACs retrieved, etc.
 package ipmi
 
 import (

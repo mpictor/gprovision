@@ -32,7 +32,7 @@ func SetAttr(key string, val interface{}) error {
 	return nil
 }
 
-//Remove all attrs from the map
+// Remove all attrs from the map
 func ClearAttrs() {
 	for key := range attrs {
 		delete(attrs, key)

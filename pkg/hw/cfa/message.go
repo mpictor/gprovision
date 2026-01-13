@@ -34,7 +34,7 @@ func (l *Lcd) Msg(msg string) (Coord, error) {
 	return l.writeLines(lines, max)
 }
 
-//Scroll a long message vertically. Non-ASCII chars will not render correctly.
+// Scroll a long message vertically. Non-ASCII chars will not render correctly.
 func (l *Lcd) LongMsg(msg string, cycle, displayTime time.Duration) error {
 	if l == nil {
 		time.Sleep(displayTime)
@@ -81,7 +81,7 @@ const (
 	Fade                   //gradual - sine wave
 )
 
-//Like LongMsg, but changes brightness to get attention
+// Like LongMsg, but changes brightness to get attention
 func (l *Lcd) BlinkMsg(msg string, fade FadeStyle, cycle, displayTime time.Duration) (err error) {
 	done := make(chan struct{})
 	go func() {
@@ -91,7 +91,7 @@ func (l *Lcd) BlinkMsg(msg string, fade FadeStyle, cycle, displayTime time.Durat
 	return l.BlinkMsgUntil(done, msg, fade, cycle)
 }
 
-//Like BlinkMsg but call from goroutine; displays until `done` is closed.
+// Like BlinkMsg but call from goroutine; displays until `done` is closed.
 func (l *Lcd) BlinkMsgUntil(done chan struct{}, msg string, fade FadeStyle, cycle time.Duration) (err error) {
 	if l == nil {
 		<-done
@@ -155,8 +155,8 @@ func (l *Lcd) BlinkMsgUntil(done chan struct{}, msg string, fade FadeStyle, cycl
 	return
 }
 
-//display message with timeout, return true if a button was pressed during that time
-//TODO display remaining time on screen?
+// display message with timeout, return true if a button was pressed during that time
+// TODO display remaining time on screen?
 func (l *Lcd) PressAnyKey(desc string, cycle, timeout time.Duration) (pressed bool, err error) {
 	if l == nil {
 		time.Sleep(timeout)
@@ -196,7 +196,7 @@ func (l *Lcd) PressAnyKey(desc string, cycle, timeout time.Duration) (pressed bo
 	return
 }
 
-//Same as PressAnyKey, but wait for a channel instead of using a timeout.
+// Same as PressAnyKey, but wait for a channel instead of using a timeout.
 func (l *Lcd) PressAnyKeyUntil(desc string, cycle time.Duration, done chan struct{}) (pressed bool, err error) {
 	if l == nil {
 		<-done
@@ -235,7 +235,7 @@ func (l *Lcd) PressAnyKeyUntil(desc string, cycle time.Duration, done chan struc
 	return
 }
 
-//Convert done (chan struct{}) to a Time channel. For use with l.waitForEvent.
+// Convert done (chan struct{}) to a Time channel. For use with l.waitForEvent.
 func DoneChToTimeCh(done chan struct{}) <-chan time.Time {
 	tc := make(chan time.Time)
 	go func() {

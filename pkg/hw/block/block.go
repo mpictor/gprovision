@@ -30,7 +30,7 @@ func (b BlockDev) String() string {
 	return fmt.Sprintf("Device %s: Vendor=%s, Model=%s, Size=%d", b.Name, b.Vendor, b.Model, b.Size)
 }
 
-//return name, size of storage devices
+// return name, size of storage devices
 func Devices() (devs []BlockDev) {
 	// sys/class/block is a superset of sys/block; it also contains partitions
 	names := devices("/sys/block", nil)
@@ -60,10 +60,8 @@ func Devices() (devs []BlockDev) {
 type DevIncludeFn func(dir, relpath string) bool
 
 func DFiltOnlyUsb(_, relpath string) bool {
-	/*
-	   /sys/class/block/sdb1 ->
-	   ../../devices/pci0000:00/0000:00:07.1/0000:08:00.3/usb3/3-1/3-1.3/3-1.3:1.0/host9/target9:0:0/9:0:0:0/block/sdb/sdb1
-	*/
+	// /sys/class/block/sdb1 ->
+	// ../../devices/pci0000:00/0000:00:07.1/0000:08:00.3/usb3/3-1/3-1.3/3-1.3:1.0/host9/target9:0:0/9:0:0:0/block/sdb/sdb1
 	accept := strings.Contains(relpath, "usb")
 	if Verbose {
 		log.Logf("DFiltOnlyUsb: path=%s accept=%t", fp.Base(relpath), accept)
@@ -102,19 +100,19 @@ func devices(sysdir string, include DevIncludeFn) (devs []string) {
 	return devs
 }
 
-//Return a path for each non-virtual block device. Unlike Devices(), include
-//partitions.
+// Return a path for each non-virtual block device. Unlike Devices(), include
+// partitions.
 func AllBlockDevs() []string {
 	return devices("/sys/class/block", nil)
 }
 
-//like AllBlockDevs, but uses a filter function to limit the results
+// like AllBlockDevs, but uses a filter function to limit the results
 func FilterBlockDevs(filter DevIncludeFn) []string {
 	return devices("/sys/class/block", filter)
 }
 
-//SizeToleranceMatch returns true if actual value is within tolerance of desired value.
-//Tolerance is expressed as an integer 1-100, representing a percent.
+// SizeToleranceMatch returns true if actual value is within tolerance of desired value.
+// Tolerance is expressed as an integer 1-100, representing a percent.
 func SizeToleranceMatch(have, want, tol uint64) bool {
 	abs := func(v int64) uint64 {
 		if v < 0 {
@@ -127,7 +125,7 @@ func SizeToleranceMatch(have, want, tol uint64) bool {
 	return deviation <= limit
 }
 
-//use ioctl to find dev size
+// use ioctl to find dev size
 func ReadSize(dev string) (devSize uint64, err error) {
 	fd, err := os.OpenFile(dev, syscall.O_DIRECT|os.O_RDONLY, 0600)
 	if err != nil {
@@ -141,8 +139,8 @@ func ReadSize(dev string) (devSize uint64, err error) {
 	return
 }
 
-//given a dev like '/dev/sda', find device model string
-//for sata, 'model' file includes vendor as well
+// given a dev like '/dev/sda', find device model string
+// for sata, 'model' file includes vendor as well
 func ReadModel(dev string) (m string, err error) {
 	//ls -ld /sys/block/sda
 	// /sys/block/sda -> /sys/devices/pci0000:00/0000:00:11.0/ata1/host0/target0:0:0/0:0:0:0/block/sda
@@ -156,9 +154,9 @@ func ReadModel(dev string) (m string, err error) {
 	return
 }
 
-//for sata, always returns ATA
-//for scsi, ???
-//for usb, returns actual vendor
+// for sata, always returns ATA
+// for scsi, ???
+// for usb, returns actual vendor
 func ReadVendor(dev string) (v string, err error) {
 	vfile := fp.Join("/sys/block", dev, "device", "vendor")
 	f, err := ioutil.ReadFile(vfile)
@@ -169,19 +167,19 @@ func ReadVendor(dev string) (v string, err error) {
 	return
 }
 
-//IsDev returns true if given dev represents a physical device
+// IsDev returns true if given dev represents a physical device
 func IsDev(dev string) bool {
 	_, err := os.Stat(fp.Join("/sys/class/block", dev, "device"))
 	return err == nil
 }
 
-//IsPart returns true if given dev is a partition
+// IsPart returns true if given dev is a partition
 func IsPart(dev string) bool {
 	_, err := os.Stat(fp.Join("/sys/class/block", dev, "partition"))
 	return err == nil
 }
 
-//PartNum returns the part number of a partition, or empty string
+// PartNum returns the part number of a partition, or empty string
 func PartNum(dev string) string {
 	data, err := ioutil.ReadFile(fp.Join("/sys/class/block", dev, "partition"))
 	if err != nil {
@@ -190,7 +188,7 @@ func PartNum(dev string) string {
 	return strings.TrimSpace(string(data))
 }
 
-//PartParent returns the parent block device for the given partition. Does not check if dev is actually a partition.
+// PartParent returns the parent block device for the given partition. Does not check if dev is actually a partition.
 func PartParent(dev string) string {
 	s, _ := os.Readlink(fp.Join("/sys/class/block", dev))
 	if s == "" {

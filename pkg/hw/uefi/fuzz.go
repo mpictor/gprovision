@@ -9,14 +9,12 @@
 
 package uefi
 
-/*
-go get github.com/dvyukov/go-fuzz/go-fuzz
-go get github.com/dvyukov/go-fuzz/go-fuzz-build
-
-go-fuzz-build -func FuzzParseFilePathList github.com/mpictor/gprovision/pkg/hw/uefi
-go-fuzz -bin=./uefi-fuzz.zip -workdir=fuzz
-...
-*/
+// go get github.com/dvyukov/go-fuzz/go-fuzz
+// go get github.com/dvyukov/go-fuzz/go-fuzz-build
+//
+// go-fuzz-build -func FuzzParseFilePathList github.com/mpictor/gprovision/pkg/hw/uefi
+// go-fuzz -bin=./uefi-fuzz.zip -workdir=fuzz
+// ...
 
 func FuzzParseFilePathList(data []byte) int {
 	_, err := ParseFilePathList(data)

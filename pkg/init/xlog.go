@@ -24,7 +24,7 @@ import (
 	"github.com/u-root/u-root/pkg/mount"
 )
 
-//do more with env vars and logging - stuff that can't be done until after udev/early mounts
+// do more with env vars and logging - stuff that can't be done until after udev/early mounts
 func handleEnvVarsPt2() {
 	var success bool
 	if os.Getenv(strs.IntegEnv()) != "" {
@@ -43,14 +43,12 @@ func handleEnvVarsPt2() {
 			log.Logf("identifying platform: %s", err)
 		}
 		if release && (plat == nil || plat.FamilyName() != "qemu") {
-			/*
-				On release builds, only allow logging on test vm's (family qemu).
-				Note that normal customer vm's, even if on qemu, would not be
-				this family unless the customer very carefully set dmi values.
-
-				Since the integ test uses release binaries, can't simply limit
-				to debug builds.
-			*/
+			// On release builds, only allow logging on test vm's (family qemu).
+			// Note that normal customer vm's, even if on qemu, would not be
+			// this family unless the customer very carefully set dmi values.
+			//
+			// Since the integ test uses release binaries, can't simply limit
+			// to debug builds.
 			log.Logf("logging request denied")
 			return
 		}

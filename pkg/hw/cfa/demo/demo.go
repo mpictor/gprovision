@@ -7,7 +7,7 @@
 
 //go:build !release
 
-//Demo app to exercise a compatible Crystalfontz LCD.
+// Demo app to exercise a compatible Crystalfontz LCD.
 package main
 
 import (

@@ -10,22 +10,22 @@
 // pushing a new os image, due to the user requesting a factory restore, or due
 // to the main drive being erased or corrupted.
 //
-// Recovery
+// # Recovery
 //
 // (AKA Factory Restore)
 //
-// 	* identifies the hardware it's running on
-// 	* determines which device(s) are to be used for the main volume and which
-//    is recovery
-// 	* configures system as necessary
-// 	    * change bios options such as fake raid (if the platform requires it and
-//        tools are present)
-// 	    * set up linux raid (if the platform requires it)
-// 	    * partitioning (legacy vs uefi)
-// 	* write image, unit info, boot files
-// 	* reboot
+//   - identifies the hardware it's running on
+//   - determines which device(s) are to be used for the main volume and which
+//     is recovery
+//   - configures system as necessary
+//   - change bios options such as fake raid (if the platform requires it and
+//     tools are present)
+//   - set up linux raid (if the platform requires it)
+//   - partitioning (legacy vs uefi)
+//   - write image, unit info, boot files
+//   - reboot
 //
-// Images
+// # Images
 //
 // Images will be located within the /Image/ directory on the recovery volume
 // and have the `.upd` extension. Images are xz-compressed tar files, and must
@@ -33,29 +33,29 @@
 // SHA256 checksum. This signature and checksum type are verified during image
 // validation.
 //
-// Restore process
+// # Restore process
 //
 // step by step
 //
-//	 * Factory restore identifies the model of device it's running on
-//	 * using that information, locates the recovery drive
-//	 * load factory restore config json, if it exists
-//	 * look for update files in Image/ on recovery drive
-//	 * sort updates, newest first
-//	 * go through update list, checking integrity with xz's embedded SHA256 checksum
-//	     * stop when first valid update is found
-//	 * if a valid update has been found:
-//	     * reconfigure BIOS (supported platforms), disabling fake raid
-//	         * only happens during windows -> linux conversion
-//	     * update is applied
-//	 * if no valid update, reboot
-//	 * read OS password from encrypted file, insert into etc/shadow
-//	   * if file doesn't exist, serial number is hashed and used as password
-//	 * delete factory restore config json, if it exists
-//	 * create flag file on main drive
-//	 * reboot
+//   - Factory restore identifies the model of device it's running on
+//   - using that information, locates the recovery drive
+//   - load factory restore config json, if it exists
+//   - look for update files in Image/ on recovery drive
+//   - sort updates, newest first
+//   - go through update list, checking integrity with xz's embedded SHA256 checksum
+//   - stop when first valid update is found
+//   - if a valid update has been found:
+//   - reconfigure BIOS (supported platforms), disabling fake raid
+//   - only happens during windows -> linux conversion
+//   - update is applied
+//   - if no valid update, reboot
+//   - read OS password from encrypted file, insert into etc/shadow
+//   - if file doesn't exist, serial number is hashed and used as password
+//   - delete factory restore config json, if it exists
+//   - create flag file on main drive
+//   - reboot
 //
-// Magic files
+// # Magic files
 //
 // If emergency mode file(s) are found by init, the paths are passed to factory restore.
 // These files could be an image or a command file. A person **must** remain present when factory restore is processing a magic file, as there isn't a mechanism to prevent a boot loop.
@@ -73,5 +73,4 @@
 // - Emergency command file
 //
 // No opensource implementation currently exists.
-//
 package recovery

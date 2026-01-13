@@ -40,7 +40,7 @@ func logfile(t gtst.TB, qopts *qemu.Options, lfile string) {
 	qopts.SerialOutput = out
 }
 
-//use in conjunction with logfile / LClogfile
+// use in conjunction with logfile / LClogfile
 func readOutLfile(t gtst.TB, lfile string) {
 	content, err := ioutil.ReadFile(lfile)
 	if err != nil {
@@ -90,7 +90,7 @@ func ReadJson(dir string) (cmd []string, port int) {
 	return j.Cmd, j.Port
 }
 
-//NoEscape is an io.WriteCloser that filters out escape chars, replacing with '~'
+// NoEscape is an io.WriteCloser that filters out escape chars, replacing with '~'
 type NoEscape struct {
 	Out io.WriteCloser
 }
@@ -102,8 +102,8 @@ func (ne *NoEscape) Write(b []byte) (int, error) {
 	return ne.Out.Write(bytes.Replace(b, []byte{033}, []byte{'~'}, -1))
 }
 
-//some u-root functions take a Logger interface. This statisfies that interface,
-//without use/redirection of std log.
+// some u-root functions take a Logger interface. This statisfies that interface,
+// without use/redirection of std log.
 type UrootLoggerAdapter struct{}
 
 var _ ulog.Logger = (*UrootLoggerAdapter)(nil)

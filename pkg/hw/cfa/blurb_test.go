@@ -16,7 +16,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (hs *horizScroller) updateState() (change bool)
+// func (hs *horizScroller) updateState() (change bool)
 func TestHorizScroll(t *testing.T) {
 	want := []string{
 		//pos,state,displayed,pos visualization

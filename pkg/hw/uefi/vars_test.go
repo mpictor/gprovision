@@ -17,7 +17,7 @@ func init() {
 	efiVarDir = "testdata/sys_firmware_efi_vars"
 }
 
-//func ReadBootVar(num uint16) (b BootVar)
+// func ReadBootVar(num uint16) (b BootVar)
 func TestReadBootVar(t *testing.T) {
 	var n uint16
 	for n = 0; n < 11; n++ {
@@ -28,7 +28,7 @@ func TestReadBootVar(t *testing.T) {
 	}
 }
 
-//func AllBootEntryVars() (list []BootEntryVar)
+// func AllBootEntryVars() (list []BootEntryVar)
 func TestAllBootEntryVars(t *testing.T) {
 	tlog := testlog.NewTestLogNoBG(t)
 	bevs := AllBootEntryVars()
@@ -41,7 +41,7 @@ func TestAllBootEntryVars(t *testing.T) {
 	}
 }
 
-//func ReadCurrentBootVar() (b *BootEntryVar)
+// func ReadCurrentBootVar() (b *BootEntryVar)
 func TestReadCurrentBootVar(t *testing.T) {
 	tlog := testlog.NewTestLogNoBG(t)
 	v := ReadCurrentBootVar()

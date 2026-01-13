@@ -17,7 +17,7 @@ const (
 	oneG = oneM * 1024
 )
 
-//creates a 1MB reproducible but not-quite-trivial pattern.
+// creates a 1MB reproducible but not-quite-trivial pattern.
 func pat1m(idx int64) []byte {
 	meg := make([]byte, oneM)
 	cursor := meg
@@ -43,7 +43,7 @@ func pat1m(idx int64) []byte {
 	return meg
 }
 
-//rng seeded with disk size - repeatable pattern, but not trivially predictable
+// rng seeded with disk size - repeatable pattern, but not trivially predictable
 func offsetSeq(siz int64) []int64 {
 	rnd := rand.NewSource(siz)
 	var lastoff int64

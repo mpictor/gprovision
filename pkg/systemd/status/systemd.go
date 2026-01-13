@@ -18,42 +18,42 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//Methods called on this operate in system context.
+// Methods called on this operate in system context.
 func SystemContext() (ctx sysdCtx) {
 	return
 }
 
-//Methods called on this operate in user context.
+// Methods called on this operate in user context.
 func UserContext() (ctx sysdCtx) {
 	ctx.user = true
 	return
 }
 
-//True if sysctl reports service is active.
+// True if sysctl reports service is active.
 func IsActive(service string) bool { return SystemContext().IsActive(service) }
 func (ctx sysdCtx) IsActive(service string) bool {
 	return ctx.sysctlCmdBool("is-active", service)
 }
 
-//True if sysctl reports service is failed.
+// True if sysctl reports service is failed.
 func IsFailed(service string) bool { return SystemContext().IsFailed(service) }
 func (ctx sysdCtx) IsFailed(service string) bool {
 	return ctx.sysctlCmdBool("is-failed", service)
 }
 
-//Start a service, returning any error.
+// Start a service, returning any error.
 func Start(service string) error { return SystemContext().Start(service) }
 func (ctx sysdCtx) Start(service string) error {
 	return ctx.sysctlCmdErr("start", service)
 }
 
-//Stop a service, returning any error.
+// Stop a service, returning any error.
 func Stop(service string) error { return SystemContext().Stop(service) }
 func (ctx sysdCtx) Stop(service string) error {
 	return ctx.sysctlCmdErr("stop", service)
 }
 
-//List any services that are failed.
+// List any services that are failed.
 func Failed() []string { return SystemContext().Failed() }
 func (ctx sysdCtx) Failed() (list []string) {
 	sysctl := exec.Command("systemctl", ctx.arg(), "--failed", "--no-legend")
@@ -73,17 +73,17 @@ func (ctx sysdCtx) Failed() (list []string) {
 	return
 }
 
-//Shutdown.
+// Shutdown.
 func Poweroff() error {
 	return exec.Command("systemctl", "--system", "poweroff", "-q").Run()
 }
 
-//Reboot.
+// Reboot.
 func Reboot() error {
 	return exec.Command("systemctl", "--system", "reboot", "-q").Run()
 }
 
-//Is the current init system systemd?
+// Is the current init system systemd?
 func IsSystemd() bool {
 	data, err := ioutil.ReadFile("/proc/1/cmdline")
 	if err != nil {

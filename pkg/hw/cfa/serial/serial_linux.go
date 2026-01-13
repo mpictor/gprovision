@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package serial configures a serial port for use with Crystalfontz LCDs. Only implemented for linux.
+// Package serial configures a serial port for use with Crystalfontz LCDs. Only implemented for linux.
 package serial
 
 import (
@@ -42,7 +42,7 @@ func Open(dev string) (*Port, error) {
 	opts.Oflag = opts.Oflag &^ (unix.OPOST | unix.ONLCR | unix.OCRNL | unix.ONOCR | unix.ONLRET | unix.OFILL | unix.OFDEL | unix.NLDLY | unix.CRDLY | unix.TABDLY | unix.BSDLY | unix.VTDLY | unix.FFDLY)
 
 	//control modes
-	/* unix.CSTOPB - i3lcd uses two stop bits and it seems to work, though the docs say 1 stop bit...?! */
+	// unix.CSTOPB - i3lcd uses two stop bits and it seems to work, though the docs say 1 stop bit...?!
 	opts.Cflag = opts.Cflag &^ (unix.CSIZE | unix.PARENB | unix.PARODD | unix.HUPCL | unix.CRTSCTS | unix.CBAUD | unix.CSTOPB)
 	opts.Cflag |= unix.CREAD | unix.CS8 | unix.CLOCAL
 	opts.Cflag |= unix.B115200

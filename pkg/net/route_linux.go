@@ -59,7 +59,7 @@ func (l Route) Equal(r Route) bool {
 	return true
 }
 
-//used by AdjustDupDefaultRoutes to avoid repeated WAN lookup.
+// used by AdjustDupDefaultRoutes to avoid repeated WAN lookup.
 var wan string
 
 // Remove duplicate routes if MetricForDuplicates is 0, else give them different
@@ -132,16 +132,14 @@ func parseRoute(line string, onlyDefault bool) (bool, Route) {
 	if onlyDefault && !strings.HasPrefix(line, defaultVia) {
 		return false, Route{}
 	}
-	/*
-		192.168.133.186 dev tun0 proto kernel scope link src 192.168.133.185
-		8.8.8.8 via 4.3.2.1 dev enp4s0 src 10.254.64.174 uid 1000
-		default via 4.3.2.1 dev eth0 proto static
-		default via 4.3.2.1 dev enp2s0 proto dhcp src 4.3.2.3 metric 1024
-		default via 4.3.2.1 dev eno1 proto dhcp src 4.3.2.2 metric 1024
-		   0     1     2     3    4     5    6   7     8      9     10
-		               gw        dev        dyn?    src addr       metric
-		once you remove the first element, all seem to be in "key value" format
-	*/
+	// 192.168.133.186 dev tun0 proto kernel scope link src 192.168.133.185
+	// 8.8.8.8 via 4.3.2.1 dev enp4s0 src 10.254.64.174 uid 1000
+	// default via 4.3.2.1 dev eth0 proto static
+	// default via 4.3.2.1 dev enp2s0 proto dhcp src 4.3.2.3 metric 1024
+	// default via 4.3.2.1 dev eno1 proto dhcp src 4.3.2.2 metric 1024
+	//    0     1     2     3    4     5    6   7     8      9     10
+	//                gw        dev        dyn?    src addr       metric
+	// once you remove the first element, all seem to be in "key value" format
 	elements := strings.Split(line, " ")
 	if len(elements) < 7 {
 		log.Logf("can't parse route, skipping - too few fields from %s", line)
@@ -156,12 +154,11 @@ func parseRoute(line string, onlyDefault bool) (bool, Route) {
 			rt.Dest = dest
 		}
 	}
-	/* Find src ip and metric, if given
-	   The following assumes the output can take various forms other than those
-	   above, so if we don't recognize something log it and continue. If no src
-	   IP is provided, r.src will be nil; if no metric, r.metric will be 0; and
-	   so on.
-	*/
+	// Find src ip and metric, if given
+	//  The following assumes the output can take various forms other than those
+	//  above, so if we don't recognize something log it and continue. If no src
+	//  IP is provided, r.src will be nil; if no metric, r.metric will be 0; and
+	//  so on.
 	elements = elements[1:]
 	for len(elements) > 0 {
 		success := false
@@ -278,10 +275,9 @@ func (r *Route) Remove() {
 }
 
 func (r *Route) adjustMetric(newMetric uint64, prevTries int) {
-	/* 'ip route change' and 'ip route replace' exist, but do not work to update a route metric
-	   (see http://lkml.iu.edu/hypermail/linux/net/0504.3/0017.html )
-	   so, remove and re-add with new metric.
-	*/
+	// 'ip route change' and 'ip route replace' exist, but do not work to update a route metric
+	//  (see http://lkml.iu.edu/hypermail/linux/net/0504.3/0017.html )
+	//  so, remove and re-add with new metric.
 	if prevTries >= maxTries {
 		log.Logf("too many retries adjusting route metric for '%s', giving up", r.String())
 		return
@@ -301,7 +297,7 @@ func (r *Route) adjustMetric(newMetric uint64, prevTries int) {
 	r.Metric = newMetric
 }
 
-//Renders the route in human-readable form like that of 'ip route'
+// Renders the route in human-readable form like that of 'ip route'
 func (r *Route) String() string {
 	var desc string
 	if r.Dest.IP == nil {
@@ -384,7 +380,7 @@ func (r *Route) Add() error {
 	return nil
 }
 
-//returns an int for netlink.Protocol corresponding to input str
+// returns an int for netlink.Protocol corresponding to input str
 func str2proto(str string) int {
 	switch str {
 	case "kernel":
@@ -415,7 +411,7 @@ func proto2str(p int) string {
 	}
 }
 
-//find interface index for device with given name
+// find interface index for device with given name
 func dev2idx(dev string) (int, error) {
 	ifaces, err := net.Interfaces()
 	if err != nil {

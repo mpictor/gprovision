@@ -16,7 +16,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (rbs *radioButtonSet) render() LcdTxt
+// func (rbs *radioButtonSet) render() LcdTxt
 func TestRBSRender(t *testing.T) {
 	var wrapGtLt wrapStyle = [2]byte{0x3e, 0x3c} //greater than and less than - easier to visualize
 	styleA := styleSet{selected: wrapArrows, deselected: wrapNone}
@@ -46,8 +46,8 @@ func TestRBSRender(t *testing.T) {
 	}
 }
 
-//func (q *Question) Ask(timeout time.Duration) Choice
-//uses golden files
+// func (q *Question) Ask(timeout time.Duration) Choice
+// uses golden files
 func TestAskQuestion(t *testing.T) {
 	testdata := []struct {
 		name         string

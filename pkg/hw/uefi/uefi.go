@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package uefi manipulates UEFI boot entries and other variables. It can also
-//determine whether the system booted in UEFI mode or legacy.
+// Package uefi manipulates UEFI boot entries and other variables. It can also
+// determine whether the system booted in UEFI mode or legacy.
 package uefi
 
 import (
@@ -18,7 +18,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//return true if the system booted via UEFI (as opposed to legacy)
+// return true if the system booted via UEFI (as opposed to legacy)
 func BootedUEFI() bool {
 	_, err := os.Stat("/sys/firmware/efi")
 	return (err == nil)

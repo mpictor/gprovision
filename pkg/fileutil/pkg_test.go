@@ -20,7 +20,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func ListFilesAndSize(dir, pattern string) (size int, files []string)
+// func ListFilesAndSize(dir, pattern string) (size int, files []string)
 func TestListFilesAndSize(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	defer func() {
@@ -60,7 +60,7 @@ func TestListFilesAndSize(t *testing.T) {
 	}
 }
 
-//func CopySomeFiles(srcDir, destDir string, flist []string) error
+// func CopySomeFiles(srcDir, destDir string, flist []string) error
 func TestCopySomeFiles(t *testing.T) {
 	dir := "../fileutil/kver"
 	_, list := ListFilesAndSize(dir, "*.go")
@@ -87,7 +87,7 @@ func TestCopySomeFiles(t *testing.T) {
 	}
 }
 
-//func DirMatchCaseInsensitive(dir string, entry string) (result string) {
+// func DirMatchCaseInsensitive(dir string, entry string) (result string) {
 func TestDirMatchCaseInsensitive(t *testing.T) {
 	type tds struct {
 		actual, request string
@@ -197,7 +197,7 @@ func TestDirMatchCaseInsensitive(t *testing.T) {
 	}
 }
 
-//func WaitFor(path string, timeout time.Duration) (found bool)
+// func WaitFor(path string, timeout time.Duration) (found bool)
 func TestWaitFor(t *testing.T) {
 	name, err := ioutil.TempDir("", "goTestWaitFor")
 	if err != nil {
@@ -228,7 +228,7 @@ func TestWaitFor(t *testing.T) {
 	time.Sleep(2 * time.Second)
 }
 
-//func CheckDirPeriodic(dir string, delay time.Duration, action func() error)
+// func CheckDirPeriodic(dir string, delay time.Duration, action func() error)
 func TestCheckDir(t *testing.T) {
 	tmpdir, err := ioutil.TempDir("", "go-test-corer")
 	if err != nil {
@@ -269,7 +269,7 @@ func TestCheckDir(t *testing.T) {
 	}
 }
 
-//func WaitForDir(watchedIsMountpoint bool, watchDir string)
+// func WaitForDir(watchedIsMountpoint bool, watchDir string)
 func TestWaitForDir(t *testing.T) {
 	tmpdir, err := ioutil.TempDir("", "go-test-fileutil")
 	if err != nil {
@@ -308,7 +308,7 @@ func TestWaitForDir(t *testing.T) {
 	}
 }
 
-//func mpFromLine(l string) string
+// func mpFromLine(l string) string
 func TestMpFromLine(t *testing.T) {
 	testdata := []struct {
 		line, want string
@@ -330,7 +330,7 @@ func TestMpFromLine(t *testing.T) {
 	}
 }
 
-//func isMountpoint(dir string) bool
+// func isMountpoint(dir string) bool
 func TestMountpoint(t *testing.T) {
 	testdata := []struct {
 		path string
@@ -347,7 +347,7 @@ func TestMountpoint(t *testing.T) {
 	}
 }
 
-//func FindCaseInsensitive(root, name string, maxdepth int) (files []string, err error)
+// func FindCaseInsensitive(root, name string, maxdepth int) (files []string, err error)
 func TestFindCaseInsensitive(t *testing.T) {
 	tmpdir, err := ioutil.TempDir("", "go-test-futil-find")
 	if err != nil {

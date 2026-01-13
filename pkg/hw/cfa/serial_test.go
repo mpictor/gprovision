@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func GetPacket(r ReadFlusher, DbgPktErr, DbgRW bool) (p *Packet, err error)
+// func GetPacket(r ReadFlusher, DbgPktErr, DbgRW bool) (p *Packet, err error)
 func TestGetPacket(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	//crash reported by Aurelian, packet reproducing crash found through fuzzing

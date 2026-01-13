@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package integ contains integ tests run by mage. Certain env vars must
-//be set, or the tests will be skipped.
+// Package integ contains integ tests run by mage. Certain env vars must
+// be set, or the tests will be skipped.
 //
 // Required:
 // * INFRA_ROOT

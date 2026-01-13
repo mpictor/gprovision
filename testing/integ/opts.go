@@ -30,7 +30,7 @@ import (
 	"github.com/mpictor/gprovision/testing/vm"
 )
 
-//Defines the base vm used for 'devvm' and lifecycle tests.
+// Defines the base vm used for 'devvm' and lifecycle tests.
 func BaselineVM(uefi bool, m int, tb gtst.TB, tmpdir string) *qemu.Options {
 	additionalDevs := []qemu.Device{
 		vm.SmBios1(uefi),
@@ -129,7 +129,7 @@ type irfs struct {
 	uroot.Opts
 }
 
-//from vmtest.QEMU()
+// from vmtest.QEMU()
 func (i *irfs) Build() (path string, err error) {
 	if len(i.TempDir) == 0 {
 		log.Fatalf("temp dir unset")
@@ -162,7 +162,7 @@ func (i *irfs) Build() (path string, err error) {
 	return outputFile, nil
 }
 
-//vm options for a mfg vm, using test kernel + freshly-built initramfs
+// vm options for a mfg vm, using test kernel + freshly-built initramfs
 func Mfgopts(t gtst.TB, tmpdir, mfgurl string, serOut io.WriteCloser) (*vmtest.Options, error) {
 	if M < 512 {
 		//used to work with 256m. not sure what happened...
@@ -179,7 +179,7 @@ func Mfgopts(t gtst.TB, tmpdir, mfgurl string, serOut io.WriteCloser) (*vmtest.O
 	return opts, nil
 }
 
-//vm options for a fr vm, using test kernel + freshly-built initramfs
+// vm options for a fr vm, using test kernel + freshly-built initramfs
 func FRopts(t gtst.TB, tmpdir string) *vmtest.Options {
 	if M < 512 {
 		//used to work with 256m. not sure what happened...

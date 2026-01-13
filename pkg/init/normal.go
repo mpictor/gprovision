@@ -65,11 +65,11 @@ func stage2(uproc *os.Process) {
 	power.FailReboot()
 }
 
-//look for emergency-mode files on inserted usb media
-//this involves mounting, listing contents, and unmounting - but if file(s) are
-//found, the device is left mounted and abs paths to the files are returned.
-//Note that if multiple usb drives are inserted with files, only files on one
-//(probably the first inserted) will be found.
+// look for emergency-mode files on inserted usb media
+// this involves mounting, listing contents, and unmounting - but if file(s) are
+// found, the device is left mounted and abs paths to the files are returned.
+// Note that if multiple usb drives are inserted with files, only files on one
+// (probably the first inserted) will be found.
 func checkExtUsb() []string {
 	err := os.Mkdir(consts.ExtDir, 0755)
 	if err != nil && !os.IsExist(err) {
@@ -116,7 +116,7 @@ func checkExtUsb() []string {
 	return nil
 }
 
-//does not return unless factory restore (+reboot) is desired
+// does not return unless factory restore (+reboot) is desired
 func tryNormalBoot(real_root string, uproc *os.Process) {
 	if cfa.DefaultLcd == nil {
 		if verbose {
@@ -141,13 +141,12 @@ func tryNormalBoot(real_root string, uproc *os.Process) {
 	}
 	pressed, foundRoot, emergencyFiles := waitSearch(rootDev)
 	testOpts()
-	/*
-		precedence:
-			- user button press
-			- emergency file
-			- real root
-		if nothing is found, return - which triggers factory restore
-	*/
+
+	// precedence:
+	// 	- user button press
+	// 	- emergency file
+	// 	- real root
+	// if nothing is found, return - which triggers factory restore
 	if pressed {
 		if verbose {
 			log.Logf("boot menu")
@@ -230,7 +229,7 @@ func switchroot(rootDev string, uproc *os.Process) {
 	power.RebootSuccess()
 }
 
-//unmount anything extraneous, otherwise SwitchRoot will error
+// unmount anything extraneous, otherwise SwitchRoot will error
 func cleanMounts() {
 	mounts, err := listMounts()
 	if err != nil {

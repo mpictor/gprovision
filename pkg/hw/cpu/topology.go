@@ -18,21 +18,19 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-/* read siblings information -
- * /sys/devices/system/cpu/cpuX/topology/core_siblings_list
- * /sys/devices/system/cpu/cpuX/topology/thread_siblings_list
- * and use it to determine which cpus to use for a given set of IRQs (CpuSet)
- */
+// read siblings information -
+// /sys/devices/system/cpu/cpuX/topology/core_siblings_list
+// /sys/devices/system/cpu/cpuX/topology/thread_siblings_list
+// and use it to determine which cpus to use for a given set of IRQs (CpuSet)
 
-/* could also use cache info... would it ever tell us anything useful that core/thread sibs didn't?
- * /sys/devices/system/cpu/cpuX/cache/indexX/shared_cpu_list
- */
+// could also use cache info... would it ever tell us anything useful that core/thread sibs didn't?
+// /sys/devices/system/cpu/cpuX/cache/indexX/shared_cpu_list
 
-//CpuSet: a set of cpus
-//generally linked in some way that affects performance
+// CpuSet: a set of cpus
+// generally linked in some way that affects performance
 type CpuSet []uint16
 
-//map from cpu to list of siblings
+// map from cpu to list of siblings
 type topo map[uint16]CpuSet
 
 const (
@@ -101,8 +99,8 @@ func getCpuList(f string) (s CpuSet) {
 	return
 }
 
-//parse a cpulist as used by the kernel
-//ex. '0-7,45-49,52'
+// parse a cpulist as used by the kernel
+// ex. '0-7,45-49,52'
 func parseCpuList(lst []byte) (s CpuSet, err error) {
 	parts := strings.Split(strings.Trim(string(lst), "\n"), ",")
 	for _, p := range parts {
@@ -154,7 +152,7 @@ func (s CpuSet) Contains(c uint16) bool {
 	return false
 }
 
-//check for thread siblings
+// check for thread siblings
 func (s CpuSet) ContainsTSib(c uint16) bool {
 	siblings := threadSib[c]
 	for _, v := range s {
@@ -165,7 +163,7 @@ func (s CpuSet) ContainsTSib(c uint16) bool {
 	return false
 }
 
-//check for core siblings
+// check for core siblings
 func (s CpuSet) ContainsCSib(c uint16) bool {
 	siblings := coreSib[c]
 	for _, v := range s {
@@ -177,8 +175,8 @@ func (s CpuSet) ContainsCSib(c uint16) bool {
 	return false
 }
 
-//weighting function to determine next best core
-//useCount tracks exact core use, add to that .5 for each used tsib and .1 per csib
+// weighting function to determine next best core
+// useCount tracks exact core use, add to that .5 for each used tsib and .1 per csib
 func weight(c uint16) (w float64) {
 	siblingWeight := func(siblings topo, c uint16) (sw int) {
 		for _, s := range siblings[c] {
@@ -195,7 +193,7 @@ func weight(c uint16) (w float64) {
 	return
 }
 
-//uses weight() to find lightest cpu not in exclude
+// uses weight() to find lightest cpu not in exclude
 func lowestWeight(exclude CpuSet) (lowest uint16) {
 	if uint16(len(useCount)) < numCpus {
 		for _, c := range allCpus {
@@ -218,8 +216,8 @@ func lowestWeight(exclude CpuSet) (lowest uint16) {
 	return
 }
 
-//keep track of how many queues are on each core
-//when creating set, prefer unassigned cores/sockets
+// keep track of how many queues are on each core
+// when creating set, prefer unassigned cores/sockets
 func CreateSetWeighted(setSize int) (set CpuSet) {
 	size := uint16(setSize)
 	if size > numCpus {

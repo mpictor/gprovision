@@ -19,7 +19,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
-//mount recovery, assemble/mount md0, drop to shell
+// mount recovery, assemble/mount md0, drop to shell
 func shell(recov *disk.Filesystem) {
 	if recov != nil {
 		mp, err := recov.MountErr()
@@ -56,7 +56,7 @@ func shell(recov *disk.Filesystem) {
 	}
 }
 
-//FIXME support non-raid
+// FIXME support non-raid
 func readyArray() string {
 	mountpoint := "/mnt/md0"
 	if err := os.MkdirAll("/dev/md", 0755); err != nil {

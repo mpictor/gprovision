@@ -13,7 +13,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func FindArrays(devices []*Device) (arrays []*Array)
+// func FindArrays(devices []*Device) (arrays []*Array)
 func TestFindArrays(t *testing.T) {
 	singleIn := Devices{&Device{devSize: 1234, arrayType: unknown}}
 	singleWant := Arrays{&Array{devices: singleIn}}
@@ -65,7 +65,7 @@ func TestFindArrays(t *testing.T) {
 	}
 }
 
-//func sizeMatch(a, b *Device) bool
+// func sizeMatch(a, b *Device) bool
 func TestSizeMatch(t *testing.T) {
 	a := &Device{devSize: 1234}
 	b := &Device{devSize: 5678}

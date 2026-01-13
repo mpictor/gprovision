@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package nic allows enabling/disabling NICs, configuring XPS, RFS, and RSS, etc.
+// Package nic allows enabling/disabling NICs, configuring XPS, RFS, and RSS, etc.
 package nic
 
 import (
@@ -29,7 +29,7 @@ type Nic struct {
 }
 type NicList []Nic
 
-//used to create a Nic for testing
+// used to create a Nic for testing
 func TestNic(device, mac string, irqs []uint64) (n Nic, err error) {
 	n.device = device
 	n.irqs = irqs
@@ -41,7 +41,7 @@ func (n Nic) String() string        { return n.device }
 func (n Nic) Name() string          { return n.device }
 func (n Nic) Mac() net.HardwareAddr { return n.mac }
 
-//return array of names of nics
+// return array of names of nics
 func List() (nics NicList) {
 	contents, err := ioutil.ReadDir(sysClassNet)
 	if err != nil {
@@ -70,7 +70,7 @@ func List() (nics NicList) {
 	return
 }
 
-//return array of paths to queues
+// return array of paths to queues
 func (nic Nic) Queues(prefix string) (queues []string) {
 	// /sys/class/net/*/queues/[rt]x-*
 	qpath := fp.Join(sysClassNet, nic.device, "queues")

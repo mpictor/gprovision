@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (s *step) Run() (err error)
+// func (s *step) Run() (err error)
 func TestRun(t *testing.T) {
 	var s Step
 	var err error
@@ -88,7 +88,7 @@ func TestRun(t *testing.T) {
 	})
 }
 
-//func (s *step) applyTmpl(in string) (out string, err error)
+// func (s *step) applyTmpl(in string) (out string, err error)
 func TestApplyTmpl(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	for _, td := range tmplTestData {

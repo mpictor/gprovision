@@ -54,8 +54,8 @@ func Hostify(id string) string {
 
 // TODO how to set the domain name? shows as unknown_domain now
 
-//Set hostname, machine-id, password. func takes name from systemd-firstboot, but
-//doesn't use that because it is completely broken.
+// Set hostname, machine-id, password. func takes name from systemd-firstboot, but
+// doesn't use that because it is completely broken.
 func Firstboot(root, serial, hostName string) {
 	futil.MkdirOwned(root, fp.Join("var", "log", "journal"), "root", "systemd-journal", 2755)
 
@@ -78,17 +78,16 @@ func Firstboot(root, serial, hostName string) {
 	}
 }
 
-//create admin user acct
+// create admin user acct
 func adminUser(root string) {
 	usr := "admin"
 	pw, _ := stash.ReadOSPass()
 	if len(pw) > 0 {
-		/* centos 7 PAM config doesn't allow use of chpasswd. could provide our own
-		 * file, but a simpler solution is to use busybox's chpasswd. originally it
-		 * wasn't used because it lacked -R. however, 'chroot /path chpasswd' is an
-		 * easy and functional workaround. it's unclear how many password algos are
-		 * supported by busybox impl, but the one c7 uses is among those supported.
-		 */
+		// centos 7 PAM config doesn't allow use of chpasswd. could provide our own
+		// file, but a simpler solution is to use busybox's chpasswd. originally it
+		// wasn't used because it lacked -R. however, 'chroot /path chpasswd' is an
+		// easy and functional workaround. it's unclear how many password algos are
+		// supported by busybox impl, but the one c7 uses is among those supported.
 		chpw := exec.Command("busybox", "chroot", root, "chpasswd")
 		chpw.Stdin = strings.NewReader(fmt.Sprintf("%s:%s\n", usr, pw))
 		out, err := chpw.CombinedOutput()
@@ -101,7 +100,7 @@ func adminUser(root string) {
 	}
 }
 
-//update /etc/hosts, host name, machine id, time zone
+// update /etc/hosts, host name, machine id, time zone
 func hostInfo(root, hostName, serial string) {
 	log.Msg("Hostname is " + hostName)
 	host, err := os.Create(root + "/etc/hostname")

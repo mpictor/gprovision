@@ -7,10 +7,8 @@
 
 package networkd
 
-/*
-This file pulls in github.com/mpictor/gprovision/pkg/appliance, which is linux-specific thanks to various dependencies.
-Go treats the _linux suffix specially - as a result, it doesn't try to compile this for windows.
-*/
+// This file pulls in github.com/mpictor/gprovision/pkg/appliance, which is linux-specific thanks to various dependencies.
+// Go treats the _linux suffix specially - as a result, it doesn't try to compile this for windows.
 
 import (
 	"fmt"

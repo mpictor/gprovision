@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package xfer handles robust file transfers, primarily for use in mfg process.
+// Package xfer handles robust file transfers, primarily for use in mfg process.
 package xfer
 
 import (
@@ -24,7 +24,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//retrieves file, either on local fs or via http/https
+// retrieves file, either on local fs or via http/https
 func GetFile(url string) (content []byte, err error) {
 	if strings.HasPrefix(url, "http://") || strings.HasPrefix(url, "https://") {
 		log.Logf("downloading %s", url)
@@ -64,10 +64,10 @@ func (tvf *TVFile) Basename() string {
 	return fp.Base(tvf.Src)
 }
 
-/* When copying over network, write to intermediate location and verify
-   hash before writing to final dest. Useful when dest is slow (usb flash)
-   to avoid rewrites in the face of checksum failures.
-*/
+// When copying over network, write to intermediate location and verify
+//
+// hash before writing to final dest. Useful when dest is slow (usb flash)
+// to avoid rewrites in the face of checksum failures.
 func (tvf *TVFile) UseIntermediateDir(dir string) {
 	tvf.useIntermediate = true
 	f, err := ioutil.TempFile(dir, tvf.Basename())
@@ -80,7 +80,7 @@ func (tvf *TVFile) UseIntermediateDir(dir string) {
 	f.Close()
 }
 
-//return path of temp file we downloaded to
+// return path of temp file we downloaded to
 func (tvf *TVFile) GetIntermediate() string {
 	if !tvf.useIntermediate {
 		panic("intermediate location not set")
@@ -88,13 +88,13 @@ func (tvf *TVFile) GetIntermediate() string {
 	return tvf.intermediateFile
 }
 
-//Verify SHA1 in most recent location (intermediate or final)
+// Verify SHA1 in most recent location (intermediate or final)
 func (tvf *TVFile) Verify() (err error) {
 	fname := tvf.Dest
 	if tvf.useIntermediate && !tvf.finalized {
 		fname = tvf.intermediateFile
 	}
-	/* use fsync to ensure file is written to media */
+	// use fsync to ensure file is written to media
 	var f *os.File
 	f, err = os.Open(fname)
 	if err != nil {
@@ -128,7 +128,7 @@ func verify(fname, sha string) (err error) {
 	return
 }
 
-//get a file from url, verifying integrity with sha1
+// get a file from url, verifying integrity with sha1
 func (tvf *TVFile) Get() (err error) {
 	dest := tvf.Dest
 	if tvf.useIntermediate {
@@ -170,12 +170,12 @@ func (tvf *TVFile) Get() (err error) {
 	return verify(dest, tvf.Sha1)
 }
 
-//set mode with which file is to be created
+// set mode with which file is to be created
 func (tvf *TVFile) Mode(m os.FileMode) {
 	tvf.mode = m
 }
 
-//if file is in intermediate location, moves to final location
+// if file is in intermediate location, moves to final location
 func (tvf *TVFile) Finalize() (err error) {
 	current := tvf.Dest
 	if tvf.useIntermediate && !tvf.finalized {
@@ -202,7 +202,7 @@ func (tvf *TVFile) Finalize() (err error) {
 	return
 }
 
-//like Get() but retries with exponential backoff
+// like Get() but retries with exponential backoff
 func (tvf *TVFile) GetWithRetry() error {
 	sleepTime := 10 * time.Second
 	success := false

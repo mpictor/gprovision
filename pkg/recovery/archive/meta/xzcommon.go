@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//Reads from path, passing through an xz decompressor. Returned function is for
+// Reads from path, passing through an xz decompressor. Returned function is for
 // cleanup. Underlying impl depends on build tags and OS - see xznative.go
 // and xzexternal.go.
 func unxz(path string) (io.ReadCloser, func(), error) {

@@ -44,7 +44,7 @@ func init() {
 `)
 }
 
-//func parseUsers(out []byte) (users IpmiUsers)
+// func parseUsers(out []byte) (users IpmiUsers)
 func TestParseUsers(t *testing.T) {
 	users := parseUsers(raw[0])
 	if len(users) != 15 {
@@ -76,7 +76,7 @@ func TestParseUsers(t *testing.T) {
 	}
 }
 
-//func (usrs IpmiUsers) OnlyEnabled() (enabled IpmiUsers)
+// func (usrs IpmiUsers) OnlyEnabled() (enabled IpmiUsers)
 func TestOnlyEnabled(t *testing.T) {
 	users0 := parseUsers(raw[0])
 	enabled0 := users0.OnlyEnabled()
@@ -97,7 +97,7 @@ func TestOnlyEnabled(t *testing.T) {
 	}
 }
 
-//func (usrs IpmiUsers) OnlyPrivileged() (admin IpmiUsers)
+// func (usrs IpmiUsers) OnlyPrivileged() (admin IpmiUsers)
 func TestOnlyPrivileged(t *testing.T) {
 	users := parseUsers(raw[0])
 	privileged := users.OnlyPrivileged()
@@ -126,7 +126,7 @@ func TestOnlyPrivileged(t *testing.T) {
 	}
 }
 
-//func (usrs IpmiUsers) OnlyNamed() (named IpmiUsers)
+// func (usrs IpmiUsers) OnlyNamed() (named IpmiUsers)
 func TestOnlyNamed(t *testing.T) {
 	users := parseUsers(raw[0])
 	named := users.OnlyNamed()
@@ -140,7 +140,7 @@ func TestOnlyNamed(t *testing.T) {
 	}
 }
 
-//func (usrs IpmiUsers) OnlyNamedAdmin()(admins IpmiUsers)
+// func (usrs IpmiUsers) OnlyNamedAdmin()(admins IpmiUsers)
 func TestOnlyNamedAdmin(t *testing.T) {
 	users0 := parseUsers(raw[0])
 	users1 := parseUsers(raw[1])

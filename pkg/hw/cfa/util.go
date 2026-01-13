@@ -19,7 +19,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//int minimum function
+// int minimum function
 func imin(a, b int) int {
 	if a < b {
 		return a
@@ -27,8 +27,8 @@ func imin(a, b int) int {
 	return b
 }
 
-//break msg into chunks that fit within rect.
-//limited to 256 lines... not that we're likely to hit that.
+// break msg into chunks that fit within rect.
+// limited to 256 lines... not that we're likely to hit that.
 func fit(msg LcdTxt, rect Coord) []LcdTxt {
 	var lines []LcdTxt
 	for len(msg) > 0 {
@@ -45,7 +45,7 @@ func fit(msg LcdTxt, rect Coord) []LcdTxt {
 	return lines
 }
 
-//find a space at or before 'width'
+// find a space at or before 'width'
 func wrapPos(msg LcdTxt, width byte) byte {
 	if len(msg) <= int(width) {
 		return byte(len(msg))
@@ -57,7 +57,7 @@ func wrapPos(msg LcdTxt, width byte) byte {
 	return byte(i)
 }
 
-//pad line to given size by appending spaces
+// pad line to given size by appending spaces
 func pad(line LcdTxt, w byte) []byte {
 	spaces := int(w) - len(line)
 	if spaces < 0 {
@@ -67,7 +67,7 @@ func pad(line LcdTxt, w byte) []byte {
 	return []byte(fmt.Sprintf("%s%*s", line, spaces, ""))
 }
 
-//Write one or more lines to the display. Clears any existing text on all lines.
+// Write one or more lines to the display. Clears any existing text on all lines.
 func (l *Lcd) writeLines(lines []LcdTxt, max Coord) (Coord, error) {
 	var end Coord
 	for line := byte(0); line <= max.Row; line++ {
@@ -89,8 +89,8 @@ func (l *Lcd) writeLines(lines []LcdTxt, max Coord) (Coord, error) {
 	return end, nil
 }
 
-//Writes text in rectangle defined by 'start' and 'dims'.
-//Affects nothing outside that rectangle, but clears all text within.
+// Writes text in rectangle defined by 'start' and 'dims'.
+// Affects nothing outside that rectangle, but clears all text within.
 func (l *Lcd) writeWindow(start, dims Coord, lines []LcdTxt) error {
 	var r byte
 	var idx int
@@ -159,7 +159,7 @@ Examples
 	return dbgFlags(i)
 }
 
-//nopFlusher: used for fuzzing and testing. must implement ReadFlusher.
+// nopFlusher: used for fuzzing and testing. must implement ReadFlusher.
 type nopFlusher struct {
 	r io.Reader
 }
@@ -169,8 +169,8 @@ var _ ReadFlusher = &nopFlusher{}
 func (n *nopFlusher) Flush() error               { return nil }
 func (n *nopFlusher) Read(b []byte) (int, error) { return n.r.Read(b) }
 
-//Convert string arg(s) into array of LcdTxt. More compact/less painful than wrapping every
-//individual string in LcdTxt()
+// Convert string arg(s) into array of LcdTxt. More compact/less painful than wrapping every
+// individual string in LcdTxt()
 func Strs2LTxt(strs ...string) []LcdTxt {
 	var lt []LcdTxt
 	for _, s := range strs {
@@ -179,7 +179,7 @@ func Strs2LTxt(strs ...string) []LcdTxt {
 	return lt
 }
 
-//return a slice of txt no longer than 'max'
+// return a slice of txt no longer than 'max'
 func truncate(txt []byte, max byte) []byte {
 	if len(txt) <= int(max) {
 		return txt
@@ -187,15 +187,15 @@ func truncate(txt []byte, max byte) []byte {
 	return txt[:max]
 }
 
-//pad/truncate txt as necessary to attain width w
+// pad/truncate txt as necessary to attain width w
 func padcate(txt LcdTxt, w byte) LcdTxt {
 	return pad(truncate(txt, w), w)
 }
 
-//Function visible returns a section of LcdTxt that will be visible; if
-//ellipsis is true, shows symbol(s) if some text is offscreen. Note that the
-//symbols used are not actually ellipsis as those aren't present in the lcd
-//character set. Symbols used are like << and >>.
+// Function visible returns a section of LcdTxt that will be visible; if
+// ellipsis is true, shows symbol(s) if some text is offscreen. Note that the
+// symbols used are not actually ellipsis as those aren't present in the lcd
+// character set. Symbols used are like << and >>.
 func visible(txt LcdTxt, start, width byte, ellipsis bool) LcdTxt {
 	l := len(txt)
 	if int(start) >= l || width == 0 {
@@ -219,7 +219,7 @@ func visible(txt LcdTxt, start, width byte, ellipsis bool) LcdTxt {
 	return output
 }
 
-//can encompass a time.Ticker, or be a mock suitable for testing.
+// can encompass a time.Ticker, or be a mock suitable for testing.
 type Ticker struct {
 	C    <-chan time.Time
 	t    *time.Ticker
@@ -227,7 +227,7 @@ type Ticker struct {
 	done chan struct{}
 }
 
-//NewTicker creates a Ticker with behavior identical to time.Ticker.
+// NewTicker creates a Ticker with behavior identical to time.Ticker.
 func NewTicker(p time.Duration) *Ticker {
 	t := &Ticker{
 		t: time.NewTicker(p),
@@ -236,8 +236,8 @@ func NewTicker(p time.Duration) *Ticker {
 	return t
 }
 
-//NewMockTicker creates a ticker that will provide the given number of ticks
-//and minimum interval between them.
+// NewMockTicker creates a ticker that will provide the given number of ticks
+// and minimum interval between them.
 func NewMockTicker(maxCount int, minInterval time.Duration) *Ticker {
 	t := &Ticker{
 		In:   make(chan time.Time),
@@ -259,8 +259,8 @@ func NewMockTicker(maxCount int, minInterval time.Duration) *Ticker {
 	return t
 }
 
-//NewTickerFromChan creates a Ticker whose C is the given channel. Use case:
-//testing functions that take a ticker, but you have a TickDistrib instead.
+// NewTickerFromChan creates a Ticker whose C is the given channel. Use case:
+// testing functions that take a ticker, but you have a TickDistrib instead.
 func NewTickerFromChan(c <-chan time.Time) *Ticker {
 	return &Ticker{
 		C:    c,
@@ -279,8 +279,8 @@ func (t *Ticker) Stop() {
 	}
 }
 
-//A TickDistrib copies each tick on 'in' to all output channels.
-//Used to signal to multiple ui elements that they can update.
+// A TickDistrib copies each tick on 'in' to all output channels.
+// Used to signal to multiple ui elements that they can update.
 type TickDistrib struct {
 	in     <-chan time.Time
 	out    []chan time.Time
@@ -289,7 +289,7 @@ type TickDistrib struct {
 	relent time.Duration
 }
 
-//create a TickDistrib with n output channels
+// create a TickDistrib with n output channels
 func NewTickDistrib(in <-chan time.Time, n int) *TickDistrib {
 	td := &TickDistrib{
 		in:     in,
@@ -303,7 +303,7 @@ func NewTickDistrib(in <-chan time.Time, n int) *TickDistrib {
 	return td
 }
 
-//like NewTickDistrib, but for testing. exposes extra knobs
+// like NewTickDistrib, but for testing. exposes extra knobs
 func NewTestTickDistrib(in <-chan time.Time, n int, relent time.Duration, depth int, dbg bool) *TickDistrib {
 	td := &TickDistrib{
 		in:     in,

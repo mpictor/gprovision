@@ -14,5 +14,4 @@
 // stash
 //
 // stores device-specific provisioning data.
-//
 package oss

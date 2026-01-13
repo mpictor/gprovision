@@ -7,12 +7,11 @@
 
 package archive
 
-/* Sort update names by date, newest first.
- * Names must be in a particular format
- *
- * sort value: yymmdd.build (float)
- * prod. os rev . platform .yyyy-mm-dd.build.ext
- */
+// Sort update names by date, newest first.
+// Names must be in a particular format
+//
+// sort value: yymmdd.build (float)
+// prod. os rev . platform .yyyy-mm-dd.build.ext
 
 import (
 	"sort"
@@ -30,11 +29,11 @@ func (s updates) Less(i, j int) bool { return s[i].date < s[j].date }
 func (s updates) Len() int           { return len(s) }
 func (s updates) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
-/* decode image name for sorting
- * sort value: yymmdd.build (float) -- prefers date for sort, but in the event of a collision a higer build wins
- * prod.os&rev.platform.yyyy-mm-dd.build
- *   0    1       2         3       4
- */
+// decode image name for sorting
+// sort value: yymmdd.build (float) -- prefers date for sort, but in the event of a collision a higer build wins
+// prod.os&rev.platform.yyyy-mm-dd.build
+//
+//	0    1       2         3       4
 func decode(name string) (u update) {
 	u.name = name
 	u.date = 0.0

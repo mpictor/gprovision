@@ -11,10 +11,10 @@ import (
 	"fmt"
 )
 
-/* A command in a transmitted packet or a response code in a received packet.
-When uncommenting additional commands, remember to add them to the String()
-method.
-*/
+// A command in a transmitted packet or a response code in a received packet.
+//
+// When uncommenting additional commands, remember to add them to the String()
+// method.
 type Command byte
 
 const (
@@ -66,7 +66,7 @@ const (
 	// Report_Temps    = 0x82
 )
 
-//Masks the packet type bytes
+// Masks the packet type bytes
 const CmdMask Command = 0x3f
 
 func (c Command) CommandFromResponse() Command {
@@ -82,14 +82,14 @@ const (
 	LowestOKVal             = 0x40
 )
 
-//Returns a string representing the command, with no whitespace. Lack of
-//whitespace seems to make logs slightly easier to read. A 4-character prefix
-//indicates the class of command (actual command, ok response, report, error).
+// Returns a string representing the command, with no whitespace. Lack of
+// whitespace seems to make logs slightly easier to read. A 4-character prefix
+// indicates the class of command (actual command, ok response, report, error).
 func (c Command) String() string {
 
 	pfx := "CMD_" //default prefix
-	/* low bits in error and OK responses match the original command, so
-	in these cases change the prefix and filter the high bits out of c */
+	// low bits in error and OK responses match the original command, so
+	// in these cases change the prefix and filter the high bits out of c
 	original := c
 	switch {
 	case c >= LowestErrVal:
@@ -140,7 +140,7 @@ func (c Command) String() string {
 	return pfx + s
 }
 
-//indexes into data returned for Cmd_ReadKeysPolled
+// indexes into data returned for Cmd_ReadKeysPolled
 const (
 	KeyPollCurrent int = iota
 	KeyPollPressed

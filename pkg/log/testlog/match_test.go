@@ -13,7 +13,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//func (tlog *TstLog) LinesMustMatch(lf LogFilter, want []string)
+// func (tlog *TstLog) LinesMustMatch(lf LogFilter, want []string)
 func TestLinesMustMatch(t *testing.T) {
 	tlog := NewTestLog(t, true, false)
 	log.Logf("test log")

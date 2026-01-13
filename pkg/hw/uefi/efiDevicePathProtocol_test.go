@@ -26,7 +26,7 @@ var boot7 = []byte{
 	0x49, 0x00, 0x00, 0x00, 0x7f, 0xff, 0x04, 0x00, 0x00, 0x00, 0x42, 0x4f,
 }
 
-//func ParseFilePathList(in []byte) (EfiDevicePathProtocolList, error)
+// func ParseFilePathList(in []byte) (EfiDevicePathProtocolList, error)
 func TestParseFilePathList(t *testing.T) {
 	tlog := testlog.NewTestLogNoBG(t)
 	defer tlog.Freeze()

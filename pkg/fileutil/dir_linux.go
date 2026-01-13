@@ -40,7 +40,7 @@ func FreeSpaceM(dir string) string {
 	return ToMegs(fs)
 }
 
-//Copy files in flist to destDir, stripping srcDir. flist must be absolute paths.  NOTE: may be slow to return, due to use of O_SYNC
+// Copy files in flist to destDir, stripping srcDir. flist must be absolute paths.  NOTE: may be slow to return, due to use of O_SYNC
 func CopySomeFiles(srcDir, destDir string, flist []string) error {
 	errs := 0
 	for _, src := range flist {
@@ -70,9 +70,9 @@ func CopySomeFiles(srcDir, destDir string, flist []string) error {
 	return nil
 }
 
-//RecursiveCopy walks tree rooted at src, copies dir 'src' to a subdir of dest.
+// RecursiveCopy walks tree rooted at src, copies dir 'src' to a subdir of dest.
 //
-//NOTE: may be slow to return, due to use of O_SYNC.
+// NOTE: may be slow to return, due to use of O_SYNC.
 func RecursiveCopy(src, dest string) error {
 	destDir := fp.Join(dest, fp.Base(src))
 	if err := os.MkdirAll(destDir, 0777); err != nil {
@@ -149,8 +149,8 @@ func CheckDirPeriodic(dir string, delay time.Duration, action func() error) {
 	}
 }
 
-//WaitForDir waits for a dir to exist, and, if watchedIsMountpoint is true,
-//waits for a fs to mount there.
+// WaitForDir waits for a dir to exist, and, if watchedIsMountpoint is true,
+// waits for a fs to mount there.
 func WaitForDir(watchedIsMountpoint bool, watchDir string) {
 	first := true
 	sleep := func() {
@@ -180,7 +180,7 @@ func WaitForDir(watchedIsMountpoint bool, watchDir string) {
 	log.Logf("WatchDir exists now, setting up notifications...")
 }
 
-//IsMountpoint searchs for given dir in /proc/self/mountinfo, returns true if found
+// IsMountpoint searchs for given dir in /proc/self/mountinfo, returns true if found
 func IsMountpoint(dir string) bool {
 	mi, err := ioutil.ReadFile("/proc/self/mountinfo")
 	if err != nil {
@@ -200,7 +200,7 @@ func IsMountpoint(dir string) bool {
 	return false
 }
 
-//used by IsMountpoint
+// used by IsMountpoint
 func mpFromLine(line string) string {
 	elements := strings.Split(line, " ")
 	if len(elements) < 6 {
@@ -244,11 +244,9 @@ func MkdirOwned(root, dir, owner, group string, mode os.FileMode) bool {
 	return true
 }
 
-/*
-ForcePathCase ensures correct case for some dir or file target in basepath.
-If target exists with different case, rename.
-If multiple variations exist, delete all but one.
-*/
+// ForcePathCase ensures correct case for some dir or file target in basepath.
+// If target exists with different case, rename.
+// If multiple variations exist, delete all but one.
 func ForcePathCase(basepath, target string) (success bool) {
 	lowerTarget := strings.ToLower(target)
 	content, err := ioutil.ReadDir(basepath)

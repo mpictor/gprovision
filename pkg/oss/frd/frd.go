@@ -159,7 +159,7 @@ func (d *frd) SetIgnoreNetCfg(ignore bool) {
 	d.Data.IgnoreNetCfg = ignore
 }
 
-//ClearHistory: if true, should start a fresh history file.
+// ClearHistory: if true, should start a fresh history file.
 func (d *frd) ClearRecoveryHistory() bool { return d.Data.ClearHistory }
 
 // Store extra boot args for the grub menu. Useful in development.

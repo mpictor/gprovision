@@ -15,27 +15,27 @@ import (
 	"strings"
 )
 
-//a function that returns true if 'in' should be included in entries compared
+// a function that returns true if 'in' should be included in entries compared
 type LineFilterer func(in string) (match bool)
 
-//filter passing only calls to Msgf()
+// filter passing only calls to Msgf()
 func FilterMsg() LineFilterer { return FilterPfx("MSG:") }
 
-//filter passing only calls to Logf()
+// filter passing only calls to Logf()
 func FilterLog() LineFilterer { return FilterPfx("LOG:") }
 
-//filter passing only lines with given prefix (note MSG:/LOG: added by Msgf/Logf)
+// filter passing only lines with given prefix (note MSG:/LOG: added by Msgf/Logf)
 func FilterPfx(pfx string) LineFilterer {
 	return func(in string) bool { return strings.HasPrefix(in, pfx) }
 }
 
-//filter passing only calls to Logf, with given prefix
+// filter passing only calls to Logf, with given prefix
 func FilterLogPfx(pfx string) LineFilterer { return FilterPfx("LOG:" + pfx) }
 
-//filter passing only calls to Msgf, with given prefix
+// filter passing only calls to Msgf, with given prefix
 func FilterMsgPfx(pfx string) LineFilterer { return FilterPfx("MSG:" + pfx) }
 
-//filter with given regex
+// filter with given regex
 func FilterRe(re string) LineFilterer {
 	rx, err := regexp.Compile(re)
 	if err != nil {
@@ -46,22 +46,22 @@ func FilterRe(re string) LineFilterer {
 	}
 }
 
-//combine two filters; both must accept input
+// combine two filters; both must accept input
 func FilterAnd(f1, f2 LineFilterer) LineFilterer {
 	return func(in string) bool {
 		return f1(in) && f2(in)
 	}
 }
 
-//combine two filters; either may accept input
+// combine two filters; either may accept input
 func FilterOr(f1, f2 LineFilterer) LineFilterer {
 	return func(in string) bool {
 		return f1(in) || f2(in)
 	}
 }
 
-//Filter buffered log using lf as test. Return matches. Buffer is left empty.
-//Assumes each entry is a single line.
+// Filter buffered log using lf as test. Return matches. Buffer is left empty.
+// Assumes each entry is a single line.
 func (tlog *TstLog) Filter(lf LineFilterer) []string {
 	tlog.mu.RLock()
 	defer tlog.mu.RUnlock()
@@ -84,7 +84,7 @@ func (tlog *TstLog) Filter(lf LineFilterer) []string {
 // LinesMustMatchTrimmed().
 type LineCleaner func(in string) string
 
-//trim first n bytes of each line
+// trim first n bytes of each line
 func TrimToIdx(idx int) LineCleaner {
 	return func(in string) string {
 		if len(in) < idx {
@@ -94,7 +94,7 @@ func TrimToIdx(idx int) LineCleaner {
 	}
 }
 
-//trims off seq and anything following it
+// trims off seq and anything following it
 func TrimFromSeq(seq string) LineCleaner {
 	return func(in string) string {
 		split := strings.Split(in, seq)
@@ -105,7 +105,7 @@ func TrimFromSeq(seq string) LineCleaner {
 	}
 }
 
-//combines cleaners, applying f2 to the output of f1
+// combines cleaners, applying f2 to the output of f1
 func TrimAnd(f1, f2 LineCleaner) LineCleaner {
 	return func(in string) string { return f2(f1(in)) }
 }

@@ -20,7 +20,7 @@ import (
 
 var EPatFound = errors.New("pattern found after erasure")
 
-//verify that erase actually erased the drive
+// verify that erase actually erased the drive
 func verify(plat *appliance.Variant, disks []*disk.Disk) {
 	tgt := disks[0]
 	err := findPatterns(tgt)

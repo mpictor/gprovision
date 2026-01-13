@@ -33,7 +33,7 @@ func handleEnvVars() {
 	commonEnvVars()
 }
 
-//if the integ test env var is set to a recognized value, do something and do not return
+// if the integ test env var is set to a recognized value, do something and do not return
 func testOpts() {
 	switch os.Getenv(strs.IntegEnv()) {
 	case "ck":

@@ -5,10 +5,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package power handles poweroff- and reboot-related functionality, including
-//running pre-reboot (Preboot) functions registered with the housekeeping pkg.
+// Package power handles poweroff- and reboot-related functionality, including
+// running pre-reboot (Preboot) functions registered with the housekeeping pkg.
 //
-//As a side-effect of import, log.Fatal is set to power.FailReboot.
+// As a side-effect of import, log.Fatal is set to power.FailReboot.
 package power
 
 import (
@@ -35,7 +35,7 @@ func init() {
 	log.SetFatalAction(FatalAction)
 }
 
-//Reboot.
+// Reboot.
 func FailReboot() {
 	Reboot(false)
 }
@@ -53,12 +53,11 @@ func StageFinished() {
 	rkeep.ReportFinished(msg)
 }
 
-//Not for general use - prefer FailReboot() or RebootSuccess()
+// Not for general use - prefer FailReboot() or RebootSuccess()
 func Reboot(success bool) {
-	/* this func can be called from a defer statement; deferred functions
-	   will execute even if panic() was called. exiting or rebooting will
-	   mask any such panic, so check for it and log it
-	*/
+	// this func can be called from a defer statement; deferred functions
+	// will execute even if panic() was called. exiting or rebooting will
+	// mask any such panic, so check for it and log it
 	x := recover()
 	if x != nil {
 		log.Logf("panic() caught in reboot(success=%t)", success)

@@ -14,7 +14,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func parseQueueInfo(name string, out []byte) (info nicRssQCfg)
+// func parseQueueInfo(name string, out []byte) (info nicRssQCfg)
 func TestParseQueueInfo(t *testing.T) {
 	for _, iface := range queueTestData {
 		t.Run(iface.name, func(t *testing.T) {
@@ -48,17 +48,17 @@ var queueTestData = []struct {
 }{
 	{
 		name: "mini-i218",
-		/* ---------- mini ----------
-		   I was thinking i218 was more powerful (more queues), but from the data below, i210 is
+		// ---------- mini ----------
+		// I was thinking i218 was more powerful (more queues), but from the data below, i210 is
+		//
+		// lspci | grep Ether
+		// 00:19.0 Ethernet controller: Intel Corporation Ethernet Connection I218-LM (rev 04)
+		// 02:00.0 Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev 03)
+		// ---
+		// dmesg | grep renamed
+		// [    1.055304] e1000e 0000:00:19.0 eno1: renamed from eth0
+		// [    1.076276] igb 0000:02:00.0 enp2s0: renamed from eth1
 
-		   lspci | grep Ether
-		   00:19.0 Ethernet controller: Intel Corporation Ethernet Connection I218-LM (rev 04)
-		   02:00.0 Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev 03)
-		   ---
-		   dmesg | grep renamed
-		   [    1.055304] e1000e 0000:00:19.0 eno1: renamed from eth0
-		   [    1.076276] igb 0000:02:00.0 enp2s0: renamed from eth1
-		*/
 		// ethtool -l eno1
 		out: []byte(`Channel parameters for eno1:
 Cannot get device channel parameters

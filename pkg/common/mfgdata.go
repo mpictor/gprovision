@@ -7,7 +7,7 @@
 
 package common
 
-//Data needed for Stasher, that comes from mfgdata retrieved from server.
+// Data needed for Stasher, that comes from mfgdata retrieved from server.
 type StashData interface {
 	//endpoint that may be used by Credentialer
 	CredEP() string
@@ -22,7 +22,7 @@ type Credentialer interface {
 	GetCredentials(ident string) Credentials
 }
 
-//set of credentials for a given unit
+// set of credentials for a given unit
 type Credentials struct {
 	OS, BIOS, IPMI string
 }

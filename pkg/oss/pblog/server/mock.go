@@ -24,7 +24,7 @@ import (
 
 var mockOnce sync.Once
 
-//mock impl, stays in memory
+// mock impl, stays in memory
 func UseMockImpl() { mockOnce.Do(func() { rlog.SetMockImpl(&mocker{}) }) }
 
 type mocker struct{}
@@ -99,7 +99,7 @@ func (ms *MockSrvr) MockCreds(sn string) common.Credentials {
 	}
 }
 
-//mockStore: an in-memory store for mocking
+// mockStore: an in-memory store for mocking
 type mockStore struct {
 	sync.Mutex
 	macs, imacs map[string]pb.MACs
@@ -117,7 +117,7 @@ func newMockStore() *mockStore {
 
 var _ Persister = (*mockStore)(nil)
 
-//return all ids that have been used when logging or reporting macs/ipmi macs
+// return all ids that have been used when logging or reporting macs/ipmi macs
 func (ms *mockStore) Ids() []string {
 	//use a map to deduplicate
 	ids := make(map[string]interface{})

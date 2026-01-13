@@ -22,7 +22,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func findExeByName(corePath string) (exe string)
+// func findExeByName(corePath string) (exe string)
 func TestFindExeByName(t *testing.T) {
 	data := []struct{ tstName, coreName, exe string }{
 		//[imagename_]exe-pid-uid-gid-sig-time.core
@@ -55,7 +55,7 @@ func TestFindExeByName(t *testing.T) {
 	}
 }
 
-//func parseCoreName(corePath string)(exe string)
+// func parseCoreName(corePath string)(exe string)
 func TestParseCoreName(t *testing.T) {
 	data := []struct{ tstName, coreName, exe string }{
 		//[imagename_]exe-pid-uid-gid-sig-time.core
@@ -82,7 +82,7 @@ func TestParseCoreName(t *testing.T) {
 	}
 }
 
-//func findExeWithGdb(fname string) (exe string)
+// func findExeWithGdb(fname string) (exe string)
 func TestFindExeWithGdb(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	dumpFile, testExe := testhelper.CoreHelper(t)
@@ -99,7 +99,7 @@ func TestFindExeWithGdb(t *testing.T) {
 	}
 }
 
-//func zipOutput(zw *zip.Writer, name string, cmd *exec.Cmd)
+// func zipOutput(zw *zip.Writer, name string, cmd *exec.Cmd)
 func TestZipOutput(t *testing.T) {
 	fi, err := os.Stat("pkg_test.go")
 	if err != nil {
@@ -180,7 +180,7 @@ func TestZipOutput(t *testing.T) {
 	}
 }
 
-//func zippedBacktrace(exe, core string, verbose bool) (buf *bytes.Buffer, err error)
+// func zippedBacktrace(exe, core string, verbose bool) (buf *bytes.Buffer, err error)
 func TestZippedBacktrace(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	core, exe := testhelper.CoreHelper(t)

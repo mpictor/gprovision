@@ -40,7 +40,7 @@ func TestMain(m *testing.M) {
 	os.Exit(rc)
 }
 
-//func IsActive(service string) bool
+// func IsActive(service string) bool
 func TestIsActive(t *testing.T) {
 	if !runSysdTests {
 		t.Skipf("Systemd tests are skipped on ci or if sysd isn't in use")
@@ -77,7 +77,7 @@ func TestIsActive(t *testing.T) {
 	}
 }
 
-//func IsFailed(service string) bool
+// func IsFailed(service string) bool
 func TestIsFailed(t *testing.T) {
 	if !runSysdTests {
 		t.Skipf("Systemd tests are skipped on ci or if sysd isn't in use")
@@ -99,7 +99,7 @@ func TestIsFailed(t *testing.T) {
 	}
 }
 
-//func Failed() (list []string)
+// func Failed() (list []string)
 func TestFailed(t *testing.T) {
 	if !runSysdTests {
 		t.Skipf("Systemd tests are skipped on ci or if sysd isn't in use")

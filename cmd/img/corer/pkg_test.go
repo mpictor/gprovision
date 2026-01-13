@@ -23,7 +23,7 @@ import (
 	"github.com/rjeczalik/notify"
 )
 
-//func handleEvent(ei notify.EventInfo, cfg *config)
+// func handleEvent(ei notify.EventInfo, cfg *config)
 func TestHandleEvent(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	dumpFile, testExe := testhelper.CoreHelper(t)
@@ -88,10 +88,8 @@ func TestHandleEvent(t *testing.T) {
 	}
 }
 
-/*
-handleEvent needs a notify.EventInfo. Fortunately
-that's an interface so we can easily create our own.
-*/
+// handleEvent needs a notify.EventInfo. Fortunately
+// that's an interface so we can easily create our own.
 type tstEvent struct {
 	t *testing.T
 	p string

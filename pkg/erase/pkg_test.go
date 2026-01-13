@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
-//func getSEtime(info []byte, enhanced bool) (t time.Duration)
+// func getSEtime(info []byte, enhanced bool) (t time.Duration)
 func TestReadSETime(t *testing.T) {
 	seData := []byte{
 		0x53, 0x65, 0x63, 0x75, 0x72, 0x69, 0x74, 0x79, 0x3a, 0x20, 0x0a, 0x09, 0x4d, 0x61, 0x73, 0x74,

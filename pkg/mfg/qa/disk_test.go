@@ -31,7 +31,7 @@ func init() {
 	testRecovDisk = &Disk{Model: "r", Vendor: "v", Size: 32, Quantity: 1, dev: "recovery"}
 }
 
-//func populateDisks(cfgs MainDiskConfigs,found MainDisks) (mdisks MainDisks)
+// func populateDisks(cfgs MainDiskConfigs,found MainDisks) (mdisks MainDisks)
 func TestPopulateDisks(t *testing.T) {
 	populateHelper(t, testDiskCfgs, 0, testDiskCfgs[0], 1, []string{"1"})
 	populateHelper(t, testDiskCfgs, 1, testDiskCfgs[1], 1, []string{"2"})
@@ -71,7 +71,7 @@ func populateHelper(t *testing.T, cfgs MainDiskConfigs, wantIdx int, found MainD
 	}
 }
 
-//func cfgMatch(cfg MainDisks, foundDisks []*Disk) bool
+// func cfgMatch(cfg MainDisks, foundDisks []*Disk) bool
 func TestCfgMatch(t *testing.T) {
 	md := MainDisk{Model: "mdl", Vendor: "vnd", Size: 12345, Quantity: 1, dev: "1"}
 	fd := Disk(md)
@@ -114,7 +114,7 @@ func TestCfgMatch(t *testing.T) {
 	}
 }
 
-//func (required MainDiskConfigs) Compare(detected MainDisks, idx int) (errors int)
+// func (required MainDiskConfigs) Compare(detected MainDisks, idx int) (errors int)
 func TestCompareDiskCfgs(t *testing.T) {
 	tstData := []struct {
 		detected MainDisks

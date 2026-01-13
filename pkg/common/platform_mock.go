@@ -19,7 +19,7 @@ type PlatMock struct {
 	CodeName     string
 }
 
-//must implement PlatInfoer
+// must implement PlatInfoer
 var _ PlatInfoer = (*PlatMock)(nil)
 
 func (pm *PlatMock) DiagPorts() []int       { return pm.Diag }

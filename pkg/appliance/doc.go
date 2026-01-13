@@ -13,7 +13,7 @@
 // For example, RAM doesn't matter (except when there is very little of it).
 // RAID type matters, but the CPU type and number of cores doesn't.
 //
-// Build tags
+// # Build tags
 //
 // light: light builds are able to query platform_facts.json only; non-light is
 // also able to use dmidecode (which accesses /dev/mem and thus requires root).
@@ -21,11 +21,11 @@
 // release: non-release builds include extra functionality for use in testing
 // other packages.
 //
-// Generated code
+// # Generated code
 //
 // `go generate` runs go-bindata, encoding files and embedding them in the binary.
 //
-//    //go:generate ../../bin/go-bindata -tags !light -prefix=../../proprietary/data/appliance -pkg=$GOPACKAGE ../../proprietary/data/appliance
+//	//go:generate ../../bin/go-bindata -tags !light -prefix=../../proprietary/data/appliance -pkg=$GOPACKAGE ../../proprietary/data/appliance
 //
 // In this repo, there are no files in the referenced dir, so a lookup of
 // embedded file `appliance.json` returns nothing. In this case we fall back to
@@ -81,7 +81,7 @@
 // SwRaidlevel impacts whether we try to create a raid array and what type of
 // array is created.
 //
-// Appliance json compared to manufData
+// # Appliance json compared to manufData
 //
 // ManufData, used by the mfg app, has some similarities. Both impose
 // restrictions on what hardware must be present, but the intent is that
@@ -91,5 +91,4 @@
 // During manufacture, the appliance json is first used to identify what the
 // device _probably_ is, then manufData.json is used to ensure that the device
 // exactly matches everything you deem important.
-//
 package appliance

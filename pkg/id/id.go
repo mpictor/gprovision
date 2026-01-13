@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package id returns UID, GID for given user from given filesystem
-//(not necessarily mounted at /)
+// Package id returns UID, GID for given user from given filesystem
+// (not necessarily mounted at /)
 package id
 
 import (
@@ -18,7 +18,7 @@ import (
 	"strings"
 )
 
-//return numeric group id of 'group', using data in fs at 'root'
+// return numeric group id of 'group', using data in fs at 'root'
 // or -1 if error
 func GetGID(root, group string) (rv int, err error) {
 	rv = -1
@@ -43,7 +43,7 @@ func GetGID(root, group string) (rv int, err error) {
 	return
 }
 
-//return numeric user id of 'user', using data in fs at 'root'
+// return numeric user id of 'user', using data in fs at 'root'
 // or -1 if error
 func GetUID(root, user string) (rv int, err error) {
 	rv = -1

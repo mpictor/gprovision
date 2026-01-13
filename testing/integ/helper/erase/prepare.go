@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//prepare for erase integ test - create filesystem on recovery, write pattern on main volume
+// prepare for erase integ test - create filesystem on recovery, write pattern on main volume
 package main
 
 import (
@@ -32,7 +32,7 @@ func prepare(plat *appliance.Variant, disks []*disk.Disk) {
 	}
 }
 
-//FIXME seqRunner
+// FIXME seqRunner
 func writePatterns(d *disk.Disk) error {
 	//write directly to block device
 	blk, err := os.OpenFile(d.Device(), os.O_WRONLY|syscall.O_DIRECT, 0)

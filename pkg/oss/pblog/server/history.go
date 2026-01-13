@@ -44,9 +44,9 @@ func (e *histEntry) setPlat(plat string, now time.Time) {
 
 const maxHistory = 100
 
-//update or insert an item in activityHistory
-//new or modified items are at beginning of list
-//limits size of list to maxHistory
+// update or insert an item in activityHistory
+// new or modified items are at beginning of list
+// limits size of list to maxHistory
 func (ah *activityHistory) getent(sn string) *histEntry {
 	var entry *histEntry
 	var i int
@@ -91,7 +91,7 @@ func tsToHtml(t, now time.Time, sn string) (s string) {
 
 var BuildId string
 
-//prints end of html for /recent, including build id
+// prints end of html for /recent, including build id
 func tail() string {
 	return fmt.Sprintf("</table><hr/><div class=buildId>%s: %s</div><br></body></html>", fp.Base(os.Args[0]), BuildId)
 }

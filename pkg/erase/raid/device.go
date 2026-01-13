@@ -7,27 +7,24 @@
 
 package raid
 
-/* host RAID metadata formats
- *
- * - Intel Matrix Storage - used on SuperMicro X10SRH-CLN4F
- *   - 1024 bytes (2 sectors) at end of drive
- *   - AF drives - still 1k?
- *   - begins with "Intel Raid ISM Cfg"
- * - SNIA DDF - used on S2400EP (Intel ESRT)
- *   - also at end of drive, but MINIMUM 32 MB required by spec (s2400 uses MORE)
- *   - complex
- *   - Anchor header in last LBA contains LBA pointers for Primary and Secondary headers, each heading a record set
- *   - Anchor, Primary, Secondary headers all begin with 0xDE11DE11
- *   - read pri/sec lba's from anchor, then save all data between min(pri, sec) and end of drive?
- *   - s2400: offset 13fe000 between pri, sec headers
- */
+// host RAID metadata formats
+//
+// - Intel Matrix Storage - used on SuperMicro X10SRH-CLN4F
+//   - 1024 bytes (2 sectors) at end of drive
+//   - AF drives - still 1k?
+//   - begins with "Intel Raid ISM Cfg"
+// - SNIA DDF - used on S2400EP (Intel ESRT)
+//   - also at end of drive, but MINIMUM 32 MB required by spec (s2400 uses MORE)
+//   - complex
+//   - Anchor header in last LBA contains LBA pointers for Primary and Secondary headers, each heading a record set
+//   - Anchor, Primary, Secondary headers all begin with 0xDE11DE11
+//   - read pri/sec lba's from anchor, then save all data between min(pri, sec) and end of drive?
+//   - s2400: offset 13fe000 between pri, sec headers
 
 //have vars for expected # of arrays, devs?
 
-/*
- ADVANCED FORMAT DRIVES
- test both s2400 and x10srh with at least one brand/model of AF drive!!!
-*/
+//  ADVANCED FORMAT DRIVES
+//  test both s2400 and x10srh with at least one brand/model of AF drive!!!
 
 import (
 	"errors"
@@ -111,8 +108,8 @@ func SetSizeTol(tol float64) {
 	sizeTol = tol
 }
 
-//look through block dev's in /sys/block for candidates, return Device for each
-//excludes recovery device
+// look through block dev's in /sys/block for candidates, return Device for each
+// excludes recovery device
 func FindDevices(platform *appliance.Variant) (devices Devices, err error) {
 	dir, err := ioutil.ReadDir("/sys/block")
 	if err != nil {
@@ -167,12 +164,12 @@ func (d *Device) InArray() bool {
 	return d.array != nil
 }
 
-//returns path in /dev for device
+// returns path in /dev for device
 func (d *Device) Dev() string {
 	return d.dev
 }
 
-//open device as a file
+// open device as a file
 func (d *Device) Open() (ReadWriteSeekCloser, error) {
 	var err error
 	if d.fd != nil {
@@ -191,7 +188,7 @@ func (d *Device) Close() {
 	}
 }
 
-//detect raid type
+// detect raid type
 func (d *Device) DetectRaidType(thr uint64) (err error) {
 	var readSize int64 = 8192
 	_, err = d.Open()
@@ -228,7 +225,7 @@ func (d *Device) DetectRaidType(thr uint64) (err error) {
 	//return EUnknownRaidFormat
 }
 
-//load raid array metadata into buffer, in prep for disk erase
+// load raid array metadata into buffer, in prep for disk erase
 func (d *Device) Backup() (err error) {
 	d.fd, err = d.Open()
 	if err != nil {
@@ -249,7 +246,7 @@ func (d *Device) Backup() (err error) {
 	return EUnknownRaidFormat
 }
 
-//write data in buffer back to disk
+// write data in buffer back to disk
 func (d *Device) Restore() (err error) {
 	log.Logf("%s: Restoring %d bytes %s metadata", d.dev, len(d.arrayMetadata), d.arrayType)
 	d.fd, err = d.Open()
@@ -276,7 +273,7 @@ func (d *Device) Restore() (err error) {
 
 }
 
-//compare dev size, with tolerance
+// compare dev size, with tolerance
 func sizeMatch(a, b *Device) bool {
 	var err error
 	if a.devSize == 0 {
@@ -296,7 +293,7 @@ func sizeMatch(a, b *Device) bool {
 	return float64(b.devSize) <= float64(a.devSize)*(1.0+sizeTol)
 }
 
-//use ioctl to find dev size
+// use ioctl to find dev size
 func (d *Device) readSize() (err error) {
 	d.devSize, err = ioctl.BlkGetSize64(d.fd)
 	if err != nil {
@@ -313,12 +310,12 @@ func (d *Device) ReadSize() (uint64, error) {
 	return d.devSize, err
 }
 
-//return last used alignment
+// return last used alignment
 func (d *Device) Alignment() int64 {
 	return d.alignment
 }
 
-//check if a read/write with offset 'at' and len 'size' is in range
+// check if a read/write with offset 'at' and len 'size' is in range
 func (d *Device) InRange(at int64, size int) bool {
 	_, err := d.ReadSize()
 	if err != nil {
@@ -331,8 +328,8 @@ func (d *Device) InRange(at int64, size int) bool {
 	return ap+off <= int64(d.devSize)
 }
 
-//return 'at' or a more negative value that is evenly divisible by 'how'
-//sign of 'at' and 'res' will match
+// return 'at' or a more negative value that is evenly divisible by 'how'
+// sign of 'at' and 'res' will match
 func align(at, how int64) (res, off int64) {
 	if at%how == 0 {
 		return at, 0
@@ -349,7 +346,7 @@ func align(at, how int64) (res, off int64) {
 	return
 }
 
-//read from device, using oversized aligned reads to satisfy device requirements when at/size are not aligned
+// read from device, using oversized aligned reads to satisfy device requirements when at/size are not aligned
 func (d *Device) AlignedRead(at, size int64) ([]byte, error) {
 	buf, _, o1, o2, err := d.rawAlignedRead(at, size)
 	if err != nil {
@@ -359,8 +356,8 @@ func (d *Device) AlignedRead(at, size int64) ([]byte, error) {
 	return buf[o1:o2], err
 }
 
-//perform an aligned read, returning various values for the calling function to use
-//check device bounds, report bad 'at' values as different error
+// perform an aligned read, returning various values for the calling function to use
+// check device bounds, report bad 'at' values as different error
 func (d *Device) rawAlignedRead(at, reqSize int64) (buf []byte, begin, offset1, offset2 int64, err error) {
 	abs := func(v int64) uint64 {
 		if v > 0 {
@@ -445,7 +442,7 @@ func (d *Device) rawAlignedRead(at, reqSize int64) (buf []byte, begin, offset1, 
 	return
 }
 
-//read, modify, write
+// read, modify, write
 func (d *Device) AlignedWrite(at int64, data []byte) error {
 	size := int64(len(data))
 	buf, begin, offset1, offset2, err := d.rawAlignedRead(at, size)

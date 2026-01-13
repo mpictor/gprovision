@@ -14,7 +14,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/common/strs"
 )
 
-//func Hostify(id string) string
+// func Hostify(id string) string
 func TestHostify(t *testing.T) {
 	io := [][]string{
 		{"sadfl.", strs.HostPrefix() + "sadfl0"},

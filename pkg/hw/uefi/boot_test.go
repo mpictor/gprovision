@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-//func OursPresent(entries BootEntryVars)bool
+// func OursPresent(entries BootEntryVars)bool
 func TestOursPresent(t *testing.T) {
 	entries := AllBootEntryVars()
 	h := entries.OursPresent()

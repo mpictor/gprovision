@@ -14,7 +14,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//Return true if running on CI. Currently only detects Jenkins. For cleanup.
+// Return true if running on CI. Currently only detects Jenkins. For cleanup.
 func OnCI() bool {
 	for _, e := range []string{
 		"JENKINS_NODE_COOKIE",
@@ -128,7 +128,7 @@ func (m *MockTB) Failed() bool  { return m.ErrCnt > 0 || m.FatalCnt > 0 }
 func (m *MockTB) Name() string  { return "mock" }
 func (m *MockTB) Helper()       {}
 
-//Sets underlying log. Not part of TB interface
+// Sets underlying log. Not part of TB interface
 func (m *MockTB) Underlying(tb TB) {
 	m.u = tb
 }

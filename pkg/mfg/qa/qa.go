@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package QA implements quality checks for the mfg process. In the event of
-//success, it can print out a QA report. It can also log voluminous hardware
-//details.
+// Package QA implements quality checks for the mfg process. In the event of
+// success, it can print out a QA report. It can also log voluminous hardware
+// details.
 package qa
 
 import (
@@ -59,11 +59,11 @@ type Specs struct {
 	Devices Devices `json:",omitempty"`
 
 	SerNumRegex string `json:",omitempty"`
-	/* list dmidecode named fields:
-	for f in $(dmidecode -s |& grep '^  '); do
-	  printf "%25s : %s\n" "$f" "$(sudo dmidecode -s $f)"
-	done
-	*/
+
+	// list dmidecode named fields:
+	// for f in $(dmidecode -s |& grep '^  '); do
+	//   printf "%25s : %s\n" "$f" "$(sudo dmidecode -s $f)"
+	// done
 	DmiMatches DmiMap //support named fields _and_ anything else reported
 }
 
@@ -88,14 +88,14 @@ func (s Specs) String() string {
 		s.FirmwareVer, s.Devices.PCI, s.Devices.USB, s.SerNumRegex, s.DmiMatches)
 }
 
-//Dump as much data as possible, including raw dmi output. Used for unrecognized platforms.
+// Dump as much data as possible, including raw dmi output. Used for unrecognized platforms.
 func Dump() {
 	var required, detected Specs
 	detected.Populate(nil)
 	dump(required, detected, true)
 }
 
-//Dump hardware details. Used for new platforms where params are unknown, and for existing platforms with bad/missing hardware.
+// Dump hardware details. Used for new platforms where params are unknown, and for existing platforms with bad/missing hardware.
 func dump(required, detected Specs, alwaysRawDMI bool) {
 	//fiddle with the data a bit to make it less confusing for anyone looking at the output
 	detected.Recovery = RecoveryDisk{
@@ -120,12 +120,12 @@ func dump(required, detected Specs, alwaysRawDMI bool) {
 	dumpDMIData(alwaysRawDMI)
 }
 
-/* Validate that the current device meets the specs for its type
-   This occurs in 3 stages.
-   * initialization: fill in detected specs structure with basic info about some things (e.g. identifiers for pci devices we care about)
-   * population: write details of hardware that exists on this model to detected struct
-   * validation: compare detected and required specs
-*/
+// Validate that the current device meets the specs for its type
+//
+//	This occurs in 3 stages.
+//	* initialization: fill in detected specs structure with basic info about some things (e.g. identifiers for pci devices we care about)
+//	* population: write details of hardware that exists on this model to detected struct
+//	* validation: compare detected and required specs
 func (required Specs) Validate(platform common.PlatInfoer) {
 	required.SanityCheck()
 	checkSN(platform.SerNum(), required.SerNumRegex)
@@ -139,7 +139,7 @@ func (required Specs) Validate(platform common.PlatInfoer) {
 	}
 }
 
-//Check serial number. Ignores failure if unit is a prototype, identified via PROTO_IDENT.
+// Check serial number. Ignores failure if unit is a prototype, identified via PROTO_IDENT.
 func checkSN(sn, re string) {
 	//MustCompile would panic, meaning the error would only show up on an attached display
 	r, err := regexp.Compile(re)
@@ -156,8 +156,8 @@ func checkSN(sn, re string) {
 	}
 }
 
-//these checks just make sure the json didn't have a typo that caused something to not be filled in
-//far from perfect, but should catch _some_ problems
+// these checks just make sure the json didn't have a typo that caused something to not be filled in
+// far from perfect, but should catch _some_ problems
 func (r Specs) SanityCheck() {
 	var totalDiskCfgs, emptyDiskCfgs int
 	for _, c := range r.MainDiskConfigs {
@@ -207,7 +207,7 @@ func (required Specs) Compare(detected Specs) (err error) {
 	return err
 }
 
-//compare two items, log any mismatch. return 1 if error found.
+// compare two items, log any mismatch. return 1 if error found.
 func logNE(required, detected interface{}, desc string) int {
 	if required != detected {
 		log.Msgf("!!! Mismatch in %s !!!", desc)
@@ -235,7 +235,7 @@ func (s *Specs) Populate(platform common.PlatInfoer) {
 	s.FirmwareVer.Populate()
 }
 
-//copy some info from required specs to detected, so Populate funcs know what hardware is of interest
+// copy some info from required specs to detected, so Populate funcs know what hardware is of interest
 func (r Specs) InitDetected() (d Specs) {
 	d.Recovery = r.Recovery
 	d.Recovery.Size = 0

@@ -15,11 +15,11 @@ import (
 	win "golang.org/x/sys/windows"
 )
 
-/* https://msdn.microsoft.com/en-us/library/windows/desktop/bb530717(v=vs.85).aspx
-typedef struct _TOKEN_ELEVATION {
-  DWORD TokenIsElevated;
-} TOKEN_ELEVATION, *PTOKEN_ELEVATION;
-*/
+// https://msdn.microsoft.com/en-us/library/windows/desktop/bb530717(v=vs.85).aspx
+//
+//	typedef struct _TOKEN_ELEVATION {
+//	  DWORD TokenIsElevated;
+//	} TOKEN_ELEVATION, *PTOKEN_ELEVATION;
 type tokenElevation struct {
 	elevated uint32
 }

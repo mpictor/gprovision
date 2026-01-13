@@ -21,7 +21,7 @@ import (
 	gtst "github.com/mpictor/gprovision/testing"
 )
 
-//ensure the template is functional and that it produces valid json
+// ensure the template is functional and that it produces valid json
 func TestMfgDataJson(t *testing.T) {
 	m := &Mockinfra{
 		t: t,
@@ -54,7 +54,7 @@ func TestMfgDataJson(t *testing.T) {
 	}
 }
 
-//verify the mock files are valid
+// verify the mock files are valid
 func TestXz(t *testing.T) {
 	tmpdir, err := ioutil.TempDir("", "gotest")
 	if err != nil {
@@ -103,7 +103,7 @@ func TestXz(t *testing.T) {
 	}
 }
 
-//mock log server used to test CheckFormattingErrors
+// mock log server used to test CheckFormattingErrors
 type mlsrv struct {
 	content string
 }
@@ -115,7 +115,7 @@ func (*mlsrv) MockCreds(_ string) common.Credentials { panic("unimplemented") }
 func (*mlsrv) Port() int                             { panic("unimplemented") }
 func (*mlsrv) Ids() []string                         { panic("unimplemented") }
 
-//func CheckFormattingErrs(t testing.TB, lsrv rlog.MockSrvr, uefi bool)
+// func CheckFormattingErrs(t testing.TB, lsrv rlog.MockSrvr, uefi bool)
 func TestCheckFormattingErrs(t *testing.T) {
 	for _, td := range []struct {
 		name, content string

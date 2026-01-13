@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package opts parses flags and stores config used elsewhere in corer.
+// Package opts parses flags and stores config used elsewhere in corer.
 package opts
 
 import (

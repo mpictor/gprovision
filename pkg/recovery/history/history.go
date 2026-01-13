@@ -5,11 +5,11 @@
 // SPDX-License-Identifier: MIT
 //
 
-/* Package history logs image success/failure to disk.
-Data logged includes image name and success/failure counts for imaging and first boot.
-
-IMPORTANT When using in recovery, must add history.RebootHook to log.Preboot.
-*/
+// Package history logs image success/failure to disk.
+//
+// Data logged includes image name and success/failure counts for imaging and first boot.
+//
+// IMPORTANT When using in recovery, must add history.RebootHook to log.Preboot.
 package history
 
 import (
@@ -47,12 +47,12 @@ type ImageResult struct {
 }
 type ResultList []*ImageResult
 
-//makes the json look nice
+// makes the json look nice
 type serializationFmt struct {
 	ImageResults ResultList
 }
 
-//Sets where the history file can be found. Path is stored for use by other functions in the package.
+// Sets where the history file can be found. Path is stored for use by other functions in the package.
 func SetRoot(path string) {
 	dir := fp.Join(path, strs.RecoveryLogDir())
 	err := os.MkdirAll(dir, 0777)
@@ -77,7 +77,7 @@ func Rollover(path string) {
 	}
 }
 
-//Reads history file, comparing stored count with MaxFailures
+// Reads history file, comparing stored count with MaxFailures
 func Load() (ok bool) {
 	if len(histPath) == 0 {
 		panic("dir for history file must be specified")
@@ -109,7 +109,7 @@ func Load() (ok bool) {
 	return
 }
 
-//Check returns false if too many failures are recorded for an image, true otherwise.
+// Check returns false if too many failures are recorded for an image, true otherwise.
 func Check(name string) (ok bool) {
 	for _, img := range results {
 		if img.Image == name {
@@ -119,9 +119,9 @@ func Check(name string) (ok bool) {
 	return true
 }
 
-/* RecordBootState records boot status (success/failure, how badly failed).
-If imgName is empty or otherwise doesn't appear valid, update stats for first entry.
-*/
+// RecordBootState records boot status (success/failure, how badly failed).
+//
+// If imgName is empty or otherwise doesn't appear valid, update stats for first entry.
 func RecordBootState(imgName string, success bool, severity uint, bTime time.Time, notes string) {
 	Load()
 	var result *ImageResult
@@ -177,10 +177,10 @@ func write(res ResultList) {
 	}
 }
 
-/* When added to log.Preboot, RebootHook updates the history file at the end of factory restore.
-Updated entry is shuffled to front of list, so RecordBootState can determine which
-entry to update even if the disktag is missing.
-*/
+// When added to log.Preboot, RebootHook updates the history file at the end of factory restore.
+//
+// Updated entry is shuffled to front of list, so RecordBootState can determine which
+// entry to update even if the disktag is missing.
 func RebootHook(success bool) {
 	chosenImage := dt.Get()
 	if chosenImage == "" {
@@ -212,7 +212,7 @@ func RebootHook(success bool) {
 	write(results)
 }
 
-//if item exists in list, make it the first item. otherwise insert as first item.
+// if item exists in list, make it the first item. otherwise insert as first item.
 func (rl *ResultList) moveOrAddFront(item *ImageResult) {
 	for i := range *rl {
 		if (*rl)[i] == item {

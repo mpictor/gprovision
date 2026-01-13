@@ -42,9 +42,9 @@ func (vt *vtChan) Close() {
 	}
 }
 
-//switch to an unused vt and display messages as they arrive in ch.
-//destroy vt and switch back to original when ch is closed.
-//NOTE - prog must not exit immediately after closing channel, or switch will not happen
+// switch to an unused vt and display messages as they arrive in ch.
+// destroy vt and switch back to original when ch is closed.
+// NOTE - prog must not exit immediately after closing channel, or switch will not happen
 func MessageChannel() (vt vtChan, err error) {
 	vt.ch = make(chan string)
 	var origVt, newVt VTid
@@ -86,7 +86,7 @@ func MessageChannel() (vt vtChan, err error) {
 	return
 }
 
-//get current console id
+// get current console id
 func CurrentVt() (id VTid, err error) {
 	var out []byte
 	out, err = exec.Command("fgconsole").CombinedOutput()
@@ -106,7 +106,7 @@ func CurrentVt() (id VTid, err error) {
 	return
 }
 
-//get next unused console id
+// get next unused console id
 func UnusedVt() (id VTid, err error) {
 	var out []byte
 	out, err = exec.Command("fgconsole", "--next-available").CombinedOutput()
@@ -122,7 +122,7 @@ func UnusedVt() (id VTid, err error) {
 	return
 }
 
-//switch to given vt
+// switch to given vt
 func SetVt(id VTid) error {
 	if id == -1 {
 		return nil
@@ -137,7 +137,7 @@ func FreeVt(id VTid) error {
 	return exec.Command("deallocvt", fmt.Sprintf("%d", id)).Run()
 }
 
-//write line to given vt
+// write line to given vt
 func WriteVt(id VTid, s string) error {
 	if id < 0 {
 		id = 0

@@ -34,8 +34,8 @@ func testRemoveOpts(t *testing.T, want, had string, bad []string) {
 }
 
 func TestFixupRecoveryFS(t *testing.T) {
-	/* we test with 9p, as for other fs types it calls existingFsType()
-	 * existingFsType() uses blkid and so becomes difficult to test */
+	// we test with 9p, as for other fs types it calls existingFsType()
+	// existingFsType() uses blkid and so becomes difficult to test */
 	//func (fs Filesystem) FixupRecoveryFS() (err error) {
 	fs := Filesystem{}
 	fs.isRecovery = false
@@ -61,7 +61,7 @@ func TestFixupRecoveryFS(t *testing.T) {
 	}
 }
 
-//func kBuildNum(out, kpath string) (ver uint64, success bool)
+// func kBuildNum(out, kpath string) (ver uint64, success bool)
 func TestKBuildNum(t *testing.T) {
 	data := []struct {
 		path    string
@@ -89,7 +89,7 @@ func TestKBuildNum(t *testing.T) {
 	}
 }
 
-//func scoreDisks(in []*Disk, tgtSize, count int, tol float64) (out []*Disk)
+// func scoreDisks(in []*Disk, tgtSize, count int, tol float64) (out []*Disk)
 func TestScoreDisks(t *testing.T) {
 	var list dlist
 	var i int64

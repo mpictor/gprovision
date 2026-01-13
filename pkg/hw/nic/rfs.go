@@ -20,7 +20,7 @@ const (
 	rfsEntriesFile = "/proc/sys/net/core/rps_sock_flow_entries"
 )
 
-//Receive Flow Scaling - set total number of RFS entries, as well as number per RSS queue
+// Receive Flow Scaling - set total number of RFS entries, as well as number per RSS queue
 func (nic Nic) RfsConfig() {
 	err := ioutil.WriteFile(rfsEntriesFile, []byte(fmt.Sprintf("%d\n", rfsEntries)), 0644)
 	if err != nil {

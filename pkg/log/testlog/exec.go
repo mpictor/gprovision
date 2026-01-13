@@ -17,10 +17,10 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//represents a Cmd in CmdMap
+// represents a Cmd in CmdMap
 type Key string
 
-//generates key for given command
+// generates key for given command
 func CmdKey(args []string) Key {
 	k := ""
 	for _, arg := range args {
@@ -29,13 +29,13 @@ func CmdKey(args []string) Key {
 	return Key(k)
 }
 
-//execution result
+// execution result
 type Result struct {
 	Res     string
 	Success bool
 }
 
-//data for use with UseMappedCmdHijacker
+// data for use with UseMappedCmdHijacker
 type HijackerData struct {
 	Result   Result        //if NoRun is false, this is updated with result on each run
 	RunCount int           //number of times the command has been invoked
@@ -43,12 +43,12 @@ type HijackerData struct {
 	Pause    time.Duration //in addition to any execution time, pause this long before returning
 }
 
-//map passed to UseMappedCmdHijacker
+// map passed to UseMappedCmdHijacker
 type CmdMap map[Key]HijackerData
 
-//Using a map of commands, either record results or replay given results.
-//Limitation: not able to return different results for different exec's of a
-//given command.
+// Using a map of commands, either record results or replay given results.
+// Limitation: not able to return different results for different exec's of a
+// given command.
 func (tlog *TstLog) UseMappedCmdHijacker(m CmdMap) {
 	log.Cmd = func(cmd *exec.Cmd) (res string, success bool) {
 		tlog.t.Helper()

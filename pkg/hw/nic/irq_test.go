@@ -14,7 +14,7 @@ import (
 
 var nics []Nic
 
-//requires human intervention to verify output is correct... not sure how to automate
+// requires human intervention to verify output is correct... not sure how to automate
 func TestFindIRQs(t *testing.T) {
 	nics = List()
 	if len(nics) == 0 {

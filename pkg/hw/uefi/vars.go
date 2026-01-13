@@ -30,7 +30,7 @@ const (
 	bootUuid = "8be4df61-93ca-11d2-aa0d-00e098032b8c"
 )
 
-//a generic efi var
+// a generic efi var
 type EfiVar struct {
 	uuid, name string
 	data       []byte
@@ -45,10 +45,10 @@ func ReadVar(uuid, name string) (e EfiVar, err error) {
 	return
 }
 
-//Returns all efi variables
+// Returns all efi variables
 func AllVars() (vars EfiVars) { return ReadVars(nil) }
 
-//Returns efi variables matching filter
+// Returns efi variables matching filter
 func ReadVars(filt VarFilter) (vars EfiVars) {
 	entries, err := fp.Glob(fp.Join(efiVarDir, "*-*"))
 	if err != nil {
@@ -79,22 +79,23 @@ func ReadVars(filt VarFilter) (vars EfiVars) {
 	return
 }
 
-//A boot entry. Will have the name BootXXXX where XXXX is hexadecimal
+// A boot entry. Will have the name BootXXXX where XXXX is hexadecimal
 type BootEntryVar struct {
 	Number uint16 //from the var name
 	EfiLoadOption
 }
 
-/* EfiLoadOption defines the data struct used for vars such as BootXXXX.
-As defined in UEFI spec v2.8A:
-    typedef struct _EFI_LOAD_OPTION {
-        UINT32 Attributes;
-        UINT16 FilePathListLength;
-        // CHAR16 Description[];
-        // EFI_DEVICE_PATH_PROTOCOL FilePathList[];
-        // UINT8 OptionalData[];
-    } EFI_LOAD_OPTION;
-*/
+// EfiLoadOption defines the data struct used for vars such as BootXXXX.
+//
+// As defined in UEFI spec v2.8A:
+//
+//	typedef struct _EFI_LOAD_OPTION {
+//	    UINT32 Attributes;
+//	    UINT16 FilePathListLength;
+//	    // CHAR16 Description[];
+//	    // EFI_DEVICE_PATH_PROTOCOL FilePathList[];
+//	    // UINT8 OptionalData[];
+//	} EFI_LOAD_OPTION;
 type EfiLoadOption struct {
 	Attributes         uint32
 	FilePathListLength uint16
@@ -123,7 +124,7 @@ func ReadCurrentBootVar() (b *BootEntryVar) {
 	return ReadBootVar(curr.Current)
 }
 
-//decodes an efivar as a boot entry. use IsBootEntry() to screen first.
+// decodes an efivar as a boot entry. use IsBootEntry() to screen first.
 func (v EfiVar) BootVar() (b *BootEntryVar) {
 	num, err := strconv.ParseUint(v.name[4:], 16, 16)
 	if err != nil {
@@ -167,20 +168,20 @@ func (b BootEntryVar) Remove() error {
 	return RemoveBootEntry(b.Number)
 }
 
-//returns list of boot entries (BootXXXX)
-//note that BootCurrent, BootOptionSupport, BootNext, BootOrder, etc do not count as boot entries.
+// returns list of boot entries (BootXXXX)
+// note that BootCurrent, BootOptionSupport, BootNext, BootOrder, etc do not count as boot entries.
 func AllBootEntryVars() BootEntryVars {
 	//return AllVars().BootEntries()
 	//BootEntries() is somewhat redundant, but parses the vars into BootEntryVar{}
 	return ReadVars(BootEntryFilter).BootEntries()
 }
 
-//Return all boot-related uefi vars
+// Return all boot-related uefi vars
 func AllBootVars() EfiVars {
 	return ReadVars(BootVarFilter)
 }
 
-//A type of function used to filter efi vars
+// A type of function used to filter efi vars
 type VarFilter func(uuid, name string) bool
 
 // A VarNameFilter passing boot-related vars. These are a superset of those
@@ -205,12 +206,12 @@ func BootEntryFilter(uuid, name string) bool {
 	return err == nil
 }
 
-//Returns a filter negating the given filter.
+// Returns a filter negating the given filter.
 func NotFilter(f VarFilter) VarFilter {
 	return func(u, n string) bool { return !f(u, n) }
 }
 
-//Returns true only if all given filters return true.
+// Returns true only if all given filters return true.
 func AndFilter(filters ...VarFilter) VarFilter {
 	return func(u, n string) bool {
 		for _, f := range filters {
@@ -237,7 +238,7 @@ type BootCurrentVar struct {
 	Current uint16
 }
 
-//returns the BootCurrent var
+// returns the BootCurrent var
 func (vars EfiVars) BootCurrent() *BootCurrentVar {
 	for _, v := range vars {
 		if v.name == "BootCurrent" {
@@ -262,7 +263,7 @@ func ReadBootCurrent() *BootCurrentVar {
 	}
 }
 
-//from a list of efi vars, parse any that are boot entries and return list of them
+// from a list of efi vars, parse any that are boot entries and return list of them
 func (vars EfiVars) BootEntries() (bootvars BootEntryVars) {
 	for _, v := range vars {
 		if v.IsBootEntry() {
@@ -280,7 +281,7 @@ func (e EfiVar) IsBootEntry() bool {
 	return err == nil
 }
 
-//filter list of boot entries to exclude entries we didn't create
+// filter list of boot entries to exclude entries we didn't create
 func (entries BootEntryVars) Ours() (bootvars BootEntryVars) {
 	for _, b := range entries {
 		if b.IsOurs() {
@@ -301,7 +302,7 @@ func (b BootEntryVar) IsOurs() bool {
 	return false
 }
 
-//https://gist.github.com/bradleypeabody/185b1d7ed6c0c2ab6cec
+// https://gist.github.com/bradleypeabody/185b1d7ed6c0c2ab6cec
 func DecodeUTF16(b []byte) (string, error) {
 	if len(b)%2 != 0 {
 		return "", fmt.Errorf("Must have even length byte slice")

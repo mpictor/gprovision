@@ -9,11 +9,11 @@
 // tables and partitions, DESTROYING ANY EXISTING DATA.
 //
 // Note that it does *not* support:
-//   * conversion between MBR & GPT,
-//   * resizing existing partitions,
-//   * adding partitions to an existing table,
-//   * specifying gaps,
-//   * etc.
+//   - conversion between MBR & GPT,
+//   - resizing existing partitions,
+//   - adding partitions to an existing table,
+//   - specifying gaps,
+//   - etc.
 package partitioning
 
 import (
@@ -29,7 +29,7 @@ type Partitioner interface {
 	Add(sizeMegs uint64, ptype partType, boot bool, name string) //add a partition
 }
 
-//determines best type of partition table to use, returns a Partitioner to do so
+// determines best type of partition table to use, returns a Partitioner to do so
 func NewPTable(dev string) Partitioner {
 	if uefi.BootedUEFI() {
 		return NewGpt(dev)

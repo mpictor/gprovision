@@ -50,7 +50,7 @@ func (ml *memLog) Finalize() {
 	}
 }
 
-//Not part of StackableLogger interface
+// Not part of StackableLogger interface
 func (ml *memLog) Entries() []LogEntry { return ml.entries }
 
 // Retrieve all entries logged so far. Requires a memLog in the stack. Probably

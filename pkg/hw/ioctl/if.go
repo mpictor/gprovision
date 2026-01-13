@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package ioctl uses IOCTL's to find block device size, adjust network
-//interface state, etc.
+// Package ioctl uses IOCTL's to find block device size, adjust network
+// interface state, etc.
 package ioctl
 
 import (
@@ -39,7 +39,7 @@ func SetNicState(name string, up bool) error {
 	return SetIfFlags(fd, name, flags)
 }
 
-//return true if no errors and nic is up, false otherwise
+// return true if no errors and nic is up, false otherwise
 func NicIsUp(name string) (up bool) {
 	fd, err := syscall.Socket(syscall.AF_INET, syscall.SOCK_DGRAM, 0)
 	if err != nil {

@@ -22,7 +22,7 @@ const (
 	ancient  = "2.6.24.111 #606 Mon Apr 14 00:06:11 CEST 2014"
 )
 
-//func GetKDesc(k io.ReadSeeker) (string, error)
+// func GetKDesc(k io.ReadSeeker) (string, error)
 func TestGetKDesc(t *testing.T) {
 	items := []bufItem{
 		{510, []byte{0x55, 0xaa}}, //boot sig
@@ -48,7 +48,7 @@ type bufItem struct {
 	data []byte
 }
 
-//return buffer filled with random data, except for listed items
+// return buffer filled with random data, except for listed items
 func sparseBuf(items []bufItem) (io.ReadSeeker, error) {
 	//figure out where last byte will fall
 	var last int
@@ -68,7 +68,7 @@ func sparseBuf(items []bufItem) (io.ReadSeeker, error) {
 	return bytes.NewReader(buf), nil
 }
 
-//func ParseDesc(desc string) KInfo
+// func ParseDesc(desc string) KInfo
 func TestParseDesc(t *testing.T) {
 	tmust := func(tm time.Time, err error) time.Time {
 		if err != nil {

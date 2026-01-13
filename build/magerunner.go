@@ -7,10 +7,9 @@
 
 //go:build ignore
 
-/* runs mage build system
-usage:
-go run magerunner.go <mage args>
-*/
+// runs mage build system
+// usage:
+// go run magerunner.go <mage args>
 
 package main
 

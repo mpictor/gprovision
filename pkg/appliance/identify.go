@@ -37,8 +37,8 @@ func init() {
 	}
 }
 
-//TODO move to per-variant match function?
-//TODO add bool to Variant to indicate whether to use baseboard-* or system-*
+// TODO move to per-variant match function?
+// TODO add bool to Variant to indicate whether to use baseboard-* or system-*
 func Identify() *Variant {
 	if identifiedVariant != nil {
 		return identifiedVariant
@@ -147,7 +147,7 @@ func (v *Variant_) checkModelRe(mfg, prod, sku string) (overrideSku string, matc
 	return sku, true
 }
 
-//one-line summary
+// one-line summary
 func (v *Variant_) DiagSummary() string {
 	s := fmt.Sprintf("  %s | %s | SKU %s   (%s)", v.DmiMbMfg, v.DmiProdName, v.DmiProdModelRegex, v.DevCodeName)
 	if v.CPU != "" {
@@ -156,8 +156,8 @@ func (v *Variant_) DiagSummary() string {
 	return s
 }
 
-//returns names of block devices which could be the recovery device
-//excludes virtual devices and ones with incorrect size
+// returns names of block devices which could be the recovery device
+// excludes virtual devices and ones with incorrect size
 func (v *Variant) RecoveryCandidates(RecoverySize uint64) (devList []string) {
 	for _, dev := range block.Devices() {
 		if dev.Size == RecoverySize {
@@ -229,7 +229,7 @@ var aj_default = `{"Variants":[
 {"Familyname":"cputest","DmiMbMfg":"cputest","DmiProdName":"cputest","DmiProdModelRegex":".*","CPU":"someVersion","SerNumField":"system-serial-number","NumDataDisks":1,"Disksize":21474836480,"DiskIsSSD":true,"SwRaidlevel":-1,"Virttype":2,"NICInfo":{"SharedDiagPorts":[],"WANIndex":0,"DefaultNamesNoDiag":["Port 1 (WAN)"]},"RecoveryMedia":{"LocateRDMethod":"byLabel","ValidateRDMethod":"usb","FsType":"ext3","SSD":true},"Lcd":"none","DevCodeName":"cputest1","Prototype":true},
 {"Familyname":"cputest","DmiMbMfg":"cputest","DmiProdName":"cputest","DmiProdModelRegex":".*","CPU":"someOtherVersion","SerNumField":"system-serial-number","NumDataDisks":1,"Disksize":21474836480,"DiskIsSSD":true,"SwRaidlevel":-1,"Virttype":2,"NICInfo":{"SharedDiagPorts":[],"WANIndex":0,"DefaultNamesNoDiag":["Port 1 (WAN)"]},"RecoveryMedia":{"LocateRDMethod":"byLabel","ValidateRDMethod":"usb","FsType":"ext3","SSD":true},"Lcd":"none","DevCodeName":"cputest2","Prototype":true}]}`
 
-//load embedded data
+// load embedded data
 func getJson() []byte {
 	j, err := Asset("appliance.json")
 	if err == nil {

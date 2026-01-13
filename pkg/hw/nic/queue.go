@@ -46,11 +46,10 @@ type nicQueueCfg struct {
 	rx, tx, other, combined currMax
 }
 
-/* MaximizeQueues - enable any NIC queues that were't automatically enabled.
- * Must happen before other queue-related operations so that the configuration
- * will apply to these additional queues. Intel seems to configure the max
- * queues automatically while Broadcom doesn't.
- */
+// MaximizeQueues - enable any NIC queues that were't automatically enabled.
+// Must happen before other queue-related operations so that the configuration
+// will apply to these additional queues. Intel seems to configure the max
+// queues automatically while Broadcom doesn't.
 func (nic *Nic) MaximizeQueues() {
 	rssInfo := exec.Command("ethtool", "-l", nic.device)
 	out, err := rssInfo.CombinedOutput()
@@ -59,11 +58,10 @@ func (nic *Nic) MaximizeQueues() {
 		return
 	}
 	config := parseQueueInfo(nic.device, out)
-	/* Intel nics have combined rx-tx queues, while Broadcom uses separate queues
-	 * Are there nics that support separate AND combined channels? If so, what
-	 *   should be configured?
-	 * For now, assume it's safe to set everything to max.
-	 */
+	// Intel nics have combined rx-tx queues, while Broadcom uses separate queues
+	// Are there nics that support separate AND combined channels? If so, what
+	// should be configured?
+	// For now, assume it's safe to set everything to max.
 	nic.applyMax(config.rx, "rx")
 	nic.applyMax(config.tx, "tx")
 	nic.applyMax(config.other, "other")

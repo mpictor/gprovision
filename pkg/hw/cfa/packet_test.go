@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-//func CfCrc(bytes []byte) (crc uint16)
+// func CfCrc(bytes []byte) (crc uint16)
 func TestCfCrc(t *testing.T) {
 	//for your own sanity, do not attempt to compare these test vectors with online resources.
 	//what matters is that this impl's output matches that of the crystalfontz impl, and it does.
@@ -64,9 +64,8 @@ func TestErrorPacket(t *testing.T) {
 	if err != nil {
 		t.Skip(err)
 	}
-	/* 0x34: invalid command. tried 0x24 but that seems to be an
-	undocumented command that causes a delay.
-	*/
+	// 0x34: invalid command. tried 0x24 but that seems to be an
+	// undocumented command that causes a delay.
 	p := &pktNoCrc{command: 0x34}
 	pkt, err := l.dev.sendPkt(p)
 	if pkt != nil {

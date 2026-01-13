@@ -22,8 +22,8 @@ const (
 	Cfa635
 )
 
-//lcd state that we should preserve - key press/release masks, backlight
-//could also preserve contrast but we do not change that
+// lcd state that we should preserve - key press/release masks, backlight
+// could also preserve contrast but we do not change that
 type storableState struct {
 	pressMask, releaseMask KeyMask
 	backlight              byte
@@ -42,7 +42,7 @@ type Lcd struct {
 	DbgMenu     bool          //debug menus
 }
 
-//Restore mutable state to lcd and close port.
+// Restore mutable state to lcd and close port.
 func (l *Lcd) Close() error {
 	if l == nil || l.dev == nil {
 		return nil
@@ -58,10 +58,10 @@ func (l *Lcd) Close() error {
 	return err
 }
 
-//return max cursor position (add 1 to X and Y for screen dims)
+// return max cursor position (add 1 to X and Y for screen dims)
 func (l *Lcd) MaxCursorPos() Coord { return l.dims }
 
-//returns raw model/revision string from device
+// returns raw model/revision string from device
 func (l *Lcd) Revision() (info string, err error) {
 	if l == nil {
 		return
@@ -114,7 +114,7 @@ func (l *Lcd) restoreState() (err error) {
 	return
 }
 
-//returns detected device model
+// returns detected device model
 func (l *Lcd) Model() Model { return l.model }
 
 func (l *Lcd) sendCmd(cmd Command, data []byte) (rCmd Command, rData []byte, err error) {
@@ -158,7 +158,7 @@ var ENil = fmt.Errorf("Lcd is nil")
 // resulting in gibberish.
 type LcdTxt []byte
 
-//Write text to the screen beginning at 'start'
+// Write text to the screen beginning at 'start'
 func (l *Lcd) Write(start Coord, txt LcdTxt) (err error) {
 	if l == nil {
 		return
@@ -171,7 +171,7 @@ func (l *Lcd) Write(start Coord, txt LcdTxt) (err error) {
 	return l.write(start, txt, false)
 }
 
-//writes to lcd, ensuring data will fit on lcd
+// writes to lcd, ensuring data will fit on lcd
 func (l *Lcd) write(start Coord, txt LcdTxt, clear bool) (err error) {
 	if byte(len(txt))+start.Col > l.Width() {
 		return ELen
@@ -193,7 +193,7 @@ func (l *Lcd) write(start Coord, txt LcdTxt, clear bool) (err error) {
 	return
 }
 
-//writes to lcd. ignores Width().
+// writes to lcd. ignores Width().
 func (l *Lcd) writeByte(start Coord, b byte) (err error) {
 	if start.Col > l.dims.Col || start.Row > l.dims.Row {
 		return ERange
@@ -202,7 +202,7 @@ func (l *Lcd) writeByte(start Coord, b byte) (err error) {
 	return
 }
 
-//Clear screen and put cursor at 0,0
+// Clear screen and put cursor at 0,0
 func (l *Lcd) Clear() error {
 	if l == nil {
 		return nil
@@ -266,7 +266,7 @@ func (l *Lcd) setCursorPosition(p Coord) {
 	}
 }
 
-//true if txt will fit on screen
+// true if txt will fit on screen
 func (l *Lcd) Fits(txt LcdTxt) bool {
 	if l == nil {
 		return false
@@ -278,7 +278,7 @@ const (
 	offScreen byte = 255
 )
 
-//return number of usable chars on a line, taking into account overlay
+// return number of usable chars on a line, taking into account overlay
 func (l *Lcd) Width() byte {
 	if l == nil {
 		return 0
@@ -286,7 +286,7 @@ func (l *Lcd) Width() byte {
 	return l.dims.Col - l.legendWidth + 1
 }
 
-//Poll lcd for key activity. After a short delay, results will be available to Event() or WaitForEvent().
+// Poll lcd for key activity. After a short delay, results will be available to Event() or WaitForEvent().
 func (l *Lcd) PollKeys() error {
 	if l == nil {
 		return nil
@@ -296,9 +296,9 @@ func (l *Lcd) PollKeys() error {
 	return l.pollKeys()
 }
 
-//Poll lcd for key activity. Sends command to LCD, but does _not_ wait for
-//response - response is intercepted by handleIncoming() and data goes into
-//the Event channel.
+// Poll lcd for key activity. Sends command to LCD, but does _not_ wait for
+// response - response is intercepted by handleIncoming() and data goes into
+// the Event channel.
 func (l *Lcd) pollKeys() error {
 	p := &pktNoCrc{
 		command: Cmd_ReadKeysPolled,

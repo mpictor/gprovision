@@ -48,8 +48,8 @@ func GetIntelData() (IntelMap, error) {
 	return parseOutput(dir)
 }
 
-//parse SaveRestore.ps1 output from dir
-//only read Saved_Config.txt, as data in Saved_StaticIP.txt is ipv4 only - must get ip info elsewhere
+// parse SaveRestore.ps1 output from dir
+// only read Saved_Config.txt, as data in Saved_StaticIP.txt is ipv4 only - must get ip info elsewhere
 func parseOutput(dir string) (intelData IntelMap, err error) {
 	cfgf := fp.Join(dir, "Saved_Config.txt")
 	intelData = NewIntelMap()
@@ -63,7 +63,7 @@ func parseOutput(dir string) (intelData IntelMap, err error) {
 	return
 }
 
-//parse a file written by SaveRestore.ps1
+// parse a file written by SaveRestore.ps1
 func (ifaces IntelMap) loadIntel(data io.ReadSeeker) (err error) {
 	currentSection := ""
 	//currently, we discard type data from BOM. csv reader seems to work without the data. should we use it? if so, how?
@@ -230,7 +230,7 @@ func (ifaces IntelMap) loadIntel(data io.ReadSeeker) (err error) {
 	return
 }
 
-//lowercase the MAC, insert colons
+// lowercase the MAC, insert colons
 func convertMac(m string) (net.HardwareAddr, error) {
 	nm := ""
 	for idx, c := range m {

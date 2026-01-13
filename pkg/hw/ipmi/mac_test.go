@@ -48,7 +48,7 @@ Bad Password Threshold  : Not Available
 `
 )
 
-//func LogMacs()
+// func LogMacs()
 func TestLogMacs(t *testing.T) {
 	tl := testlog.NewTestLog(t, true, false)
 	var ch Channel

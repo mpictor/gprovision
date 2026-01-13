@@ -148,30 +148,29 @@ func (es *ExitStatus) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-/* A command to be executed during a Step. Command, AddPath, and AddLibPath are subject
-** to template expansion using the values in StepData (which includes CommonData).
-** Templating is via golang's package text/template.
-**
-** Example: Print the serial number
-** Command could be "echo 'Serial number is {{.Serial}}'".
-** If the serial is SN123, the command would print "Serial number is SN123".
-**
-** Example: Execute a binary auto-extracted from a .tar.xz file
-** Command could be "{{.DLDir}}/path/in/tar/to/binary --arg --arg2"
-** {{.DLDir}} would be replaced with the temp dir, resulting in an absolute path, and
-** the executable is executed (assuming correct file mode).
-**
-** Note that passwords won't be available until close to the password-setting step.
-** Also note that AddPath only applies to additional executables used by Command, and cannot be used to search for Command itself.
-** AddLibPath, however, _will_ apply to Command.
- */
+// A command to be executed during a Step. Command, AddPath, and AddLibPath are subject
+// to template expansion using the values in StepData (which includes CommonData).
+// Templating is via golang's package text/template.
+//
+// Example: Print the serial number
+// Command could be "echo 'Serial number is {{.Serial}}'".
+// If the serial is SN123, the command would print "Serial number is SN123".
+//
+// Example: Execute a binary auto-extracted from a .tar.xz file
+// Command could be "{{.DLDir}}/path/in/tar/to/binary --arg --arg2"
+// {{.DLDir}} would be replaced with the temp dir, resulting in an absolute path, and
+// the executable is executed (assuming correct file mode).
+//
+// Note that passwords won't be available until close to the password-setting step.
+// Also note that AddPath only applies to additional executables used by Command, and cannot be used to search for Command itself.
+// AddLibPath, however, _will_ apply to Command.
 type StepCmd struct {
 	ExitStatus          ExitStatus
 	Command             string
 	AddPath, AddLibPath string
 }
 
-//Data usable in step templates, but not unique to any one step
+// Data usable in step templates, but not unique to any one step
 type CommonData struct {
 	RecoveryDir string // where RECOVERY volume is mounted
 	Serial      string // unit serial number
@@ -180,7 +179,7 @@ type CommonData struct {
 	OSPass      string // ditto, for OS
 }
 
-//All data for step templates, including step-specific data (currently only DLDir)
+// All data for step templates, including step-specific data (currently only DLDir)
 type StepData struct {
 	*CommonData
 	DLDir string //temp dir where file(s) for this step were downloaded
@@ -188,7 +187,7 @@ type StepData struct {
 
 var CommonTemplateData CommonData
 
-//call once passwords are known
+// call once passwords are known
 func AddPWs(biospass, ipmipass, ospass string) {
 	CommonTemplateData.BiosPass = biospass
 	CommonTemplateData.IpmiPass = ipmipass
@@ -242,7 +241,7 @@ func (s *Step) Run() (err error) {
 	return
 }
 
-//Returns a copy of a string, with non-fs-safe and non-lexer-safe characters replaced.
+// Returns a copy of a string, with non-fs-safe and non-lexer-safe characters replaced.
 // Returned value will be at most 20 characters.
 func makeFsSafeName(in string) (out string) {
 	if len(in) > 20 {

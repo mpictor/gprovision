@@ -29,11 +29,11 @@ type IpmiUser struct {
 }
 type IpmiUsers []*IpmiUser
 
-/* List users.
-   WARNING: cannot tell whether a user is enabled
-   on a given channel - so don't use IsEnabled or
-   OnlyEnabled on returned list
-*/
+// List users.
+//
+// WARNING: cannot tell whether a user is enabled
+// on a given channel - so don't use IsEnabled or
+// OnlyEnabled on returned list
 func ListUsers() (users IpmiUsers) {
 	cmd := exec.Command("ipmitool", "-c", "user", "list")
 	out, err := cmd.Output()
@@ -47,16 +47,14 @@ func parseUsers(out []byte) (users IpmiUsers) {
 	r := csv.NewReader(bytes.NewBuffer(out))
 	for {
 		user := new(IpmiUser)
-		/*
-		   ID,Name,Callin,Link Auth,IPMI Msg,Channel Priv Limit
-		   1,,true,false,false,Unknown (0x00)
-		   2,ADMIN,false,false,true,ADMINISTRATOR
-
-		   1,,false,false,false,ADMINISTRATOR
-		   2,root,false,true,true,ADMINISTRATOR
-		   3,admin,true,true,true,ADMINISTRATOR
-		   4,null4,true,false,false,NO ACCESS
-		*/
+		// ID,Name,Callin,Link Auth,IPMI Msg,Channel Priv Limit
+		// 1,,true,false,false,Unknown (0x00)
+		// 2,ADMIN,false,false,true,ADMINISTRATOR
+		//
+		// 1,,false,false,false,ADMINISTRATOR
+		// 2,root,false,true,true,ADMINISTRATOR
+		// 3,admin,true,true,true,ADMINISTRATOR
+		// 4,null4,true,false,false,NO ACCESS
 		record, err := r.Read()
 		if err == io.EOF {
 			break
@@ -92,7 +90,7 @@ func (u IpmiUser) HasAdminPriv() bool {
 	return u.Privilege == "ADMINISTRATOR"
 }
 
-//only works for user info from GetChannels()
+// only works for user info from GetChannels()
 func (u IpmiUser) IsEnabled() bool {
 	return u.Enabled
 }
@@ -103,7 +101,7 @@ func (u IpmiUser) GuessEnabled() bool {
 	return u.IpmiMsg && u.Privilege != "NO ACCESS" && u.Privilege != "Unknown (0x00)"
 }
 
-//filter out accounts that aren't enabled
+// filter out accounts that aren't enabled
 func (usrs IpmiUsers) OnlyEnabled() (enabled IpmiUsers) {
 	for _, u := range usrs {
 		if u.IsEnabled() {
@@ -113,7 +111,7 @@ func (usrs IpmiUsers) OnlyEnabled() (enabled IpmiUsers) {
 	return
 }
 
-//filter out accounts without admin privileges
+// filter out accounts without admin privileges
 func (usrs IpmiUsers) OnlyPrivileged() (privileged IpmiUsers) {
 	for _, u := range usrs {
 		if u.HasAdminPriv() {
@@ -123,7 +121,7 @@ func (usrs IpmiUsers) OnlyPrivileged() (privileged IpmiUsers) {
 	return
 }
 
-//filter out unnamed and null accounts
+// filter out unnamed and null accounts
 func (usrs IpmiUsers) OnlyNamed() (named IpmiUsers) {
 	for _, u := range usrs {
 		if u.Name != "" && !strings.HasPrefix(strings.ToLower(u.Name), "null") {
@@ -133,7 +131,7 @@ func (usrs IpmiUsers) OnlyNamed() (named IpmiUsers) {
 	return
 }
 
-//filter out accounts except those named "ADMIN","admin","Administrator", etc
+// filter out accounts except those named "ADMIN","admin","Administrator", etc
 func (usrs IpmiUsers) OnlyNamedAdmin() (admins IpmiUsers) {
 	for _, u := range usrs {
 		if strings.HasPrefix(strings.ToLower(u.Name), "admin") {

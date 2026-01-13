@@ -22,7 +22,7 @@ const (
 
 // Query server for time with retry. Retry until round trip
 // is < queryMax, or # tries > maxQueries.
-func serverTimeUTC( /*server string*/ ) (local time.Time, serverTime string) {
+func serverTimeUTC() (local time.Time, serverTime string) {
 	tries := 0
 	for tries < maxQueries {
 		start := time.Now()
@@ -52,9 +52,8 @@ func setTime(t string) {
 func SetTimeFromServer() {
 	localT, serverT := serverTimeUTC()
 	setTime(serverT)
-	/* server time is handled in string form so it can be passed directly to
-	   the date command. Now, convert to time.Time so we can log the delta.
-	*/
+	// server time is handled in string form so it can be passed directly to
+	// the date command. Now, convert to time.Time so we can log the delta.
 	parsed, err := time.Parse("2006-01-02 15:04:05", serverT)
 	if err != nil {
 		log.Fatalf("error parsing server time: %s", err)

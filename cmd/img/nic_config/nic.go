@@ -20,11 +20,11 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
-/* we need to set IRQs ourselves. to do this, we need to get
- * irq #'s to irqbalance - and that means we must run first.
- * get irq's to irqbalance by writing a systemd override file
- * to /run, setting the IRQBALANCE_ARGS env var on every boot
- */
+// we need to set IRQs ourselves. to do this, we need to get
+// irq #'s to irqbalance - and that means we must run first.
+// get irq's to irqbalance by writing a systemd override file
+// to /run, setting the IRQBALANCE_ARGS env var on every boot
+//
 
 // IMPORTANT - read https://www.kernel.org/doc/Documentation/networking/scaling.txt
 
@@ -45,10 +45,9 @@ func main() {
 		fmt.Fprintf(os.Stderr, "already ran, exiting without writing file or disabling any ports\n")
 		os.Exit(0)
 	}
-	/* Diag ports must be disabled on some platforms. We do this by
-	   disabling the n-th port, so running multiple times will
-	   disable multiple ports. Thus the above check.
-	*/
+	// Diag ports must be disabled on some platforms. We do this by
+	// disabling the n-th port, so running multiple times will
+	// disable multiple ports. Thus the above check.
 	prefixes := platform.MACPrefixes()
 	for _, diag := range diags {
 		success := nic.DisableByIndex(diag, prefixes)
@@ -61,12 +60,12 @@ func main() {
 		panic("no nics!")
 	}
 	fmt.Printf("NICs found: %v\n", nics)
-	/* While aliases are written to systemd-networkd files, systemd-udevd
-	   is actually what reads those aliases from the files and sets them.
-	   It doesn't seem to be possible to update the files and then cause
-	   interface aliases to be sync'd to the files. So, load the aliases
-	   and, if a nic is missing an alias, set it.
-	*/
+
+	// While aliases are written to systemd-networkd files, systemd-udevd
+	// is actually what reads those aliases from the files and sets them.
+	// It doesn't seem to be possible to update the files and then cause
+	// interface aliases to be sync'd to the files. So, load the aliases
+	// and, if a nic is missing an alias, set it.
 	aliases := platform.DefaultPortNames()
 	allowedPrefixes := platform.MACPrefixes()
 	for i, n := range nics.FilterMACs(allowedPrefixes).Sort() {

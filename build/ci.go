@@ -21,21 +21,6 @@ import (
 
 //targets for CI to run
 
-/* extracting human-readable 'go test' output from ci console
--------------
-* open the page for the build in question
-* click "View as plain text" on the left, just under "Console Output"
-* right click, save as...
-* open the saved file in an editor
-* trim non-json from beginning and end, save with name like console-trimmed.json
-* now run:
-pkgs=$(cat console-trimmed.json|jq -r 'select(.Action=="fail")|.Package'|sort -u)
-for p in $pkgs; do
-    cat console-trimmed.json |\
-	jq -r "select(.Package==\"$p\")|select(.Output)|.Output"
-done | grep -v ^$ > test-out.txt
-*/
-
 type CI mg.Namespace
 
 func (CI) UnitTestStage(ctx context.Context) {

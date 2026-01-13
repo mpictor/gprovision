@@ -14,7 +14,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//func (tlog *tstLog) UseMappedCmdHijacker(m ArgMap) CmdHijacker
+// func (tlog *tstLog) UseMappedCmdHijacker(m ArgMap) CmdHijacker
 func TestUseMappedCmdHijacker(t *testing.T) {
 	m := make(CmdMap)
 	tlog := NewTestLog(t, true, false)

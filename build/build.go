@@ -7,14 +7,12 @@
 
 //go:build mage
 
-/*
- build file for mage build system
- list tgts with
-go run magerunner.go -l
-
- build tgt with
-go run magerunner.go tgt
-*/
+// build file for mage build system
+// list targets with
+//     go run magerunner.go -l
+//
+// build target with
+//     go run magerunner.go tgt
 
 package main
 
@@ -106,7 +104,7 @@ func (Bins) buildInit(ctx context.Context, addtags []string, tgt string) error {
 	if err != nil {
 		return err
 	}
-	//check if anything is newer than tgt (if it exists)
+	// check if anything is newer than tgt (if it exists)
 	rebuild, err := target.Dir(tgt, deps...)
 	if err != nil {
 		return err

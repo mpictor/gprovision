@@ -20,7 +20,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/net/xfer"
 )
 
-//used to fill in html template
+// used to fill in html template
 type qavData struct {
 	Pass              bool
 	SN                string

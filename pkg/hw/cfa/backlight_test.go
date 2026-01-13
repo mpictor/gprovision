@@ -15,7 +15,7 @@ import (
 	tlog "github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (l *Lcd) backlightSinStep(curStep *uint, nrSteps uint)
+// func (l *Lcd) backlightSinStep(curStep *uint, nrSteps uint)
 func TestBacklightSinStep631(t *testing.T) {
 	wg := new(sync.WaitGroup)
 	tl := tlog.NewTestLog(t, true, false)
@@ -55,7 +55,7 @@ func TestBacklightSinStep631(t *testing.T) {
 	tl.LinesMustMatchCleaned(tlog.FilterLogPfx("Write([]byte{0xe,"), cleaner, expect631)
 }
 
-//func (l *Lcd) backlightSinStep(curStep *uint, nrSteps uint)
+// func (l *Lcd) backlightSinStep(curStep *uint, nrSteps uint)
 func TestBacklightSinStep635(t *testing.T) {
 	wg := new(sync.WaitGroup)
 	tl := tlog.NewTestLog(t, true, false)

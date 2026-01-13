@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (g *Gpt) assembleArgs() (args []string)
+// func (g *Gpt) assembleArgs() (args []string)
 func TestGPTAssembleArgs(t *testing.T) {
 	tlog := testlog.NewTestLog(t, true, false)
 	p := NewGpt("/dev/null")

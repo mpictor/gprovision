@@ -16,7 +16,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func fit(msg string, rect Coord) []string
+// func fit(msg string, rect Coord) []string
 func TestFit(t *testing.T) {
 	short := LcdTxt("short message")
 	long := LcdTxt("This is a very long message that seemingly never ever ends")
@@ -85,7 +85,7 @@ func TestFit(t *testing.T) {
 	}
 }
 
-//func wrapPos(msg string, width byte) byte
+// func wrapPos(msg string, width byte) byte
 func TestWrapPos(t *testing.T) {
 	twenty := LcdTxt("01234567890123456789")
 	gap := LcdTxt("012345678 0123456789")
@@ -175,7 +175,7 @@ func TestTickDistrib(t *testing.T) {
 	}
 }
 
-//func visible(txt LcdTxt, start, width byte, ellipsis bool) LcdTxt
+// func visible(txt LcdTxt, start, width byte, ellipsis bool) LcdTxt
 func TestVisible(t *testing.T) {
 	testdata := []struct {
 		name         string

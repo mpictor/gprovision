@@ -25,7 +25,7 @@ import (
 	"github.com/u-root/u-root/pkg/uroot"
 )
 
-//Create qcow-formatted file at path, with given size in bytes.
+// Create qcow-formatted file at path, with given size in bytes.
 func CreateQcow(path string, siz uint64) error {
 	qimg := os.Getenv("QEMU_IMG")
 	if qimg == "" {
@@ -46,7 +46,7 @@ func DisableLDD(u *uroot.Opts) error {
 	return nil
 }
 
-//wait for vm to produce lines matching given lines of plaintext
+// wait for vm to produce lines matching given lines of plaintext
 func RequireTxt(t gtst.TB, vm *qemu.VM, lines ...string) {
 	t.Helper()
 	for _, l := range lines {
@@ -61,7 +61,7 @@ func RequireTxt(t gtst.TB, vm *qemu.VM, lines ...string) {
 	}
 }
 
-//wait for vm to produce lines matching given regular expressions
+// wait for vm to produce lines matching given regular expressions
 func RequireRE(t gtst.TB, vm *qemu.VM, reLines ...string) {
 	t.Helper()
 	for _, l := range reLines {
@@ -79,8 +79,8 @@ func RequireRE(t gtst.TB, vm *qemu.VM, reLines ...string) {
 	}
 }
 
-//returns content of a file written by an integ test via 9p
-//typically used in call(s) to RequireTxt9p()
+// returns content of a file written by an integ test via 9p
+// typically used in call(s) to RequireTxt9p()
 func Find9p(t gtst.TB, tmpdir, glob string) []byte {
 	matches, err := fp.Glob(fp.Join(tmpdir, "log", glob))
 	if err != nil {
@@ -96,7 +96,7 @@ func Find9p(t gtst.TB, tmpdir, glob string) []byte {
 	return data
 }
 
-//look for items in a []byte, typically file content found by Find9p
+// look for items in a []byte, typically file content found by Find9p
 func RequireTxt9p(t gtst.TB, p9log []byte, items ...string) {
 	for _, item := range items {
 		idx := bytes.Index(p9log, []byte(item))
@@ -127,8 +127,8 @@ func Rawpath(tmpdir string, uefi bool) string {
 	return fp.Join(tmpdir, "logserver", "raw", SerNum(uefi)+".raw")
 }
 
-//Look for indications of extra or wrong formatting verbs or args to printf
-//and friends
+// Look for indications of extra or wrong formatting verbs or args to printf
+// and friends
 //
 // %!d(string=there)
 // %!(EXTRA <nil>)

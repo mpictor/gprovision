@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//type for function to validate recovery device. return nil for match, or error
+// type for function to validate recovery device. return nil for match, or error
 type validRDfn func(string) error
 type ValidateRDEnum int //marshalling function in json.go
 
@@ -26,7 +26,7 @@ const (
 	Validate9P
 )
 
-//type for function to locate recovery device; utilizes validRDfn
+// type for function to locate recovery device; utilizes validRDfn
 type locateRDfn func(rm recoveryMediaS) (fsIdent, fsType, fsOpts string)
 type LocateRDEnum int //marshalling function in json.go
 
@@ -35,7 +35,7 @@ const (
 	Locate9PVirt
 )
 
-//not sure it really makes sense to have this separate, but for now we will, rather than rewriting again...
+// not sure it really makes sense to have this separate, but for now we will, rather than rewriting again...
 type recoveryMediaS struct {
 	LocateRDMethod   LocateRDEnum   `json:",omitempty"`
 	ValidateRDMethod ValidateRDEnum `json:",omitempty"`
@@ -45,7 +45,7 @@ type recoveryMediaS struct {
 	SSD              bool           `json:",omitempty"` //if true, adds discard option
 }
 
-//contents of this struct assume the interfaces have been sorted by MAC and indexes start at 0
+// contents of this struct assume the interfaces have been sorted by MAC and indexes start at 0
 type NICInfo struct {
 	// SharedDiagPorts contains a list of _shared_ diag port indexes. This will
 	// be empty on platforms where diag ports are isolated from the OS. These
@@ -96,18 +96,16 @@ type Variant_ struct {
 	DiskTTol              uint64         `json:",omitempty"` //allowable tolerance between any one disk in group and target size
 }
 
-//Variant describes a particular model of appliance.
+// Variant describes a particular model of appliance.
 type Variant struct {
-	/*
-		embedding 'Variant_' with an unexported name hides internal variables,
-		which can't otherwise be hidden or json marshal/unmarshal won't see them
-		https://golang.org/doc/effective_go.html#embedding
-	*/
+	// embedding 'Variant_' with an unexported name hides internal variables,
+	// which can't otherwise be hidden or json marshal/unmarshal won't see them
+	// https://golang.org/doc/effective_go.html#embedding
 	i                      Variant_
 	mfg, prod, sku, serial string
 }
 
-//virtualization type
+// virtualization type
 type Virtualization int
 
 const (
@@ -119,7 +117,7 @@ const (
 	VMWare
 )
 
-//what type of lcd
+// what type of lcd
 type LcdType int
 
 const (
@@ -129,17 +127,16 @@ const (
 	//Caf2k
 )
 
-//general consts
+// general consts
 const (
-	/* standard mount options used on recovery media
-	 *
-	 * nofail option - system boots even if dev isn't present,
-	 * mounts it when it appears. otherwise, there is a long
-	 * delay before it goes to a failsafe, single-user mode
-	 * (presumably without our services running)
-	 *
-	 * special codes: $u and $g are replaced by admin's uid and gid, respectively.
-	 */
+	// standard mount options used on recovery media
+	//
+	// nofail option - system boots even if dev isn't present,
+	// mounts it when it appears. otherwise, there is a long
+	// delay before it goes to a failsafe, single-user mode
+	// (presumably without our services running)
+	//
+	// special codes: $u and $g are replaced by admin's uid and gid, respectively.
 	StandardMountOpts = "auto,noexec,relatime,nofail,uid=$u,gid=$g"
 )
 

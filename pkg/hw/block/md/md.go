@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package md does various things with mdadm.
+// Package md does various things with mdadm.
 package md
 
 import (

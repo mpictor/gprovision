@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package fileutil contains various utility functions useful for dealing with
-//files and dirs.
+// Package fileutil contains various utility functions useful for dealing with
+// files and dirs.
 package fileutil
 
 import (
@@ -24,7 +24,7 @@ const (
 	oneM = 1024.0 * 1024.0
 )
 
-//Computes size of dir and contents.
+// Computes size of dir and contents.
 func DirSizeM(dir string) string {
 	var size int64
 	err := fp.Walk(dir, func(_ string, info os.FileInfo, err error) error {
@@ -43,12 +43,12 @@ func DirSizeM(dir string) string {
 	return ToMegs(size)
 }
 
-//Converts a size in bytes to megabytes; returns string with suffix 'MB'.
+// Converts a size in bytes to megabytes; returns string with suffix 'MB'.
 func ToMegs(size int64) string {
 	return fmt.Sprintf("%.2fMB", float64(size)/oneM)
 }
 
-//Returns true if given path is a dir and is empty
+// Returns true if given path is a dir and is empty
 func IsEmptyDir(dir string) bool {
 	entries, err := ioutil.ReadDir(dir)
 	return err == nil && len(entries) == 0

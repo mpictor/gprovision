@@ -5,5 +5,5 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Sub-packages of hw deal with specific hardware or other low-level interfaces.
+// Sub-packages of hw deal with specific hardware or other low-level interfaces.
 package hw

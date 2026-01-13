@@ -11,12 +11,12 @@ import (
 	"time"
 )
 
-//Format: yyyymmdd_hhmm
+// Format: yyyymmdd_hhmm
 const DefaultTimestampLayout = "20060102_1504"
 
 var TimestampLayout = DefaultTimestampLayout
 
-//Returns a string containing a timestamp like TimestampLayout.
+// Returns a string containing a timestamp like TimestampLayout.
 func Timestamp() string {
 	t := time.Now()
 	return t.Format(TimestampLayout)

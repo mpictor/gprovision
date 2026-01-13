@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package networkd can be used to write config files for systemd-networkd. Used
-//in conjunction with github.com/mpictor/gprovision/pkg/netexport.
+// Package networkd can be used to write config files for systemd-networkd. Used
+// in conjunction with github.com/mpictor/gprovision/pkg/netexport.
 package networkd
 
 import (
@@ -78,7 +78,7 @@ type configFile struct {
 
 type ifConfig []configFile
 
-//return up to 3 configFile's
+// return up to 3 configFile's
 func toNetD(nic *nx.WinNic, vlans []uint64) (cfgs ifConfig) {
 	link := linkFile(nic)
 	if link.name != "" {
@@ -97,7 +97,7 @@ func toNetD(nic *nx.WinNic, vlans []uint64) (cfgs ifConfig) {
 	return
 }
 
-//Generate safe name for the config file, using MAC and (if present) the VLAN.
+// Generate safe name for the config file, using MAC and (if present) the VLAN.
 func (c *configFile) Name(nic *nx.WinNic, ext string) {
 	base := strings.ToLower(strings.Replace(nic.Mac.String(), ":", "", -1))
 	if nic.IsVLAN {
@@ -106,10 +106,10 @@ func (c *configFile) Name(nic *nx.WinNic, ext string) {
 	c.name = base + "." + ext
 }
 
-/* templates
-*
-* dashes ( `{{-` or `-}}` ) affect whitespace and should be changed with care
- */
+// templates
+//
+// dashes ( `{{-` or `-}}` ) affect whitespace and should be changed with care
+//
 
 var linkTmpl, netTmpl, netdevTmpl *template.Template
 
@@ -149,7 +149,7 @@ func linkFile(nic *nx.WinNic) (link configFile) {
 	return
 }
 
-//for the network file and template, the WinNic struct is embedded in another struct containing additional vlan info
+// for the network file and template, the WinNic struct is embedded in another struct containing additional vlan info
 type NetworkFileStruct struct {
 	nx.WinNic
 	Vlans []uint64

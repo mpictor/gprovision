@@ -103,7 +103,7 @@ func (b *BusDevice) SetDescription() {
 	}
 }
 
-//unfortunately, seems this won't work for the mfg app - because we lack the device database??
+// unfortunately, seems this won't work for the mfg app - because we lack the device database??
 func (b *BusDevice) ReadUdevStrings() (class, subclass, vendor, model string, err error) {
 	dtype := "pci"
 	if strings.Contains(b.dev, "usb") {
@@ -166,7 +166,7 @@ func init() {
 	PCIClassCodes[0xff00] = "Unassigned class"
 }
 
-//set human-readable description for common pci device classes
+// set human-readable description for common pci device classes
 func (b *BusDevice) ClassCode() {
 	desc, ok := PCIClassCodes[b.Class]
 	if ok {
@@ -195,7 +195,7 @@ func (required UsbDevices) Compare(detected UsbDevices) (errors int) {
 	return
 }
 
-//return paths to devices
+// return paths to devices
 func listDevs(t string) (devs []string, err error) {
 	entries, err := ioutil.ReadDir(t)
 	if err != nil {
@@ -210,7 +210,7 @@ func listDevs(t string) (devs []string, err error) {
 
 var errSkipThisDevice = fmt.Errorf("skip this device")
 
-//read device data for a given device, returning vendor/device/class
+// read device data for a given device, returning vendor/device/class
 func readDev(path string) (vendor, device, class Hexadecimal, err error) {
 	if strings.HasPrefix(path, "/sys/bus/usb/") {
 		//USB
@@ -240,7 +240,7 @@ func readDev(path string) (vendor, device, class Hexadecimal, err error) {
 	return
 }
 
-//atoi on a file. input is always treated as hex, with or without 0x prefix
+// atoi on a file. input is always treated as hex, with or without 0x prefix
 func fatoi(file string) (h Hexadecimal, err error) {
 	f, err := ioutil.ReadFile(file)
 	if err == nil {
@@ -256,7 +256,7 @@ func fatoi(file string) (h Hexadecimal, err error) {
 	return
 }
 
-//reads device data from given dir in /sys, populating a list of bus devices
+// reads device data from given dir in /sys, populating a list of bus devices
 func bdpopulate(l *BusDeviceList, source string) (err error) {
 	devs, err := listDevs(source)
 	if err != nil {
@@ -305,9 +305,9 @@ func bdpopulate(l *BusDeviceList, source string) (err error) {
 	return
 }
 
-//compares list of required devices with detected devices
-//reports error if required device isn't among those detected
-//detected list will usually be much longer than the required list
+// compares list of required devices with detected devices
+// reports error if required device isn't among those detected
+// detected list will usually be much longer than the required list
 func bdcompare(required BusDeviceList, detected BusDeviceList) (errors int) {
 	for _, r := range required {
 		found := false

@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package disk handles logical disks, filesystems, and boot entries for the
-//purposes of factory restore.
+// Package disk handles logical disks, filesystems, and boot entries for the
+// purposes of factory restore.
 package disk
 
 import (
@@ -36,7 +36,7 @@ func (d Disk) SizeBytes() int64 {
 	return d.size
 }
 
-//find the raw disk(s) we'll partition and install to
+// find the raw disk(s) we'll partition and install to
 func FindTargets(platform *appliance.Variant) (disks []*Disk) {
 	//stop any raid arrays
 	stopArr := exec.Command("mdadm", "--stop", "--scan")
@@ -89,10 +89,10 @@ func (dl dlist) String() (s string) {
 	return
 }
 
-//given a list of disks, return the ones which most closely match the target size
-//count - must return this many disks or nil
-//setTolPct - size tolerance amongst set of disks in 'out'
-//tgtTolPct - allowed deviation from tgtSize
+// given a list of disks, return the ones which most closely match the target size
+// count - must return this many disks or nil
+// setTolPct - size tolerance amongst set of disks in 'out'
+// tgtTolPct - allowed deviation from tgtSize
 func (in dlist) filter(tgtSize uint64, count int, setTolPct, tgtTolPct uint64) (out dlist) {
 	if count > len(in) {
 		return
@@ -108,9 +108,8 @@ func (in dlist) filter(tgtSize uint64, count int, setTolPct, tgtTolPct uint64) (
 		closest := workingList.closest(tgtSize)
 		out = append(out, workingList[closest])
 		workingList = append(workingList[:closest], workingList[closest+1:]...)
-		/* If size difference between elements is too great, discard element 0.
-		   Because the list is ordered, there can be no better match for that element.
-		*/
+		// If size difference between elements is too great, discard element 0.
+		// Because the list is ordered, there can be no better match for that element.
 		if len(out) > 1 && !block.SizeToleranceMatch(uint64(out[0].size), uint64(out[1].size), setTolPct) {
 			out = out[1:]
 		}
@@ -118,10 +117,9 @@ func (in dlist) filter(tgtSize uint64, count int, setTolPct, tgtTolPct uint64) (
 	if len(out) > count {
 		out = out[:count]
 	}
-	/* 'out' is the best possible set given the constraints.
-	   If any element exceeds tgtTol, there is no viable set.
-	   Check tolerance with last (farthest) element.
-	*/
+	// 'out' is the best possible set given the constraints.
+	// If any element exceeds tgtTol, there is no viable set.
+	// Check tolerance with last (farthest) element.
 	if !block.SizeToleranceMatch(uint64(out[len(out)-1].size), tgtSize, tgtTolPct) {
 		log.Logf("scoreDisks: element size %d exceeds target tolerance (%d ± %d%%) - not enough disks to proceed", out[len(out)-1].size, tgtSize, tgtTolPct)
 		out = nil
@@ -147,7 +145,7 @@ func (in dlist) filter(tgtSize uint64, count int, setTolPct, tgtTolPct uint64) (
 	return
 }
 
-//returns index of element closest to tgtSize
+// returns index of element closest to tgtSize
 func (dl dlist) closest(tgtSize uint64) (idx int) {
 	iabs := func(v int64) int64 {
 		if v > 0 {
@@ -208,8 +206,8 @@ func zero(dev string, megs uint, whence int) {
 	}
 }
 
-//partition a disk. small boot partition, remainder for raid
-//also zero beginning and end of disk so raid controller will ignore it if the controller somehow gets re-enabled
+// partition a disk. small boot partition, remainder for raid
+// also zero beginning and end of disk so raid controller will ignore it if the controller somehow gets re-enabled
 func (d *Disk) Partition(platform *appliance.Variant) error {
 	d.Zero(250, io.SeekStart)
 	//SNIA DDF and iMSM require metadata be at end of device, so this will wipe it; GPT uses beginning and end so it gets wiped as well.
@@ -234,7 +232,7 @@ func (d *Disk) Partition(platform *appliance.Variant) error {
 	return pt.Commit()
 }
 
-//partition recovery device
+// partition recovery device
 func PartitionRecovery(d *Disk) error {
 	pt := partitioning.NewPTable("/dev/" + d.identifier)
 	if uefi.BootedUEFI() {

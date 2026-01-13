@@ -18,7 +18,7 @@ const (
 	maxTimeouts = 2
 )
 
-//Like menu, but confirmation required. Re-displays menu if choice is not confirmed.
+// Like menu, but confirmation required. Re-displays menu if choice is not confirmed.
 func (l *Lcd) MenuWithConfirm(desc string, items []LcdTxt, menuTime, confirmTime time.Duration, keyPolling bool) (Choice, Answer) {
 	if l == nil {
 		time.Sleep(menuTime + confirmTime)
@@ -50,8 +50,9 @@ const (
 	ANSWER_YES
 )
 
-//From %s, you chose %s. Are you certain?
-//   >No< Yes
+// From %s, you chose %s. Are you certain?
+//
+//	>No< Yes
 func (l *Lcd) ConfirmChoice(desc string, items []LcdTxt, choice Choice, timeout time.Duration) Answer {
 	if l == nil {
 		time.Sleep(timeout)
@@ -181,7 +182,7 @@ func (q *Question) ask(done chan struct{}, update *Ticker) Choice {
 	return q.choice
 }
 
-//Handle up/down/enter/exit
+// Handle up/down/enter/exit
 func (q *Question) handleEvent(k KeyActivity) {
 	max := len(q.buttons.btns) - 1
 	switch k {
@@ -229,7 +230,7 @@ func (q *Question) handleEvent(k KeyActivity) {
 	}
 }
 
-//an item to be displayed, only one of which can be selected at a time
+// an item to be displayed, only one of which can be selected at a time
 type radioButton struct {
 	txt LcdTxt
 }
@@ -245,7 +246,7 @@ func (rb *radioButton) render(selected bool, st *styleSet) LcdTxt {
 	return l
 }
 
-//set of radio buttons. must fit on one row of display.
+// set of radio buttons. must fit on one row of display.
 type radioButtonSet struct {
 	btns      []*radioButton
 	styles    *styleSet
@@ -268,7 +269,7 @@ func (q *Question) createButtonSet(opts []LcdTxt) error {
 	return nil
 }
 
-//calculates width, with one space on each end and two between items
+// calculates width, with one space on each end and two between items
 func rbsMinWidth(opts []LcdTxt) byte {
 	var w byte
 	for _, opt := range opts {

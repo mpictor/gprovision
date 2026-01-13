@@ -27,7 +27,7 @@ import (
 // cause bindata.go to be generated from files in the data dir
 //go:generate ../../../bin/go-bindata -prefix=../../../proprietary/data/disk -pkg=$GOPACKAGE ../../../proprietary/data/disk
 
-//modified version of io.Copy(). slower, but allows progress reporting
+// modified version of io.Copy(). slower, but allows progress reporting
 func IOCopy(dst io.Writer, src io.Reader, progressFunc func(int64)) (written int64, err error) {
 	buf := make([]byte, 32*1024)
 	for {
@@ -58,7 +58,7 @@ func IOCopy(dst io.Writer, src io.Reader, progressFunc func(int64)) (written int
 	return written, err
 }
 
-//run mdadm to create and start array
+// run mdadm to create and start array
 func CreateArray(disks []*Disk, host string, platform *appliance.Variant) (md *Filesystem) {
 	md = new(Filesystem)
 	var parts []string
@@ -88,7 +88,7 @@ func CreateArray(disks []*Disk, host string, platform *appliance.Variant) (md *F
 	return
 }
 
-//only for non-raid platforms
+// only for non-raid platforms
 func (d *Disk) CreateNonArray(platform *appliance.Variant) (fs *Filesystem) {
 	fs = new(Filesystem)
 	fs.blkdev = fmt.Sprintf("/dev/%s%d", d.identifier, d.target)
@@ -133,7 +133,7 @@ func useLatestKernel(target, recov *Filesystem) {
 
 }
 
-//returns path of kernel with highest build number
+// returns path of kernel with highest build number
 func compareKernelVersions(kernel1, kernel2 string) (newest string) {
 	ver1, success := getKBuild(kernel1)
 	if !success {
@@ -153,7 +153,7 @@ func compareKernelVersions(kernel1, kernel2 string) (newest string) {
 	return kernel2
 }
 
-//get kernel build number for kernel at 'kpath'.
+// get kernel build number for kernel at 'kpath'.
 func getKBuild(kpath string) (ver uint64, success bool) {
 	//does file exist?
 	_, err := os.Stat(kpath)
@@ -171,7 +171,7 @@ func getKBuild(kpath string) (ver uint64, success bool) {
 	return kBuildNum(string(out), kpath)
 }
 
-//extract build number from 'file' output. split out for testability.
+// extract build number from 'file' output. split out for testability.
 func kBuildNum(out, kpath string) (ver uint64, success bool) {
 	ostr := strings.TrimSpace(strings.TrimPrefix(out, kpath+":"))
 
@@ -204,11 +204,9 @@ func kBuildNum(out, kpath string) (ver uint64, success bool) {
 	return
 }
 
-/*
-Assume recovery volume will have label imaging.RecVolName(), and read a file 'platform'
-from the root dir. Return its contents, which will be the platform code name.
-Use when normal platform ident fails. Volume is not left mounted.
-*/
+// Assume recovery volume will have label imaging.RecVolName(), and read a file 'platform'
+// from the root dir. Return its contents, which will be the platform code name.
+// Use when normal platform ident fails. Volume is not left mounted.
 func PlatIdentFromRecovery() (string, error) {
 	log.Logf("Failed to identify platform, trying file on recovery volume")
 	path := "/dev/disk/by-label/" + strs.RecVolName()

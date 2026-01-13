@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package net implements some network-related functions for recovery.
-//These include enabling interfaces and acquiring addresses via DHCP,
-//and downloading files.
+// Package net implements some network-related functions for recovery.
+// These include enabling interfaces and acquiring addresses via DHCP,
+// and downloading files.
 package net
 
 import (
@@ -20,7 +20,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//Enable any network interface, even DIAG if not hidden
+// Enable any network interface, even DIAG if not hidden
 func EnableNetworkingAny() bool {
 	ifaces := nic.List()
 	log.Logf("trying to enable networking on any of %v", ifaces)
@@ -69,7 +69,7 @@ ifloop:
 	return WaitForIpv4(time.Minute*5, ifaces)
 }
 
-//set state up, get addr via dhcp
+// set state up, get addr via dhcp
 func EnableNic(nic string) (success bool) {
 	up := true
 	err := ioctl.SetNicState(nic, up)

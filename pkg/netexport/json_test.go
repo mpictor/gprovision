@@ -46,7 +46,7 @@ func (i IntelMap) toJson() (encoded []byte, err error) {
 
 }
 
-//count number of interfaces
+// count number of interfaces
 func ifCount(t *testing.T) int {
 	out, err := exec.Command("ip", "-brief", "link").CombinedOutput()
 	if err != nil {

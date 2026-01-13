@@ -18,7 +18,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//display a menu. if lcd is present, uses that; otherwise vga.
+// display a menu. if lcd is present, uses that; otherwise vga.
 func Menu(choices []string) []string {
 	var choice cfa.Choice
 	if cfa.DefaultLcd == nil {
@@ -41,8 +41,8 @@ func Menu(choices []string) []string {
 	return nil
 }
 
-//list images on screen, ask user to make a choice
-//returns string array with length 1
+// list images on screen, ask user to make a choice
+// returns string array with length 1
 func VgaMenu(choices []string) []string {
 	log.Msg("displaying menu on vga")
 	fmt.Printf("\n\n=======================================\n")

@@ -12,7 +12,7 @@ import (
 	"testing"
 )
 
-//func listDevs(t string) (devs []string)
+// func listDevs(t string) (devs []string)
 func TestListPCIDevs(t *testing.T) {
 	devs, err := listDevs(pcidevs)
 	if err != nil {
@@ -23,7 +23,7 @@ func TestListPCIDevs(t *testing.T) {
 	}
 }
 
-//func readDev(path string) (vendor, device, class uint64, err error)
+// func readDev(path string) (vendor, device, class uint64, err error)
 func TestReadPCIDev(t *testing.T) {
 	devs, err := listDevs(pcidevs)
 	if err != nil {
@@ -36,7 +36,7 @@ func TestReadPCIDev(t *testing.T) {
 	t.Logf("v=0x%x, d=0x%x, c=0x%x", v, d, c)
 }
 
-//func listDevs(t string) (devs []string)
+// func listDevs(t string) (devs []string)
 func TestListUSBDevs(t *testing.T) {
 	_, err := os.Stat(usbdevs)
 	if err != nil && os.IsNotExist(err) {
@@ -53,7 +53,7 @@ func TestListUSBDevs(t *testing.T) {
 	}
 }
 
-//func readDev(path string) (vendor, device, class uint64, err error)
+// func readDev(path string) (vendor, device, class uint64, err error)
 func TestReadUSBDev(t *testing.T) {
 	_, err := os.Stat(usbdevs)
 	if err != nil && os.IsNotExist(err) {

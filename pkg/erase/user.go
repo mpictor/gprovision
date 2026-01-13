@@ -31,8 +31,8 @@ const (
 	unrecoverableErrVal = "UNRECOVERABLE_ERROR"
 )
 
-//call after all disks have been successfully erased.
-//remove/modify files as necessary to prevent reboot into erase mode
+// call after all disks have been successfully erased.
+// remove/modify files as necessary to prevent reboot into erase mode
 func success(recov common.FS) {
 	if recov.IsMounted() {
 		f := fp.Join(recov.Path(), bootFile)
@@ -48,8 +48,8 @@ func success(recov common.FS) {
 	power.RebootSuccess()
 }
 
-//use LCD to communicate that Data Erase failed (i.e. a drive did not come up)
-//if write is true, patch the boot file to immediately jump here
+// use LCD to communicate that Data Erase failed (i.e. a drive did not come up)
+// if write is true, patch the boot file to immediately jump here
 func unrecoverableFailure(recov common.Pather, write bool) {
 	if write && recov != nil {
 		f := fp.Join(recov.Path(), bootFile)
@@ -60,7 +60,7 @@ func unrecoverableFailure(recov common.Pather, write bool) {
 	log.Fatalf("unrecoverable failure")
 }
 
-//modify bootFile to change kernel boot args
+// modify bootFile to change kernel boot args
 func writeErrToBootFile(f string) {
 	for {
 		buf, err := ioutil.ReadFile(f)
@@ -89,13 +89,13 @@ func writeErrToBootFile(f string) {
 	}
 }
 
-/* put message on screen periodically
-use:
-	eraseDone = make(chan struct{})
-	defer close(eraseDone)
-	go decompressStatus(eraseDone, est, spinner)
-
-*/
+// put message on screen periodically
+//
+// use:
+//
+//	eraseDone = make(chan struct{})
+//	defer close(eraseDone)
+//	go decompressStatus(eraseDone, est, spinner)
 func tmax(a, b time.Duration) time.Duration {
 	if a < b {
 		return b
@@ -103,7 +103,7 @@ func tmax(a, b time.Duration) time.Duration {
 	return a
 }
 
-//return s, truncated after first occurrence of r or at len==max, whichever is first
+// return s, truncated after first occurrence of r or at len==max, whichever is first
 func truncate(s string, r rune, max int) string {
 	i := strings.IndexRune(s, r) + 1
 	if i == 0 {
@@ -152,7 +152,7 @@ func eraseStatus(times chan time.Duration, est time.Duration, s *cfa.Spinner) {
 	}
 }
 
-//find 'seq' in 'buf', return slice containing seq and delimited by newlines
+// find 'seq' in 'buf', return slice containing seq and delimited by newlines
 func getLine(buf []byte, seq string) (b []byte) {
 	idx := bytes.Index(buf, []byte(seq))
 	if idx == -1 {
@@ -171,11 +171,10 @@ func getLine(buf []byte, seq string) (b []byte) {
 	return buf[begin:end]
 }
 
-/* get secure erase time estimate - normal or enhanced
- * if time in question is missing or doesn't start with
- * "XXXmin", falls back to 200 min (approximately what
- * 1TB Seagate ST91000640NS reports)
- */
+// get secure erase time estimate - normal or enhanced
+// if time in question is missing or doesn't start with
+// "XXXmin", falls back to 200 min (approximately what
+// 1TB Seagate ST91000640NS reports)
 func getSEtime(info []byte, enhanced bool) (t time.Duration) {
 	t = 200 * time.Minute
 	line := string(getLine(info, "SECURITY ERASE UNIT"))

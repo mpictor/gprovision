@@ -28,7 +28,7 @@ import (
 	netd "github.com/mpictor/gprovision/pkg/systemd/networkd"
 )
 
-//in any binary with main.buildId string, it is set at compile time to $BUILD_INFO
+// in any binary with main.buildId string, it is set at compile time to $BUILD_INFO
 var buildId string
 
 var recoveryEnv = strs.EnvPrefix() + "RECOVERY"

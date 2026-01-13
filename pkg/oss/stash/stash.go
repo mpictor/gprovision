@@ -34,10 +34,10 @@ type ostash struct {
 	cr common.Credentials
 }
 
-//set serial number, recovery volume, etc
+// set serial number, recovery volume, etc
 func (os *ostash) SetUnit(u common.Unit) { os.u = u }
 
-//called immediately after mfg data is parsed
+// called immediately after mfg data is parsed
 func (os *ostash) SetData(sd common.StashData) { os.sd = sd }
 
 // Determine unit credentials, store. Does not set IPMI/BIOS pw - that would
@@ -70,7 +70,7 @@ func (s *ostash) HandleCredentials(cfgSteps steps.ConfigSteps) {
 	cfgSteps.RunApplicable(steps.RunAfterPWSet)
 }
 
-//Stores other secrets.
+// Stores other secrets.
 func (s *ostash) Mfg() {
 	for _, sf := range s.sd.StashFileList() {
 		sf.UseIntermediateDir("/tmp")
@@ -124,7 +124,7 @@ func (s *ostash) loadPWs() error {
 	return nil
 }
 
-//Returns OS Password.
+// Returns OS Password.
 func (s *ostash) ReadOSPass() (string, error) {
 	if len(s.cr.OS) == 0 {
 		err := s.loadPWs()
@@ -135,7 +135,7 @@ func (s *ostash) ReadOSPass() (string, error) {
 	return s.cr.OS, nil
 }
 
-//Returns BIOS Password.
+// Returns BIOS Password.
 func (s *ostash) ReadBiosPass() (string, error) {
 	if len(s.cr.OS) == 0 {
 		err := s.loadPWs()
@@ -146,7 +146,7 @@ func (s *ostash) ReadBiosPass() (string, error) {
 	return s.cr.BIOS, nil
 }
 
-//Returns IPMI Password.
+// Returns IPMI Password.
 func (s *ostash) ReadIPMIPass() (string, error) {
 	if len(s.cr.OS) == 0 {
 		err := s.loadPWs()

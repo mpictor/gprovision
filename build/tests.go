@@ -26,20 +26,19 @@ import (
 	gtst "github.com/mpictor/gprovision/testing"
 )
 
-/* Env vars
-RUN - passed to go test -run. Only tests that match the given regex will run.
-    Overridden in some cases.
-COUNT - passed to go test -count. Use 1 to bypass test result caching, and
-    higher values to repeat tests.
-RUN and COUNT are used in testArgs() function.
-
-UROOT_QEMU - if set, overrides default. Useful to run tests using kvm for speed,
-    for example. Used in qemuEnv().
-*/
+// Env vars
+// RUN - passed to go test -run. Only tests that match the given regex will run.
+//     Overridden in some cases.
+// COUNT - passed to go test -count. Use 1 to bypass test result caching, and
+//     higher values to repeat tests.
+// RUN and COUNT are used in testArgs() function.
+//
+// UROOT_QEMU - if set, overrides default. Useful to run tests using kvm for speed,
+//     for example. Used in qemuEnv().
 
 type Tests mg.Namespace
 
-//runs unit tests
+// runs unit tests
 func (Tests) Unit(ctx context.Context) error {
 	mg.CtxDeps(ctx, Bins.Generate, libudev)
 
@@ -117,7 +116,7 @@ func lifecycleTest(ctx context.Context, uefi bool) error {
 	return gotest(ctx, env, args...)
 }
 
-//args for 'go test', for integ tests
+// args for 'go test', for integ tests
 func integArgs(ctx context.Context, onlyRun string) ([]string, error) {
 	pkgs := []string{fp.Join(paths.ImportPath, "testing/integ/")}
 	prop := "proprietary/testing/integ/"
@@ -128,7 +127,7 @@ func integArgs(ctx context.Context, onlyRun string) ([]string, error) {
 	return testArgs(ctx, pkgs, onlyRun)
 }
 
-//args for 'go test': pkg, -run, -count, -timeout
+// args for 'go test': pkg, -run, -count, -timeout
 func testArgs(ctx context.Context, pkgs []string, onlyRun string) ([]string, error) {
 	var hasDeadline bool
 	var deadline time.Time
@@ -174,7 +173,7 @@ func testArgs(ctx context.Context, pkgs []string, onlyRun string) ([]string, err
 	return args, nil
 }
 
-//env vars needed to build/test/lint anything linking libudev
+// env vars needed to build/test/lint anything linking libudev
 func libudevEnv() []string {
 	return []string{
 		"CGO_ENABLED=1",

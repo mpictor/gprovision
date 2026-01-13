@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-//ipmitool channel getaccess 1
+// ipmitool channel getaccess 1
 var chGetAccess1 = `Maximum User IDs     : 10
 Enabled User IDs     : 2
 
@@ -245,7 +245,7 @@ Privilege Level      : NO ACCESS
 Enable Status        : disabled
 `
 
-//ipmitool channel info
+// ipmitool channel info
 var chInfo = `Channel 0x1 info:
   Channel Medium Type   : 802.3 LAN
   Channel Protocol Type : IPMB-1.0
@@ -264,7 +264,7 @@ var chInfo = `Channel 0x1 info:
     Access Mode         : always available
 `
 
-//func (ch Channel) parseChannelInfo(data string) error
+// func (ch Channel) parseChannelInfo(data string) error
 func TestChannelInfo(t *testing.T) {
 	ch := Channel{Id: 1}
 	err := ch.parseChannelInfo(chInfo)
@@ -276,7 +276,7 @@ func TestChannelInfo(t *testing.T) {
 	}
 }
 
-//func parseChannelUserInfo(data string) (users IpmiUsers, err error)
+// func parseChannelUserInfo(data string) (users IpmiUsers, err error)
 func TestChannelUserInfo(t *testing.T) {
 	users, err := parseChannelUserInfo(chGetAccess1)
 	if err != nil {

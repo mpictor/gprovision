@@ -117,7 +117,7 @@ func (e EfiDppMsgSubType) String() string {
 	}
 }
 
-//pg 293
+// pg 293
 type DppMsgATAPI struct {
 	Hdr             EfiDevicePathProtocolHdr
 	Primary, Master bool
@@ -151,7 +151,7 @@ func (e *DppMsgATAPI) Resolver() (EfiPathSegmentResolver, error) {
 	return nil, EUnimpl
 }
 
-//pg 300
+// pg 300
 type DppMsgMAC struct {
 	Hdr    EfiDevicePathProtocolHdr
 	Mac    [32]byte //0-padded

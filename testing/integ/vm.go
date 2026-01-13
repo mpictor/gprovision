@@ -45,7 +45,7 @@ import (
 //-device usb-serial,chardev=tcpser -chardev udp,id=tcpser,
 //-device usb-serial,chardev=tcpser -chardev socket,id=tcpser,host=10.0.0.1,port=9000,server
 
-//see flags below for descriptions
+// see flags below for descriptions
 var (
 	Uefi      bool
 	Lcd       bool
@@ -102,7 +102,7 @@ func PostMfgFixups(qopts *qemu.Options) {
 	qopts.KernelArgs = ""
 }
 
-//fixes up qemu args to work for windowed display
+// fixes up qemu args to work for windowed display
 func WindowedVMCmd(opts *qemu.Options) *exec.Cmd {
 	args, err := opts.Cmdline()
 	if err != nil {
@@ -122,7 +122,7 @@ func WindowedVMCmd(opts *qemu.Options) *exec.Cmd {
 	return q
 }
 
-//pretty-prints (quotes) args for user re-use.
+// pretty-prints (quotes) args for user re-use.
 func ExecQuoted(xargs []string) string {
 	args := make([]string, len(xargs))
 	for i, arg := range xargs {

@@ -20,8 +20,8 @@ import (
 	"github.com/u-root/u-root/pkg/qemu"
 )
 
-//Finds lcd info necessary for passthrough to qemu vm.
-//Tested with ftdi devices, not with cdc acm - may need some work there.
+// Finds lcd info necessary for passthrough to qemu vm.
+// Tested with ftdi devices, not with cdc acm - may need some work there.
 func GetLcd() (qemu.Device, error) {
 	const sct = "/sys/class/tty"
 	devs := cfa.FindDevs()

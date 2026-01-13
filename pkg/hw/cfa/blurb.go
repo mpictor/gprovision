@@ -16,7 +16,7 @@ import (
 
 //stuff dealing with chunks of text that may not fit on a single line
 
-//a chunk of text, possibly scrolling
+// a chunk of text, possibly scrolling
 type blurb interface {
 	move(newStart Coord)                       //set line to draw at
 	draw(force bool) (changed bool, err error) //draw on given line; possibly no-op if force is false
@@ -25,9 +25,9 @@ type blurb interface {
 	debug(bool)
 }
 
-//Chooses scrolling type best suited for text size and allowed dims, returns
-//blurb implementing this. Caution: legend width must not change once blurb is
-//created, or blurb is likely to fail to draw.
+// Chooses scrolling type best suited for text size and allowed dims, returns
+// blurb implementing this. Caution: legend width must not change once blurb is
+// created, or blurb is likely to fail to draw.
 func NewBlurb(l *Lcd, txt LcdTxt, start, dims Coord) blurb {
 	lines := fit(txt, Coord{Col: dims.Col, Row: 255})
 	if len(lines) <= int(dims.Row)+1 {
@@ -39,7 +39,7 @@ func NewBlurb(l *Lcd, txt LcdTxt, start, dims Coord) blurb {
 	return NewHorizScroller(l, txt, start, dims)
 }
 
-//a blurb without scrolling
+// a blurb without scrolling
 type noScroller struct {
 	l                    *Lcd     //lcd this is displayed on
 	txt                  []LcdTxt //text to display
@@ -81,7 +81,7 @@ func (ns *noScroller) debug(b bool)          { ns.dbg = b }
 
 var _ blurb = &noScroller{}
 
-//a blurb with vertical scrolling - unlimited characters, constrained to a region on screen
+// a blurb with vertical scrolling - unlimited characters, constrained to a region on screen
 type vertScroller struct {
 	start, dims Coord
 	lines       []LcdTxt
@@ -132,7 +132,7 @@ func NewVertScroller(l *Lcd, lines []LcdTxt, start, dims Coord) blurb {
 	return vs
 }
 
-//a blurb with horizontal scrolling - unlimited characters, but constrained to a single line
+// a blurb with horizontal scrolling - unlimited characters, but constrained to a single line
 type horizScroller struct {
 	l                    *Lcd   //lcd this is displayed on
 	txt                  LcdTxt //text to display, automatically scrolls if too long
@@ -160,8 +160,8 @@ func NewHorizScroller(l *Lcd, txt LcdTxt, start, dims Coord) blurb {
 	return hs
 }
 
-//draw the item if it's on a different line than last time or if it
-//needs to scroll horizontally
+// draw the item if it's on a different line than last time or if it
+// needs to scroll horizontally
 func (hs *horizScroller) draw(force bool) (changed bool, err error) {
 	if hs.dbg {
 		log.Logf("hs draw")
@@ -206,7 +206,7 @@ func (hs *horizScroller) move(newStart Coord) {
 	}
 }
 
-//for ease of reading, doesn't start scrolling immediately or immediately rewind at end
+// for ease of reading, doesn't start scrolling immediately or immediately rewind at end
 func (hs *horizScroller) updateState() (change bool) {
 	change = true
 	hs.pos = hs.scrollState

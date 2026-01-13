@@ -20,7 +20,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/recovery/disk"
 )
 
-//set eraseHelper=verify to verify pattern
+// set eraseHelper=verify to verify pattern
 func main() {
 	os.Setenv("PATH", "/sbin:/bin:/usr/bin:/usr/sbin")
 	log.AddConsoleLog(0)

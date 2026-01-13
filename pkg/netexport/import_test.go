@@ -15,7 +15,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//func (ifaces ifMap) load(cfg io.ReadSeeker) (err error)
+// func (ifaces ifMap) load(cfg io.ReadSeeker) (err error)
 func TestLoadIntelAllDHCP(t *testing.T) {
 	ifaces := NewIntelMap()
 	ifaces.testLoadIntel(t, "data/ps", 7, 0)
@@ -86,7 +86,7 @@ func (ifaces IntelMap) testLoadIntel(t *testing.T, path string, requiredIfaces, 
 	}
 }
 
-//func (ifmap ifMap) parseRoutes(routeout []byte) (err error)
+// func (ifmap ifMap) parseRoutes(routeout []byte) (err error)
 func TestParseRoutes(t *testing.T) {
 	routes := []byte(`"26",,,"256","3","0.0.0.0/0","10.155.8.1"
 "13",,,"256","3","0.0.0.0/0","10.155.8.1"

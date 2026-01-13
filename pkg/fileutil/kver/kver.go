@@ -19,15 +19,13 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-/*
-values from kernel documentation and libmagic src
-
-off val
-510 0xAA55
-514 HdrS
-526	(4 bytes) != 0x0000
-526 (2 bytes, little endian) + 0x200 -> start of null-terminated version string
-*/
+// values from kernel documentation and libmagic src
+//
+// off val
+// 510 0xAA55
+// 514 HdrS
+// 526	(4 bytes) != 0x0000
+// 526 (2 bytes, little endian) + 0x200 -> start of null-terminated version string
 
 var (
 	EBootSig = errors.New("missing 0x55AA boot sig")
@@ -37,7 +35,7 @@ var (
 	EParse   = errors.New("parse error")
 )
 
-//Read kernel version string
+// Read kernel version string
 func GetKDesc(k io.ReadSeeker) (string, error) {
 	var buf [1024]byte
 	_, err := k.Seek(0, io.SeekStart)
@@ -96,7 +94,7 @@ type KInfo struct {
 
 const layout = "Mon Jan 2 15:04:05 MST 2006"
 
-//Parse output of GetKDesc
+// Parse output of GetKDesc
 func ParseDesc(desc string) (KInfo, error) {
 	var ki KInfo
 

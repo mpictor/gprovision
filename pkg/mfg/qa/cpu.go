@@ -67,7 +67,7 @@ func (c *CPUInfo) Read() {
 					c.Errors = true
 				}
 			}
-		/*case "core id":  */ //doesn't work for counting sockets
+		// case "core id": //doesn't work for counting sockets
 		default:
 			//ignore everything else
 		}

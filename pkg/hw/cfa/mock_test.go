@@ -54,7 +54,7 @@ func TestMock(t *testing.T) {
 	}
 }
 
-//func decodeOp(op string) operation
+// func decodeOp(op string) operation
 func TestDecodeOp(t *testing.T) {
 	testdata := []struct {
 		name, in string

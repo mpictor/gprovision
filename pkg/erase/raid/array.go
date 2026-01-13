@@ -20,9 +20,8 @@ type Array struct {
 	devices   Devices
 }
 
-/* look through Device list, sort disks into potential arrays (based on size/metadata type)
- * does NOT actually decode the metadata... so don't use for anything other than erasure!
- */
+// look through Device list, sort disks into potential arrays (based on size/metadata type)
+// does NOT actually decode the metadata... so don't use for anything other than erasure!
 func FindArrays(devices Devices) (arrays Arrays) {
 	var a *Array
 	for i, d := range devices {
@@ -77,7 +76,7 @@ func (a *Array) Backup() (err error) {
 	return
 }
 
-//executes restore on all drives in array, returning error from last error-ing drive or nil if no errors
+// executes restore on all drives in array, returning error from last error-ing drive or nil if no errors
 func (a *Array) Restore() (err error) {
 	for _, d := range a.devices {
 		e := d.Restore()

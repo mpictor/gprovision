@@ -72,7 +72,7 @@ func DefaultLogStack() {
 	traceHelper = nil
 }
 
-//Calls Finalize on existing logger(s), then sets newLog as the topmost logger.
+// Calls Finalize on existing logger(s), then sets newLog as the topmost logger.
 func NewLogStack(newLog StackableLogger) {
 	logStackMtx.Lock()
 	defer logStackMtx.Unlock()
@@ -87,13 +87,13 @@ func NewLogStack(newLog StackableLogger) {
 // already be initialized. If addPrevious is true, events already logged in
 // a MemLog are added to this logger.
 //
-// End users
+// # End users
 //
 // End users should prefer the AddXLog() method - AddFileLog(), AddConsoleLog(),
 // lcd.AddLcdLog(), etc. AddLogger() is intended to be called by a
 // StackableLogger's AddXLog() rather than by end users.
 //
-// Errors
+// # Errors
 //
 // The only possible error is if the new logger is the same type as an existing
 // one.
@@ -234,5 +234,5 @@ type stackTraceHelper interface {
 
 var traceHelper stackTraceHelper
 
-//used by testlog to remove logging calls from testing stack traces.
+// used by testlog to remove logging calls from testing stack traces.
 func TraceHelper(t stackTraceHelper) { traceHelper = t }

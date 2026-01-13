@@ -139,7 +139,7 @@ func TestErase(t *testing.T) {
 	})
 }
 
-//temporarily override opts, build, run helper binary on disks
+// temporarily override opts, build, run helper binary on disks
 func setupEraseHelper(t *testing.T, tmpdir string, qopts *qemu.Options, verify bool) string {
 	// erase_integ: avoid unwanted deps in init pkg
 	irfs := Initramfs(tmpdir, "", []string{"erase_integ"})

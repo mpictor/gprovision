@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Some sort of external mechanism recording details about units imaged.
-//Could be part of your remote logger, or separate.
+// Some sort of external mechanism recording details about units imaged.
+// Could be part of your remote logger, or separate.
 package rkeep
 
 import (
@@ -14,8 +14,8 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//Some sort of external mechanism recording details about units imaged.
-//Could be part of your remote logger, or separate.
+// Some sort of external mechanism recording details about units imaged.
+// Could be part of your remote logger, or separate.
 type RecordKeeper interface {
 	//called once serial number (etc) is known
 	SetUnit(u common.Unit)
@@ -56,7 +56,7 @@ const (
 
 var rkeeper RecordKeeper
 
-//Sets the underlying RecordKeeper impl for this package
+// Sets the underlying RecordKeeper impl for this package
 func SetImpl(r RecordKeeper) {
 	if rkeeper != nil {
 		log.Log("RecordKeeper: overwriting non-nil impl")
@@ -64,10 +64,10 @@ func SetImpl(r RecordKeeper) {
 	rkeeper = r
 }
 
-//Return true if an impl is set
+// Return true if an impl is set
 func HaveRKeeper() bool { return rkeeper != nil }
 
-//called once serial number (etc) is known
+// called once serial number (etc) is known
 func SetUnit(u common.Unit) {
 	if rkeeper != nil {
 		rkeeper.SetUnit(u)
@@ -76,7 +76,7 @@ func SetUnit(u common.Unit) {
 	log.Log("RecordKeeper impl unset")
 }
 
-//Store MACs
+// Store MACs
 func StoreMACs(m []string) {
 	if rkeeper != nil {
 		rkeeper.StoreMACs(m)
@@ -85,7 +85,7 @@ func StoreMACs(m []string) {
 	log.Log("RecordKeeper impl unset")
 }
 
-//Store IPMI MACs
+// Store IPMI MACs
 func StoreIPMIMACs(m []string) {
 	if rkeeper != nil {
 		rkeeper.StoreIPMIMACs(m)
@@ -94,7 +94,7 @@ func StoreIPMIMACs(m []string) {
 	log.Log("RecordKeeper impl unset")
 }
 
-//current process finished; reboot pending
+// current process finished; reboot pending
 func ReportFinished(f string) {
 	if rkeeper != nil {
 		rkeeper.ReportFinished(f)
@@ -103,7 +103,7 @@ func ReportFinished(f string) {
 	log.Log("RecordKeeper impl unset")
 }
 
-//current process failed
+// current process failed
 func ReportFailure(f string) {
 	if rkeeper != nil {
 		rkeeper.ReportFailure(f)
@@ -112,7 +112,7 @@ func ReportFailure(f string) {
 	log.Log("RecordKeeper impl unset")
 }
 
-//report codename of current device
+// report codename of current device
 func ReportCodename(c string) {
 	if rkeeper != nil {
 		rkeeper.ReportCodename(c)

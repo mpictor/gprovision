@@ -46,5 +46,5 @@ outer:
 	commonEnvVars()
 }
 
-//no-op in release builds
+// no-op in release builds
 func testOpts() {}

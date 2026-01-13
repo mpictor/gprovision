@@ -54,11 +54,10 @@ func Example() {
 	//cleanup
 	os.Remove(filename)
 
-	/* output will be something like
-	log contents
-	............
-	-- 20191021_1016 -- this will show up on the console and lcd
-	*- 20191021_1016 *- this will show up on the console but not lcd
-	...
-	*/
+	// output will be something like
+	// log contents
+	// ............
+	// -- 20191021_1016 -- this will show up on the console and lcd
+	// *- 20191021_1016 *- this will show up on the console but not lcd
+	// ...
 }

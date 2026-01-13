@@ -60,17 +60,16 @@ func DisabledNics() int {
 // Sets nic state down and detaches from driver, causing the nic to disappear
 // until reboot.
 func (nic Nic) Disable() (success bool) {
-	/* this one doesn't seem to work:
-	* echo "eth3" > /sys/bus/pci/drivers/bnx2/unbind
-	* -- https://www.redhat.com/archives/rhl-list/2008-February/msg01639.html
-	*
-	* this one works:
-	* echo 1 > /sys/devices/pci0000:00/0000:00:1c.0/0000:09:00.0/remove
-	* http://www.6by9.net/using-linux-sys-to-disable-ethernet-hardware-devices/
-
-	  ip link set dev ... down
-	  /sys/class/net/.../device/remove
-	*/
+	// this one doesn't seem to work:
+	// echo "eth3" > /sys/bus/pci/drivers/bnx2/unbind
+	// -- https://www.redhat.com/archives/rhl-list/2008-February/msg01639.html
+	//
+	// this one works:
+	// echo 1 > /sys/devices/pci0000:00/0000:00:1c.0/0000:09:00.0/remove
+	// http://www.6by9.net/using-linux-sys-to-disable-ethernet-hardware-devices/
+	//
+	// ip link set dev ... down
+	// /sys/class/net/.../device/remove
 	defer func() {
 		if success {
 			disabledNicMtx.Lock()

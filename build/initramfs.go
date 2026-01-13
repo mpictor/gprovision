@@ -31,7 +31,7 @@ import (
 
 type Initramfs mg.Namespace
 
-//initramfs used during mfg process, containing more files than normal boot kernel
+// initramfs used during mfg process, containing more files than normal boot kernel
 func (Initramfs) Mfg(ctx context.Context) error {
 	mg.CtxDeps(ctx, Initramfs.Combined_cpio, Bins.MfgInit, workdir)
 	update, err := target.Dir(paths.InitramfsMfg, paths.BRcpio, paths.MfgBin, fp.Join(paths.RepoRoot, "build/initramfs_mfg"), fp.Join(paths.RepoRoot, "build/initramfs"))
@@ -65,7 +65,7 @@ func (Initramfs) Mfg(ctx context.Context) error {
 	return CreateInitramfs(paths.InitramfsMfg, tmpdir, combined, files, false)
 }
 
-//initramfs used on customer machines, containing factory restore + normal boot logic
+// initramfs used on customer machines, containing factory restore + normal boot logic
 func (Initramfs) Boot(ctx context.Context) error {
 	mg.CtxDeps(ctx, Initramfs.Combined_cpio, Bins.NormalInit, workdir)
 	update, err := target.Dir(paths.InitramfsBoot, paths.BRcpio, paths.InitBin, fp.Join(paths.RepoRoot, "build/initramfs"))
@@ -108,7 +108,7 @@ func (Initramfs) Boot(ctx context.Context) error {
 	return CreateInitramfs(paths.InitramfsBoot, tmpdir, combined, files, false)
 }
 
-//extract combined.cpio from combined.cpio.xz
+// extract combined.cpio from combined.cpio.xz
 func (Initramfs) Combined_cpio(ctx context.Context) error {
 	mg.CtxDeps(ctx, Initramfs.Combined_xz, workdir)
 	changed, err := target.Path(paths.BRcpio, paths.BRxz)
@@ -132,7 +132,7 @@ func (Initramfs) Combined_cpio(ctx context.Context) error {
 	return err
 }
 
-//download xz from blobstore
+// download xz from blobstore
 func (Initramfs) Combined_xz() error {
 	_, err := os.Stat(paths.BRxz)
 	if err == nil {
@@ -145,7 +145,7 @@ func (Initramfs) Combined_xz() error {
 	return err
 }
 
-//rebuild combined.cpio.xz using buildroot (slow!)
+// rebuild combined.cpio.xz using buildroot (slow!)
 func (Initramfs) Rebuild_xz(ctx context.Context) error {
 	//see brx/README and brx/Makefile
 	br := fp.Join(paths.WorkDir, "buildroot")
@@ -209,7 +209,7 @@ func getCAbundle() string {
 	return ""
 }
 
-//Wrapper around uroot.CreateInitramfs()
+// Wrapper around uroot.CreateInitramfs()
 func CreateInitramfs(outCpio, tmpdir string, baseArchive io.ReaderAt, files []string, existingInit bool) error {
 	logger := log.New(os.Stderr, "initramfs: ", 0)
 	out, err := initramfs.CPIO.OpenWriter(logger, outCpio)

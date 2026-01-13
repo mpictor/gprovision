@@ -41,7 +41,7 @@ func (s EfiDppHwSubType) String() string {
 	}
 }
 
-//struct in EfiDevicePathProtocol for DppHTypePCI
+// struct in EfiDevicePathProtocol for DppHTypePCI
 type DppHwPci struct {
 	Hdr              EfiDevicePathProtocolHdr
 	Function, Device uint8

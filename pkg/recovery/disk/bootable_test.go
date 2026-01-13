@@ -12,7 +12,7 @@ import (
 	"testing"
 )
 
-//func finalizeGrubConf(root_uuid, extra_opts string) []byte
+// func finalizeGrubConf(root_uuid, extra_opts string) []byte
 func TestFinalizeGrubConf(t *testing.T) {
 	out := finalizeGrubConf("uuid1234", "opts")
 	t.Logf("%s\n", string(out))
@@ -24,8 +24,8 @@ func TestFinalizeGrubConf(t *testing.T) {
 	}
 }
 
-//ensures templates function
-//func (bd *bootData) processTemplate(in []byte, name string) []byte
+// ensures templates function
+// func (bd *bootData) processTemplate(in []byte, name string) []byte
 func TestDefaultTemplates(t *testing.T) {
 	for _, td := range []struct {
 		name string

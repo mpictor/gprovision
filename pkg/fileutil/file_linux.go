@@ -25,7 +25,7 @@ func CopyFile(src, dest string, destFlags int) error {
 	return copyFileI(src, dest, info, destFlags)
 }
 
-//like CopyFile; use when file has already been stat'd.
+// like CopyFile; use when file has already been stat'd.
 func copyFileI(src, dest string, info os.FileInfo, destFlags int) error {
 	out, err := os.OpenFile(dest, os.O_RDWR|os.O_CREATE|os.O_TRUNC|destFlags, 0666)
 	if err != nil {

@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package archive sorts, verifies, and extracts .upd (xz-compressed tar) files.
-//Xz defaults to crc64 checksums but can support others such as sha256.
-//.upd files *must* use sha256 or they will be considered invalid.
+// Package archive sorts, verifies, and extracts .upd (xz-compressed tar) files.
+// Xz defaults to crc64 checksums but can support others such as sha256.
+// .upd files *must* use sha256 or they will be considered invalid.
 package archive
 
 import (
@@ -33,8 +33,8 @@ import (
 
 var decompressBuf = "/buf"
 
-//validate an update file
-//if !lowMem, extract to decompressBuf
+// validate an update file
+// if !lowMem, extract to decompressBuf
 func validateExtractUpd(updPath string) (err error) {
 	var buf *os.File
 	if lowMemoryDevice {
@@ -73,13 +73,12 @@ func validateExtractUpd(updPath string) (err error) {
 	close(xzDone)
 	wg.Wait()
 	if err != nil {
-		/*
-			did we run out of space due to low mem? if so, try again
-			shouldn't get here - lowMemoryDevice should already be correct.
-			however, factory restore/buildroot changes could potentially affect this
-		*/
-		//if device runs out of memory, we might see "no space left..."
-		//or, xz might just get killed
+		// did we run out of space due to low mem? if so, try again
+		// shouldn't get here - lowMemoryDevice should already be correct.
+		// however, factory restore/buildroot changes could potentially affect this
+
+		// if device runs out of memory, we might see "no space left..."
+		// or, xz might just get killed
 
 		space := futil.FreeSpace("/")
 		buf.Close()
@@ -116,7 +115,7 @@ func validateExtractUpd(updPath string) (err error) {
 	return
 }
 
-//does the error come from a process terminated by a signal?
+// does the error come from a process terminated by a signal?
 func isExitWithSig(execErr error) bool {
 	ee, ok := execErr.(*exec.ExitError)
 	if !ok {
@@ -129,22 +128,21 @@ func isExitWithSig(execErr error) bool {
 	return ws.Signaled()
 }
 
-//extract data to target
+// extract data to target
 func applyUpd(target *disk.Filesystem) bool {
-	/* use gnu tar rather than busybox-tar or bsdtar to ensure
-	 * permissions, owner, extended attr's, etc are retained
-	 *
-	 * need --xattrs-include=... ??
-	 *
-	 * to be able to extract concatenated archives, need -i option - not
-	 * available in busybox tar or bsdtar
-	 * xz supports concatenation, so no problem there
-	 * not sure if concat order will make a difference or not
-	 *
-	 * suppress timestamp warnings, seen with centos tarball. voluminous
-	 * stderr caused problems for goroutine reading output. two-pronged
-	 * solution: suppress warnings, use rescue() to prevent panics
-	 */
+	// use gnu tar rather than busybox-tar or bsdtar to ensure
+	// permissions, owner, extended attr's, etc are retained
+	//
+	// need --xattrs-include=... ??
+	//
+	// to be able to extract concatenated archives, need -i option - not
+	// available in busybox tar or bsdtar
+	// xz supports concatenation, so no problem there
+	// not sure if concat order will make a difference or not
+	//
+	// suppress timestamp warnings, seen with centos tarball. voluminous
+	// stderr caused problems for goroutine reading output. two-pronged
+	// solution: suppress warnings, use rescue() to prevent panics
 
 	untar := exec.Command("tar", "x", "-i", "--xattrs", "--totals=USR1", "--warning=no-timestamp", "-C", target.Path())
 	if !lowMemoryDevice {
@@ -192,9 +190,9 @@ func applyUpd(target *disk.Filesystem) bool {
 	return true
 }
 
-//print tar progress to lcd
-//tried --checkpoint-action=echo="%T", but that's only supported
-//in very new tar's. --totals=SIG is much older
+// print tar progress to lcd
+// tried --checkpoint-action=echo="%T", but that's only supported
+// in very new tar's. --totals=SIG is much older
 func bgUnTarStatus(done chan struct{}, untar *exec.Cmd) {
 	out, pserr, err := os.Pipe()
 	if err != nil {
@@ -228,7 +226,7 @@ func bgUnTarStatus(done chan struct{}, untar *exec.Cmd) {
 			blen, _ := out.Read(buf)
 			var line []byte
 			if blen > 0 {
-				/* Total bytes read: 7924664320 (7.4GiB, 95MiB/s) */
+				// Total bytes read: 7924664320 (7.4GiB, 95MiB/s)
 				line = bytes.TrimSpace(buf)
 			}
 			if len(line) > 0 {
@@ -255,7 +253,7 @@ func bgUnTarStatus(done chan struct{}, untar *exec.Cmd) {
 	}()
 }
 
-//find updates, return a list of them in order of preference (newest first)
+// find updates, return a list of them in order of preference (newest first)
 func listUpdates(updPath string, oldestFirst bool) []string {
 	entries, err := ioutil.ReadDir(updPath)
 	if err != nil {
@@ -295,8 +293,8 @@ func trimmedName(upd string) string {
 var updateFullPath string //full path to valid update. only used for two-step, low-mem process
 var lowMemoryDevice bool  //see lowMem below
 
-//searches for a valid update. if emergencyImage != "", only consider it. otherwise considers any in given dir.
-//if lowmem is true, xz's output is thrown away for the validation round and the file is decompressed again for piping to tar
+// searches for a valid update. if emergencyImage != "", only consider it. otherwise considers any in given dir.
+// if lowmem is true, xz's output is thrown away for the validation round and the file is decompressed again for piping to tar
 func FindValidUpd(emergencyImage, imgopt, dir string, lowMem bool) (valid, userCancel bool) {
 	lowMemoryDevice = lowMem
 	var choices []string

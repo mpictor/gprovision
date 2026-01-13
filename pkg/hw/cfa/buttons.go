@@ -17,7 +17,7 @@ type KeyActivity byte
 
 const (
 	KEY_NO_KEY KeyActivity = iota
-	/* CFA-635 (external: XES635) */
+	// CFA-635 (external: XES635)
 	KEY_UP_PRESS //1
 	KEY_DOWN_PRESS
 	KEY_LEFT_PRESS
@@ -30,7 +30,7 @@ const (
 	KEY_RIGHT_RELEASE
 	KEY_ENTER_RELEASE
 	KEY_EXIT_RELEASE //12
-	/* CFA-631 */
+	// CFA-631
 	KEY_UL_PRESS //13
 	KEY_UR_PRESS
 	KEY_LL_PRESS
@@ -43,7 +43,7 @@ const (
 
 type KeyMask byte
 
-//CFA 631: 4 buttons
+// CFA 631: 4 buttons
 const (
 	KP_UL KeyMask = 1 << iota
 	KP_UR
@@ -52,7 +52,7 @@ const (
 	KP_ALL_631 = KP_UL | KP_UR | KP_LL | KP_LR
 )
 
-//CFA 635: 6 buttons
+// CFA 635: 6 buttons
 const (
 	KP_UP    KeyMask = 1 << iota
 	KP_ENTER         //check mark
@@ -65,7 +65,7 @@ const (
 	KP_ALL_635  = KP_UVDX_635 | KP_LEFT | KP_RIGHT
 )
 
-//Return an event, or return nothing (KEY_NO_KEY) if maxWait exceeded.
+// Return an event, or return nothing (KEY_NO_KEY) if maxWait exceeded.
 func (l *Lcd) WaitForEvent(maxWait time.Duration) (ka KeyActivity) {
 	if l == nil {
 		time.Sleep(maxWait)
@@ -85,20 +85,20 @@ func (l *Lcd) waitForEvent(ch <-chan time.Time) (ka KeyActivity) {
 	return
 }
 
-//Return an event if one has occurred. Short delay.
+// Return an event if one has occurred. Short delay.
 func (l *Lcd) Event() (ka KeyActivity) {
 	//uses channel - no need for mutex
 	return l.WaitForEvent(time.Millisecond) //only enough delay that we find an event, if there is one, before the delay expires
 }
 
-//Clear any outstanding events
+// Clear any outstanding events
 func (l *Lcd) FlushEvents() {
 	for len(l.dev.Events) > 0 {
 		<-l.dev.Events
 	}
 }
 
-//configure reporting of key press and release events
+// configure reporting of key press and release events
 func (l *Lcd) SetupKeyReporting(press, release bool) {
 	l.mutex.Lock()
 	defer l.mutex.Unlock()
@@ -122,7 +122,7 @@ func (l *Lcd) setupKeyReporting(press, release bool) {
 	}
 }
 
-//Type of legend (only has an effect on cfa631)
+// Type of legend (only has an effect on cfa631)
 type Legend int
 
 const (
@@ -136,7 +136,7 @@ const (
 	LegendLV_X               //top:  left, check; bottom: blank, X
 )
 
-//Codes for legend symbols for overlay
+// Codes for legend symbols for overlay
 type LegendSymbol byte
 
 const (
@@ -152,7 +152,7 @@ const (
 	LegendSymNone
 )
 
-//Only for CFA631
+// Only for CFA631
 type LegendValues struct {
 	Enable         bool
 	UL, UR, LL, LR LegendSymbol
@@ -223,7 +223,7 @@ const (
 	legendWidth_635 = 1 //4 right-most chars, 1 per line
 )
 
-//symbols for display on LCD
+// symbols for display on LCD
 const (
 	SymLastCGRAM byte = iota + 0x0f
 
@@ -246,8 +246,8 @@ const (
 	SymSpace      //all pixels off
 )
 
-//Set up or clear overlay (native on 631). If also635 is true, draws arrow(s)
-//in rightmost corner(s) if up/down is enabled. Does not draw left/right for 635.
+// Set up or clear overlay (native on 631). If also635 is true, draws arrow(s)
+// in rightmost corner(s) if up/down is enabled. Does not draw left/right for 635.
 func (l *Lcd) setLegend(legend Legend, also635 bool) {
 	if l.legend == legend {
 		return
@@ -300,7 +300,7 @@ func (l *Lcd) setLegend(legend Legend, also635 bool) {
 	l.legend = legend
 }
 
-//for keymaskToActivity
+// for keymaskToActivity
 type KeyXlate struct {
 	m KeyMask
 	a KeyActivity
@@ -322,8 +322,8 @@ var xlate631 = []KeyXlate{
 	{KP_LR, KEY_LR_RELEASE},
 }
 
-//Translate from KeyMask to KeyActivity. Current data translates to release events.
-//Used to translate poll responses to match non-poll events.
+// Translate from KeyMask to KeyActivity. Current data translates to release events.
+// Used to translate poll responses to match non-poll events.
 func keymaskToActivity(table []KeyXlate, m KeyMask) (ka []KeyActivity) {
 	for _, entry := range table {
 		if entry.m&m != 0 {

@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-//wrapper to ensure the MAC gets converted to a JSON string correctly
+// wrapper to ensure the MAC gets converted to a JSON string correctly
 type StringyMac struct {
 	net.HardwareAddr
 }

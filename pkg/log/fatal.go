@@ -36,7 +36,7 @@ var fatalAction = DefaultFatal
 // Sets up action to take when fatal event has been logged; see FailAction.
 func SetFatalAction(act FailAction) { fatalAction = act }
 
-//Default fatal action is to call os.Exit(1)
+// Default fatal action is to call os.Exit(1)
 var DefaultFatal = FailAction{Terminator: DefaultFatalAction}
 
 func DefaultFatalAction() {

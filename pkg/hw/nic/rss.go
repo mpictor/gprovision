@@ -16,12 +16,11 @@ import (
 
 var rssProtos = []string{"tcp4", "tcp6", "udp4", "udp6", "sctp4", "sctp6"}
 
-/* Receive Side Scaling - set rx flow hashes.
- * Doesn't affect IRQ affinity - we handle that elsewhere
- * rather than letting irqbalance have its way. Irqbalance
- * seems to not be locality-aware; we let it shuffle other
- * interrupts while we focus on NICs.
- */
+// Receive Side Scaling - set rx flow hashes.
+// Doesn't affect IRQ affinity - we handle that elsewhere
+// rather than letting irqbalance have its way. Irqbalance
+// seems to not be locality-aware; we let it shuffle other
+// interrupts while we focus on NICs.
 func (nic *Nic) RssConfig() {
 	//set rx flow hash to use src/dest ip (=sd), src/dest port (=fn)
 	for _, p := range rssProtos {

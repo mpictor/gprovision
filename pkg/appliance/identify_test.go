@@ -185,7 +185,7 @@ System Information
 	},
 }
 
-//func IdentifyWithFallback(fallback func() string) *Variant
+// func IdentifyWithFallback(fallback func() string) *Variant
 func TestFallback(t *testing.T) {
 	dmi.TestingMock(dmi.DmiStrMap{}, dmi.DmiTypeMap{})
 	identifiedVariant = nil
@@ -203,7 +203,7 @@ func TestFallback(t *testing.T) {
 	}
 }
 
-//func (v *Variant_) processorMatch() bool
+// func (v *Variant_) processorMatch() bool
 func TestProcessorMatch(t *testing.T) {
 	gold := "Intel(R) Xeon(R) Gold 5118 CPU @ 2.30GHz"
 	old := "Intel(R) Xeon(R) CPU E5-2418L v2 @ 2.00GHz"

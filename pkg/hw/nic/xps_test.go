@@ -12,7 +12,7 @@ import (
 	"testing"
 )
 
-//func XpsConfig(qnames []string, cpuMask uint64, nrCpus int) (qMasks map[string]uint64)
+// func XpsConfig(qnames []string, cpuMask uint64, nrCpus int) (qMasks map[string]uint64)
 func TestXpsConfig(t *testing.T) {
 	qnames := []string{"a", "b", "c", "d", "e", "f", "g", "h", "i"}
 

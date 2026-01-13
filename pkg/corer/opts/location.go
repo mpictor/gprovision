@@ -26,7 +26,7 @@ type TmplData struct {
 	DevCodeName, SKU, Serial string //hardware
 }
 
-//handles location options and populates template data, some of which is also required by s3 upload code
+// handles location options and populates template data, some of which is also required by s3 upload code
 func (opts *Opts) checkLocationOpts(s3location string) {
 	if s3location == "help" {
 		log.Fatalf(`Template values (note the use of brackets instead of braces):

@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package backtrace creates backtraces from coredumps.
+// Package backtrace creates backtraces from coredumps.
 package backtrace
 
 import (
@@ -29,7 +29,7 @@ func Upload(cfg *opts.Opts, core string) {
 	Create(cfg, core, stream.LocalCopy)
 }
 
-//use gdb to create backtrace, pass to nextFn
+// use gdb to create backtrace, pass to nextFn
 func Create(cfg *opts.Opts, core string, nextFn stream.NextFn) {
 	if cfg.Nobt {
 		return
@@ -140,7 +140,7 @@ type memFile struct {
 }
 type gdbOutputProcessor func(files []string, extras []memFile) error
 
-//run multiple gdb commands, send each's output to a file. process those files with processOuts func. Files will be deleted after processor returns unless nodelete is true.
+// run multiple gdb commands, send each's output to a file. process those files with processOuts func. Files will be deleted after processor returns unless nodelete is true.
 func gdbMultiCmd(gdbArgs, gdbCmds []string, processOuts gdbOutputProcessor, nodelete, stats bool) (err error) {
 	cmdFile, err := ioutil.TempFile("", "gdbCmds")
 	if err != nil {

@@ -26,7 +26,7 @@ func SortedList(allowedPrefixes [][]byte) NicList {
 	return filtered.Sort()
 }
 
-//Return Nics whose MACs match allowedPrefixes. Return all Nics if list is empty.
+// Return Nics whose MACs match allowedPrefixes. Return all Nics if list is empty.
 func (nl NicList) FilterMACs(allowedPrefixes [][]byte) (filtered NicList) {
 	for _, n := range nl {
 		if len(allowedPrefixes) == 0 || n.AllowedPrefix(allowedPrefixes) {
@@ -47,7 +47,7 @@ func (nl NicList) Filter(fn FilterFn) (filtered NicList) {
 	return
 }
 
-//A filter for nics with the given indexes.
+// A filter for nics with the given indexes.
 func IndexFilter(indexes []int) FilterFn {
 	return func(idx int, n Nic) bool {
 		for _, i := range indexes {
@@ -59,7 +59,7 @@ func IndexFilter(indexes []int) FilterFn {
 	}
 }
 
-//A filter that inverts the sense of the given filter.
+// A filter that inverts the sense of the given filter.
 func NotFilter(fn FilterFn) FilterFn {
 	return func(idx int, n Nic) bool {
 		return !fn(idx, n)
@@ -97,7 +97,7 @@ func (n Nic) AllowedPrefix(allowed [][]byte) bool {
 	return false
 }
 
-//macs are converted from []byte to uint64 to make it easier to do the sort comparisons
+// macs are converted from []byte to uint64 to make it easier to do the sort comparisons
 type umac uint64
 type MACList []umac
 

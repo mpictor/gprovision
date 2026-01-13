@@ -16,17 +16,16 @@ import (
 
 type queueMasks map[string]uint64
 
-/* TODO take advantage of siblings information -
- * /sys/devices/system/cpu/cpuX/topology/core_siblings
- * /sys/devices/system/cpu/cpuX/topology/thread_siblings
- * /sys/devices/system/cpu/cpuX/cache/indexX/shared_cpu_map
- */
+// TODO take advantage of siblings information -
+// /sys/devices/system/cpu/cpuX/topology/core_siblings
+// /sys/devices/system/cpu/cpuX/topology/thread_siblings
+// /sys/devices/system/cpu/cpuX/cache/indexX/shared_cpu_map
 
-//Transmit Packet Scaling - set up cpumasks for the queues.
-//We want a set of masks with no gaps or overlap.
-//These IRQs must be excluded from the set irqbalance can change.
+// Transmit Packet Scaling - set up cpumasks for the queues.
+// We want a set of masks with no gaps or overlap.
+// These IRQs must be excluded from the set irqbalance can change.
 //
-// Suggested XPS Configuration
+// # Suggested XPS Configuration
 //
 // For a network device with a single transmission queue, XPS configuration
 // has no effect, since there is no choice in this case. In a multi-queue
@@ -85,7 +84,7 @@ func XpsConfig(qnames []string, cpuMask uint64, nrCpus uint16) (qMasks queueMask
 	return
 }
 
-//write masks for queues
+// write masks for queues
 func WriteMasks(qMasks map[string]uint64, suffix string) (errors int) {
 	for q, m := range qMasks {
 		q += suffix

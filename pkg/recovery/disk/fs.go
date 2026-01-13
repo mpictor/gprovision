@@ -46,7 +46,7 @@ func ExistingExt4Fs(device string, mounted bool) (fs *Filesystem) {
 	return ExistingFs(device, "ext4", "auto,relatime", mounted)
 }
 
-//ExistingFs creates a Filesystem struct corresponding to a fs that already
+// ExistingFs creates a Filesystem struct corresponding to a fs that already
 // exists. See also: Filesystem.AutoUnmount()
 func ExistingFs(device, mntType, mntOpts string, mounted bool) (fs *Filesystem) {
 	fs = new(Filesystem)
@@ -58,7 +58,7 @@ func ExistingFs(device, mntType, mntOpts string, mounted bool) (fs *Filesystem) 
 	return
 }
 
-//Add fs to list for auto-unmount, if it isn't already. For use with ExistingFs().
+// Add fs to list for auto-unmount, if it isn't already. For use with ExistingFs().
 func (fs *Filesystem) AutoUnmount() {
 	if !fs.mounted {
 		return
@@ -80,7 +80,7 @@ func TestFilesystem(dir string) (fs Filesystem) {
 var NotRecoveryFS = errors.New("not a recovery fs")
 var CantHandleThisFS = errors.New("Can't handle unknown format of recovery fs")
 
-//recovery can have conflicting options for multiple filesystems. Remove any that don't make sense for this fs type.
+// recovery can have conflicting options for multiple filesystems. Remove any that don't make sense for this fs type.
 func (fs *Filesystem) FixupRecoveryFS() (err error) {
 	if !fs.isRecovery {
 		return NotRecoveryFS
@@ -121,7 +121,7 @@ func (fs Filesystem) FstabEntry(uid, gid string) (entry string) {
 	return
 }
 
-//sets the mount point of a fs, before writing fstab. if mounted, mount location is still retrievable via Path()
+// sets the mount point of a fs, before writing fstab. if mounted, mount location is still retrievable via Path()
 func (fs *Filesystem) SetMountpoint(pt string) {
 	if fs.mounted && len(fs.mountPoint) > 0 {
 		fs.currentMountPoint = fs.mountPoint
@@ -133,7 +133,7 @@ func (fs Filesystem) IsMounted() bool {
 	return fs.mounted
 }
 
-//true if it appears that it would be possible to mount the fs - regardless of whether it is mounted at this time
+// true if it appears that it would be possible to mount the fs - regardless of whether it is mounted at this time
 func (fs Filesystem) Valid() bool {
 	return len(fs.blkdev) != 0
 }
@@ -142,7 +142,7 @@ func (fs Filesystem) Device() string {
 	return fs.blkdev
 }
 
-//returns current mount point, or "/dev/null"
+// returns current mount point, or "/dev/null"
 func (fs Filesystem) Path() string {
 	if fs.mounted {
 		if len(fs.currentMountPoint) > 0 {
@@ -196,9 +196,8 @@ func (fs *Filesystem) Format(label string) (err error) {
 		fs.mountType = ""
 		return
 	}
-	/* could run tune2fs to set max mount count/interval. however, mkfs defaults to
-	 * not do so; when errors are encountered fs will be marked as dirty anyway
-	 */
+	// could run tune2fs to set max mount count/interval. however, mkfs defaults to
+	// not do so; when errors are encountered fs will be marked as dirty anyway
 	if expectUuid {
 		var uu, nl int
 		uu = bytes.Index(out, []byte("UUID: "))
@@ -295,7 +294,7 @@ func (fs *Filesystem) Umount() {
 	}
 }
 
-//remove options from comma-separated list. if opt to remove ends with '=', match beginning of an item in opts
+// remove options from comma-separated list. if opt to remove ends with '=', match beginning of an item in opts
 func removeOpts(opts string, removes ...string) (cleanOpts string) {
 	//convert opts string to array
 	arr := strings.Split(opts, ",")
@@ -331,11 +330,10 @@ func (fs Filesystem) WriteFstab(uid, gid string, mounts ...common.FS) {
 	}
 }
 
-/* Find the identifier (e.g. sdb) of the physical device this filesystem is on.
-   blkdev is probably a partition (subdevice). Try to find base device by
-   removing chars one at a time and checking if a file with that name exists
-   in /sys/block.
-*/
+// Find the identifier (e.g. sdb) of the physical device this
+// filesystem is on. fs.blkdev is probably a partition (subdevice);
+// try to find base device by removing chars one at a time and
+// checking if a file with that name exists in /sys/block.
 func (fs *Filesystem) UnderlyingDevice() (dev string) {
 	resolved, err := fp.EvalSymlinks(fs.blkdev)
 	if err != nil {
@@ -359,7 +357,7 @@ func (fs *Filesystem) UnderlyingDevice() (dev string) {
 	return
 }
 
-//copy fname from source/boot to b1 and b2
+// copy fname from source/boot to b1 and b2
 func copy2boot(fname string, dest, source *Filesystem) {
 	sPath := fp.Join(source.Path(), "boot", fname)
 	dPath := fp.Join(dest.Path(), fname)

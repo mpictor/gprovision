@@ -12,7 +12,7 @@ import (
 	"testing"
 )
 
-//func pat1m(idx int64) []byte
+// func pat1m(idx int64) []byte
 func TestPat1m(t *testing.T) {
 	p := pat1m(1024 * 1024 * 1024 * 4)
 	p2 := pat1m(1024 * 1024 * 35)
@@ -22,7 +22,7 @@ func TestPat1m(t *testing.T) {
 	}
 }
 
-//func offsetSeq(siz int64) []int64
+// func offsetSeq(siz int64) []int64
 func TestOffsetSeq(t *testing.T) {
 	//ensure different volume sizes produce different offsets
 	var outs [][]int64

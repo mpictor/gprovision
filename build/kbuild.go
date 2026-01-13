@@ -42,7 +42,7 @@ type Kernel mg.Namespace
 // the mutex.
 var KbuildMtx sync.Mutex
 
-//kernel for testing
+// kernel for testing
 func (Kernel) Noinitramfs(ctx context.Context) error {
 	ki, err := FindKernel()
 	if err != nil {
@@ -55,7 +55,7 @@ func (Kernel) Noinitramfs(ctx context.Context) error {
 	return ki.BuildKernel()
 }
 
-//"normal" kernel
+// "normal" kernel
 func (Kernel) Boot(ctx context.Context) error {
 	mg.CtxDeps(ctx, Initramfs.Boot)
 
@@ -71,7 +71,7 @@ func (Kernel) Boot(ctx context.Context) error {
 	return ki.BuildKernel()
 }
 
-//provisioning kernel for pxeboot
+// provisioning kernel for pxeboot
 func (Kernel) Linuxmfg(ctx context.Context) error {
 	mg.CtxDeps(ctx, Initramfs.Mfg)
 
@@ -207,7 +207,7 @@ func (ki KInfo) BuildKernel() error {
 	return os.Rename(kernel, ki.Dest)
 }
 
-//write .version file, containing number seen in `uname -a`
+// write .version file, containing number seen in `uname -a`
 func (ki KInfo) writeVersion() error {
 	if ki.BuildNum == 0 {
 		bn, ok := os.LookupEnv("BUILD_NUMBER")
@@ -227,7 +227,7 @@ func (ki KInfo) writeVersion() error {
 	return ioutil.WriteFile(vers, []byte(fmt.Sprintf("%d", ki.BuildNum)), 0644)
 }
 
-//prevent multiple simultaneous download/upload attempts for kernel source
+// prevent multiple simultaneous download/upload attempts for kernel source
 var dlMtx sync.Mutex
 
 func FindKernel() (*KInfo, error) {
@@ -321,9 +321,9 @@ func kOptUnset(cfg []byte, key string) ([]byte, error) {
 	return nil, fmt.Errorf("failed to find location of %s in config", key)
 }
 
-//determines version from path, downloads from blobstore
-//if blobstore is absent, dl from kernel.org and upload to blobstore
-//once downloaded, extract to path
+// determines version from path, downloads from blobstore
+// if blobstore is absent, dl from kernel.org and upload to blobstore
+// once downloaded, extract to path
 func getKSrc(path string) error {
 	ver := fp.Base(path)
 	fname := ver + ".tar.xz"

@@ -59,7 +59,7 @@ func (e EfiDppMediaSubType) String() string {
 	}
 }
 
-//struct in EfiDevicePathProtocol for DppMTypeHdd
+// struct in EfiDevicePathProtocol for DppMTypeHdd
 type DppMediaHDD struct {
 	Hdr EfiDevicePathProtocolHdr
 
@@ -114,7 +114,7 @@ func (e *DppMediaHDD) Resolver() (EfiPathSegmentResolver, error) {
 		log.Logf("Sig Type 0: cannot identify")
 		return nil, ENotFound
 	}
-	blocks := block.GetFilesystems(blkfilter /*block.DFiltOnlyUsb*/, nil)
+	blocks := block.GetFilesystems(blkfilter, nil)
 	if len(blocks) != 1 {
 		log.Logf("blocks: %#v", blocks)
 		return nil, ENotFound
@@ -122,7 +122,7 @@ func (e *DppMediaHDD) Resolver() (EfiPathSegmentResolver, error) {
 	return &HddResolver{BlkInfo: blocks[0]}, nil
 }
 
-//return the partition table type as a string
+// return the partition table type as a string
 func (e *DppMediaHDD) pttype() string {
 	switch e.PartFmt {
 	case 1:
@@ -134,7 +134,7 @@ func (e *DppMediaHDD) pttype() string {
 	}
 }
 
-//return the signature as a string
+// return the signature as a string
 func (e *DppMediaHDD) sig() string {
 	switch e.SigType {
 	case 1: //32-bit MBR sig
@@ -146,8 +146,8 @@ func (e *DppMediaHDD) sig() string {
 	}
 }
 
-//struct in EfiDevicePathProtocol for DppMTypeFilePath.
-//if multiple are included in a load option, concatenate them.
+// struct in EfiDevicePathProtocol for DppMTypeFilePath.
+// if multiple are included in a load option, concatenate them.
 type DppMediaFilePath struct {
 	Hdr EfiDevicePathProtocolHdr
 
@@ -188,7 +188,7 @@ func (e *DppMediaFilePath) Resolver() (EfiPathSegmentResolver, error) {
 	return &pr, nil
 }
 
-//struct in EfiDevicePathProtocol for DppMTypePIWGFV
+// struct in EfiDevicePathProtocol for DppMTypePIWGFV
 type DppMediaPIWGFV struct {
 	Hdr EfiDevicePathProtocolHdr
 	Fv  []byte
@@ -220,7 +220,7 @@ func (e *DppMediaPIWGFV) Resolver() (EfiPathSegmentResolver, error) {
 	return nil, EUnimpl
 }
 
-//struct in EfiDevicePathProtocol for DppMTypePIWGFF
+// struct in EfiDevicePathProtocol for DppMTypePIWGFF
 type DppMediaPIWGFF struct {
 	Hdr EfiDevicePathProtocolHdr
 	Ff  []byte

@@ -79,11 +79,10 @@ func rmain(efiles []string, imgopt string) {
 	}
 	stash.SetUnit(u) //must be before any call to shell(), stash is needed for pw
 
-	/* mode env var
-	 *   -----
-	 * default (recovery): do factory restore
-	 * shell: mount recovery & md, drop to shell. password protected via ipmi password
-	 */
+	// mode env var
+	//   -----
+	// default (recovery): do factory restore
+	// shell: mount recovery & md, drop to shell. password protected via ipmi password
 	mode := os.Getenv(frModeEnv)
 	if mode == "shell" {
 		shell(recov)
@@ -273,7 +272,7 @@ func writeNetworkConfig(recov, target common.Pather) {
 	netd.Write(defaults, target.Path()+dir)
 }
 
-//looks for tarball, extracts if found
+// looks for tarball, extracts if found
 func restoreNetworkConfig(recov, target common.Pather) {
 	defaultCfgErr := func() { log.Msgf("network config error - using defaults") }
 	netConf := fp.Join(recov.Path(), strs.RecoveryLogDir(), "netd.tar")

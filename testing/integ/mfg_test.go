@@ -21,7 +21,7 @@ import (
 	"github.com/u-root/u-root/pkg/vmtest"
 )
 
-//unlike the other tests here, not an integ test. verifies functionality of getLcd()
+// unlike the other tests here, not an integ test. verifies functionality of getLcd()
 func TestGetLcd(t *testing.T) {
 	if Lcd == false {
 		t.Skipf("-lcd unset. plug in a crystalfontz lcd and re-run with -lcd.")
@@ -35,7 +35,7 @@ func TestGetLcd(t *testing.T) {
 	}
 }
 
-//output by script in vm pkg, see stash_sh
+// output by script in vm pkg, see stash_sh
 var stasherMilestones = []string{"stash command executing..."}
 
 // TestMfg runs an init exercising mfg code inside a vm.

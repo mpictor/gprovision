@@ -13,7 +13,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//will it crash if things are unset? should not
+// will it crash if things are unset? should not
 func TestNil(t *testing.T) {
 	l := &LcdLog{}
 	l.Finalize()

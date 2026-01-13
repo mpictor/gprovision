@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package cpu allows determining topological arrangement of CPU cores, generally
-//for use in setting RSS IRQs.
+// Package cpu allows determining topological arrangement of CPU cores, generally
+// for use in setting RSS IRQs.
 package cpu
 
 import (
@@ -35,13 +35,12 @@ func Mask() uint64 {
 	return cpuMask
 }
 
-/* set nrCpus, cpuMask (a bitmask of available CPUs)
- * runtime.NumCPU() won't always show what we want - the cpu list could
- * be sparse due to disabled/banned cpus, possibly other reasons
- * this uses /sys/devices/system/cpu/ to figure out what cpus exist, under
- * the assumption that it could be more complete than the info returned by the
- * function underlying NumCPU, sched_getaffinity.
- */
+// set nrCpus, cpuMask (a bitmask of available CPUs)
+// runtime.NumCPU() won't always show what we want - the cpu list could
+// be sparse due to disabled/banned cpus, possibly other reasons
+// this uses /sys/devices/system/cpu/ to figure out what cpus exist, under
+// the assumption that it could be more complete than the info returned by the
+// function underlying NumCPU, sched_getaffinity.
 func setCPUInfo() {
 	var mask uint64
 	var count uint16

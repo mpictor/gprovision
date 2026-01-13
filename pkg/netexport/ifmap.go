@@ -165,7 +165,7 @@ func (ifaces IfMap) VlanChildren(iface *WinNic) (vlans []uint64) {
 	return
 }
 
-//Create a unique interface name for a vlan. Avoids `enoN.vlan` as at the point this runs we have
+// Create a unique interface name for a vlan. Avoids `enoN.vlan` as at the point this runs we have
 // no idea what linux will choose for the parent's interface name. Output is like `port1.123`.
 func (nic WinNic) VlanIfName(vlan uint64) (ifname string) {
 	var base string

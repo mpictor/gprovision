@@ -18,14 +18,14 @@ import (
 
 const MAX_DATA_LENGTH = 22
 
-//used for outgoing packets as we don't calculate the crc until the last moment
+// used for outgoing packets as we don't calculate the crc until the last moment
 type pktNoCrc struct {
 	command     Command
 	data_length byte
 	data        [MAX_DATA_LENGTH]byte
 }
 
-//incoming packets do include the crc
+// incoming packets do include the crc
 type Packet struct {
 	pktNoCrc
 	crc uint16
@@ -62,7 +62,7 @@ func (p *pktNoCrc) Type() PktType {
 	return PktType(p.command >> 6)
 }
 
-//note that the returned value includes the `type` bits
+// note that the returned value includes the `type` bits
 func (p *pktNoCrc) Cmd() Command {
 	return p.command
 }
@@ -91,15 +91,15 @@ func CfCrc(bytes []byte) (crc uint16) {
 	return
 }
 
-//create 26-byte buffer
+// create 26-byte buffer
 func pktbuf() *bytes.Buffer {
-	/* bufSize is a slice of length 0, capacity 26 -
-	   sets size of buffer with a minimum of alloc's */
+	// bufSize is a slice of length 0, capacity 26 -
+	// sets size of buffer with a minimum of alloc's
 	bufSize := make([]byte, 0, 26)
 	return bytes.NewBuffer(bufSize)
 }
 
-//Calculate Crystalfontz CRC for packet
+// Calculate Crystalfontz CRC for packet
 func (p *pktNoCrc) Crc() (crc uint16, buf *bytes.Buffer, err error) {
 	if len(p.data) < int(p.data_length) {
 		err = io.ErrShortBuffer
@@ -121,7 +121,7 @@ func (p *pktNoCrc) Crc() (crc uint16, buf *bytes.Buffer, err error) {
 	return
 }
 
-//calculate crc, write packet out
+// calculate crc, write packet out
 func (p *pktNoCrc) WriteTo(w io.Writer, verbose bool) error {
 	buf, err := p.buf(verbose)
 	if err == nil {
@@ -143,7 +143,7 @@ func (p *pktNoCrc) buf(verbose bool) (*bytes.Buffer, error) {
 	return buf, err
 }
 
-//check crc
+// check crc
 func (p *Packet) Validate() bool {
 	crc, _, err := p.pktNoCrc.Crc()
 	if err != nil {
@@ -152,7 +152,7 @@ func (p *Packet) Validate() bool {
 	return crc == p.crc
 }
 
-//Logs packet (+CRC) and whether it was read or written.
+// Logs packet (+CRC) and whether it was read or written.
 func (p *pktNoCrc) Log(crc uint16, read bool) {
 	format := "%s %-70s (crc %04x)"
 	dir := " ->"
@@ -162,7 +162,7 @@ func (p *pktNoCrc) Log(crc uint16, read bool) {
 	log.Logf(format, dir, p, crc)
 }
 
-//String method so that Printf (etc) can easily render the packet
+// String method so that Printf (etc) can easily render the packet
 func (p *pktNoCrc) String() string {
 	if p.data_length == 0 {
 		return fmt.Sprintf("%-28s <no data>", p.command)

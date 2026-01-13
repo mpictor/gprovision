@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//go:build !linux !release
+//go:build !linux
 
 // Above means (NOT linux) OR (NOT release); for linux, assume xz is available.
 // Still build on linux for non-release builds (i.e. testing, benchmarks).
@@ -38,7 +38,7 @@ func nativeUnxz(f io.Reader) (io.ReadCloser, error) {
 	return ioutil.NopCloser(reader), err
 }
 
-//true if xz or xz.exe exists
+// true if xz or xz.exe exists
 func haveXz() bool {
 	_, err := exec.LookPath("xz") // windows impl of LookPath will append .exe
 	return err == nil

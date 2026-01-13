@@ -13,22 +13,20 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-/*
-Menu creates a menu with the given items, one per line, navigable using the LCD
-buttons. Vertical scrolling is allowed when the number of items exceeds the
-LCD's height. When an item's length exceeds display width, that item
-automatically scrolls horizontally - with a pause at beginning and end.
-
-If non-negative, the return value indicates the index of the item selected by
-the user. Two negative values are also possible: CHOICE_NONE (-1) if no choice
-is made within the timeout, or CHOICE_CANCEL (-2) if the user presses the
-cancel button.
-
-On the CFA-631, the legend is enabled to indicate to the user what the buttons
-do. The width of this legend is taken into account for rendering and scrolling.
-
-TODO: add symbol to cursor?
-*/
+// Menu creates a menu with the given items, one per line, navigable using the LCD
+// buttons. Vertical scrolling is allowed when the number of items exceeds the
+// LCD's height. When an item's length exceeds display width, that item
+// automatically scrolls horizontally - with a pause at beginning and end.
+//
+// If non-negative, the return value indicates the index of the item selected by
+// the user. Two negative values are also possible: CHOICE_NONE (-1) if no choice
+// is made within the timeout, or CHOICE_CANCEL (-2) if the user presses the
+// cancel button.
+//
+// On the CFA-631, the legend is enabled to indicate to the user what the buttons
+// do. The width of this legend is taken into account for rendering and scrolling.
+//
+// TODO: add symbol to cursor?
 func (l *Lcd) Menu(items []LcdTxt, timeout time.Duration, keyPolling bool) Choice {
 	updateTicker := NewTicker(time.Second / 10)
 	scrollTicker := NewTicker(time.Second)
@@ -40,7 +38,7 @@ func (l *Lcd) Menu(items []LcdTxt, timeout time.Duration, keyPolling bool) Choic
 	return l.menuWithTicks(items, done, updateTicker, scrollTicker, keyPolling, nil)
 }
 
-//updateTicker and scrollTicker *must not* be the same ticker, though they can have the same period
+// updateTicker and scrollTicker *must not* be the same ticker, though they can have the same period
 func (l *Lcd) menuWithTicks(items []LcdTxt, done chan struct{}, updateTicker, scrollTicker *Ticker, keyPolling bool, syncTick chan<- time.Time) Choice {
 	if l == nil {
 		<-done
@@ -115,7 +113,7 @@ type menu struct {
 	syncTick          chan<- time.Time
 }
 
-//User selection from menu. Non-negative values correspond to menu item indexes.
+// User selection from menu. Non-negative values correspond to menu item indexes.
 type Choice int
 
 const (
@@ -144,7 +142,7 @@ func (m *menu) Run() Choice {
 	return m.v.choice
 }
 
-//display items one per line. scroll long ones.
+// display items one per line. scroll long ones.
 func (m *menu) draw() {
 	if m.syncTick != nil {
 		defer func() { m.syncTick <- time.Now() }()
@@ -202,7 +200,7 @@ func (m *menu) draw() {
 	}
 }
 
-//used for menu to track on-screen items and to signal a choice
+// used for menu to track on-screen items and to signal a choice
 type view struct {
 	first        int    //index of item on first row
 	selected     int    //index of item selected. always on screen.
@@ -215,8 +213,8 @@ type view struct {
 	l            *Lcd
 }
 
-//update view based upon events. for cfa631, only makes sense for overlay OverlayUVDX
-//does nothing for key presses, only releases
+// update view based upon events. for cfa631, only makes sense for overlay OverlayUVDX
+// does nothing for key presses, only releases
 func (v *view) update(k KeyActivity) {
 	v.redrawLines = false
 	v.redrawCursor = false
@@ -282,7 +280,7 @@ func (v *view) update(k KeyActivity) {
 	}
 }
 
-//return true if items[idx] is offscreen
+// return true if items[idx] is offscreen
 func (v *view) offscreen(idx int) bool {
 	return idx < v.first || idx > v.first+v.height
 }

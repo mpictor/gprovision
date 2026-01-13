@@ -11,7 +11,7 @@ import (
 	"testing"
 )
 
-//func maskFromString(m string) net.IPMask
+// func maskFromString(m string) net.IPMask
 func TestMaskFromString(t *testing.T) {
 	s1 := "255.0.0.0"
 	s2 := "255.255.0.0"

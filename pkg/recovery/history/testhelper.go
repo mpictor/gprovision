@@ -9,7 +9,7 @@
 
 package history
 
-//Writes arbitrary records to history file, for use in integ tests.
+// Writes arbitrary records to history file, for use in integ tests.
 func WriteArbitraryHistory(rec string, res ResultList) {
 	SetRoot(rec)
 	write(res)

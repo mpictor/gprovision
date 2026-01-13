@@ -28,7 +28,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/flags"
 )
 
-//Conforms to log.Logger interface. Constructed via NewTestLog().
+// Conforms to log.Logger interface. Constructed via NewTestLog().
 type TstLog struct {
 	events        leChan
 	t             *testing.T    //log here if Buf is nil
@@ -43,9 +43,9 @@ type TstLog struct {
 	bgWg          sync.WaitGroup
 }
 
-//Returns a new TstLog. If bufferLog is true, logging goes to a buffer rather
-//than passing directly to t.Log()/t.Error(). Do not share one TstLog between
-//tests - create a new one each time.
+// Returns a new TstLog. If bufferLog is true, logging goes to a buffer rather
+// than passing directly to t.Log()/t.Error(). Do not share one TstLog between
+// tests - create a new one each time.
 func NewTestLog(t *testing.T, bufferLog, stderr bool) (tlog *TstLog) {
 	tlog = &TstLog{
 		events: make(leChan, 1024),
@@ -62,7 +62,7 @@ func NewTestLog(t *testing.T, bufferLog, stderr bool) (tlog *TstLog) {
 	return
 }
 
-//Like NewTestLog, but does not use a channel or background thread. Provides more trackable output.
+// Like NewTestLog, but does not use a channel or background thread. Provides more trackable output.
 func NewTestLogNoBG(t *testing.T) (tlog *TstLog) {
 	tlog = &TstLog{t: t}
 	log.TraceHelper(t)
@@ -105,7 +105,7 @@ func (tl *TstLog) ForwardTo(_ log.StackableLogger) {}
 
 type leChan chan log.LogEntry
 
-//background process started by NewTestLog() but not NewTestLogNoBG()
+// background process started by NewTestLog() but not NewTestLogNoBG()
 func (tlog *TstLog) bgProc() {
 	tlog.t.Helper()
 	defer tlog.bgWg.Done()
@@ -141,7 +141,7 @@ func (tlog *TstLog) handleEvt(evt log.LogEntry) {
 
 const stampMilli = "15:04:05.000" //time format used for stderr. like time.StampMilli, but leaves off date
 
-//sometimes used in testing to inject separators
+// sometimes used in testing to inject separators
 func (tlog *TstLog) Logf(f string, va ...interface{}) {
 	tlog.t.Helper()
 	tlog.AddEntry(log.LogEntry{
@@ -151,7 +151,7 @@ func (tlog *TstLog) Logf(f string, va ...interface{}) {
 	})
 }
 
-//call at end of test to sync log and shut down bgProc
+// call at end of test to sync log and shut down bgProc
 func (tlog *TstLog) Freeze() {
 	tlog.mu.Lock()
 	freeze := tlog.freeze
@@ -182,7 +182,7 @@ func (tlog *TstLog) TstErrf(f string, va ...interface{}) {
 	tlog.t.Errorf(f, va...)
 }
 
-//just calls testing.T.Logf
+// just calls testing.T.Logf
 func (tlog *TstLog) TstLogf(f string, va ...interface{}) {
 	tlog.t.Helper()
 	tlog.t.Logf(f, va...)

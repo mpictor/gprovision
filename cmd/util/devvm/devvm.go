@@ -138,8 +138,8 @@ func mfgFrNorm(uo *integ.UserOpts) {
 	log.Logf("note, mock infra (mfg fileserver, logging) will not be present if ran again")
 }
 
-//given a qemu command to run mfg, this derives a command that will drop to a shell
-//uses a window
+// given a qemu command to run mfg, this derives a command that will drop to a shell
+// uses a window
 func editFromMfg(mfgCmd []string) {
 	var cmd []string
 	kargIdx := 0
@@ -171,7 +171,7 @@ func editFromMfg(mfgCmd []string) {
 	}
 }
 
-//normal boot only, using files in existing dir
+// normal boot only, using files in existing dir
 func normal(vmdir string, update bool) {
 	args, port := integ.ReadJson(vmdir)
 

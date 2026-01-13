@@ -7,7 +7,7 @@
 
 //go:build !release
 
-//Package testhelper does setup for tests requiring a core dump.
+// Package testhelper does setup for tests requiring a core dump.
 package testhelper
 
 import (
@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-//setup for tests requiring a core dump
+// setup for tests requiring a core dump
 func CoreHelper(t *testing.T) (dumpFile, testExe string) {
 	f, err := ioutil.TempFile("", "gotest*.core")
 	if err != nil {
@@ -34,10 +34,8 @@ func CoreHelper(t *testing.T) (dumpFile, testExe string) {
 	}
 	err = exec.Command("coredumpctl", "-h").Run()
 	if err != nil {
-		/*
-			it'd be possible to support some other mechanisms, but it's
-			unlikely this test will need to run on those systems
-		*/
+		// it'd be possible to support some other mechanisms, but it's
+		// unlikely this test will need to run on those systems
 		t.Skip("unable to get cores on this system")
 	}
 	sleep, err := exec.LookPath("sleep")

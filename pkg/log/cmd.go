@@ -13,8 +13,8 @@ import (
 
 type CommandFunc func(cmd *exec.Cmd) (res string, success bool)
 
-//Wrapper for exec.Command(...).CombinedOutput(). If this is used, exec's can
-//be mocked/tracked by testlog.
+// Wrapper for exec.Command(...).CombinedOutput(). If this is used, exec's can
+// be mocked/tracked by testlog.
 var Cmd CommandFunc = DefaultCmd
 
 // Default impl of Cmd(); runs a command, capturing output, logging in the

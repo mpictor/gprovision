@@ -55,8 +55,8 @@ func (sa *stdAdapter) Write(b []byte) (int, error) {
 	return len(b), nil
 }
 
-//clear time-related flags on std log
-//NOTE log's internal state is guarded by a mutex. Exercise caution in calling synchronously.
+// clear time-related flags on std log
+// NOTE log's internal state is guarded by a mutex. Exercise caution in calling synchronously.
 func (sa *stdAdapter) resetSlFlags() {
 	if sa.logger == nil {
 		log.SetFlags(log.Flags() &^ (log.Ldate | log.Ltime | log.Lmicroseconds))

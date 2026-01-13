@@ -9,10 +9,10 @@
 
 package serial
 
-//release builds: tracef is a no-op.
+// release builds: tracef is a no-op.
 func tracef(_ string, _ ...interface{}) func(string, ...interface{}) {
 	return func(string, ...interface{}) {}
 }
 
-//no-op in release builds
+// no-op in release builds
 func Debug(_, _ bool) {}

@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Package beep activates PC Speaker on hardware supporting it.
+// Package beep activates PC Speaker on hardware supporting it.
 package beep
 
 import (
@@ -16,7 +16,7 @@ import (
 
 //documentation in `man console_ioctl`
 
-//Beep once. User must be able to open /dev/console.
+// Beep once. User must be able to open /dev/console.
 func Beep() error {
 	con, err := os.OpenFile("/dev/console", os.O_RDONLY, 0400)
 	if err != nil {
@@ -37,7 +37,7 @@ func beep(fd uintptr) error {
 	return err
 }
 
-//Beep until `done` is closed. User must be able to open /dev/console.
+// Beep until `done` is closed. User must be able to open /dev/console.
 func BeepUntil(done chan struct{}, delay time.Duration) error {
 	con, err := os.Open("/dev/console")
 	if err != nil {

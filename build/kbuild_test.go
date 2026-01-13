@@ -14,7 +14,7 @@ import (
 	"testing"
 )
 
-//kernel config fragments
+// kernel config fragments
 var (
 	kcfg = []byte(`#
 # Automatically generated file; DO NOT EDIT.
@@ -93,7 +93,7 @@ CONFIG_INITRAMFS_SOURCE="/path/to/old/initramfs.cpio"
 `)
 )
 
-//func kOptSet(cfg []byte, key, val string) ([]byte, error)
+// func kOptSet(cfg []byte, key, val string) ([]byte, error)
 func TestKOptSet(t *testing.T) {
 	out1, err := kOptSet(kcfg, "CONFIG_LOCALVERSION", `"-somelocalversion"`, true)
 	if err != nil {
@@ -122,7 +122,7 @@ func TestKOptSet(t *testing.T) {
 	}
 }
 
-//func kOptUnset(cfg []byte, key string) ([]byte, error)
+// func kOptUnset(cfg []byte, key string) ([]byte, error)
 func TestKOptUnset(t *testing.T) {
 	out, err := kOptUnset(kcfg, "CONFIG_LOCALVERSION")
 	if err != nil {

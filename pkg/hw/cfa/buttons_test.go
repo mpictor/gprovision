@@ -16,8 +16,8 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/testlog"
 )
 
-//just prints out enum values. trivial sanity check that I got
-//the iota + bit shift correct when setting values
+// just prints out enum values. trivial sanity check that I got
+// the iota + bit shift correct when setting values
 func TestKPBits(t *testing.T) {
 	got := ""
 	for i, b := range []KeyMask{

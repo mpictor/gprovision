@@ -150,12 +150,12 @@ func (m *mockPort) translate(b []byte) {
 	}
 }
 
-//create response with no data
+// create response with no data
 func (m *mockPort) minimalResponse(t PktType, c Command) {
 	m.respond(t, c, nil)
 }
 
-//create response with data
+// create response with data
 func (m *mockPort) respond(t PktType, c Command, data []byte) {
 	resp := &pktNoCrc{
 		command:     (Command(t) << 6) | c,
@@ -194,10 +194,10 @@ func (m *mockPort) Read(b []byte) (n int, err error) {
 
 var _ SerialPort = &mockPort{}
 
-//trace enter/exit with args. Pass pointers to capture return values (exception: slice).
-//Assumes last arg to returned func is of type error.
+// trace enter/exit with args. Pass pointers to capture return values (exception: slice).
+// Assumes last arg to returned func is of type error.
 //
-//ex: defer tracef("Read(b)")(" [b=%q]  =(%d,%s)", b, &n, &err)
+// ex: defer tracef("Read(b)")(" [b=%q]  =(%d,%s)", b, &n, &err)
 func tracef(f string, va ...interface{}) func(rfmt string, vb ...interface{}) {
 	if !MockVerbose {
 		return func(string, ...interface{}) {}
@@ -231,8 +231,8 @@ func tracef(f string, va ...interface{}) func(rfmt string, vb ...interface{}) {
 	}
 }
 
-//decode a line like Write([]byte{0x20, 0x1, 0x0, 0x2f, 0xdc})=(5,<nil>)
-//decodes writes only, reads are passed verbatim and others are suppressed.
+// decode a line like Write([]byte{0x20, 0x1, 0x0, 0x2f, 0xdc})=(5,<nil>)
+// decodes writes only, reads are passed verbatim and others are suppressed.
 func decodeOp(op string) *operation {
 	op = strings.TrimPrefix(op, "LOG:")
 	oparens := strings.Split(op, "(")
@@ -333,7 +333,7 @@ func decode(in string) string {
 	return decodeOp(in).String()
 }
 
-//satisfied by github.com/mpictor/gprovision/pkg/log/testlog
+// satisfied by github.com/mpictor/gprovision/pkg/log/testlog
 type Tlog interface {
 	TstErrf(f string, va ...interface{})
 	TstLogf(f string, va ...interface{})

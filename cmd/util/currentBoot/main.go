@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Command currentBoot reads the current boot var
+// Command currentBoot reads the current boot var
 package main
 
 import (
@@ -13,7 +13,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//must run as root, as efi vars are not accessible otherwise
+// must run as root, as efi vars are not accessible otherwise
 func main() {
 	log.AddConsoleLog(0)
 	log.FlushMemLog()

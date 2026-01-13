@@ -8,7 +8,9 @@
 // Package init implements early userspace logic in go, replacing the
 // functionality of initramfs's /init. It does the normal things such as
 // decoding
-//   real_root=UUID=nnnnnn
+//
+//	real_root=UUID=nnnnnn
+//
 // but also checks that the unit can/should boot in normal mode. It will
 // display a menu on the attached LCD. This menu allows the user to initiate
 // factory restore to the latest image, to a particular image, etc.
@@ -35,7 +37,7 @@ import (
 
 var verbose bool
 
-//Calling Init() is equivalent to running the old /init shell script.
+// Calling Init() is equivalent to running the old /init shell script.
 func Init() {
 	log.SetPrefix("init")
 	log.Log("init starting...")
@@ -47,13 +49,10 @@ func Init() {
 	if os.Getpid() == 1 {
 		CreateDirs()
 		EarlyMounts()
-		/*
-			we do not need to fiddle with pointing stdio at /dev/console, as the
-			kernel does that whenever the initramfs contains /dev/console. buildroot's
-			initramfs contains a /dev/console set up correctly - character special file,
-			with correct major/minor numbers of 5,1.
-		*/
-
+		// we do not need to fiddle with pointing stdio at /dev/console, as the
+		// kernel does that whenever the initramfs contains /dev/console. buildroot's
+		// initramfs contains a /dev/console set up correctly - character special file,
+		// with correct major/minor numbers of 5,1.
 		LdConfig()
 		QuietPrintk()
 		BBSymlinks()
@@ -81,8 +80,8 @@ func uptime() {
 	log.Logf("entered init at t+%s", times[0])
 }
 
-//translate something like        UUID=ed2d36e3-a3d9-408c-9255-897a010a783b
-//into a path, i.e. '/dev/disk/by-uuid/ed2d36e3-a3d9-408c-9255-897a010a783b'
+// translate something like        UUID=ed2d36e3-a3d9-408c-9255-897a010a783b
+// into a path, i.e. '/dev/disk/by-uuid/ed2d36e3-a3d9-408c-9255-897a010a783b'
 func getRoot(rr string) string {
 	elements := strings.Split(rr, "=")
 	if len(elements) == 2 {
@@ -106,17 +105,17 @@ func validIdType(id string) bool {
 	return false
 }
 
-//set up busybox symlinks
+// set up busybox symlinks
 func BBSymlinks() {
 	log.Cmd(exec.Command("/bin/busybox", "--install", "-s"))
 }
 
-//update ld.so.cache
+// update ld.so.cache
 func LdConfig() {
 	log.Cmd(exec.Command("/sbin/ldconfig"))
 }
 
-//prevent unimportant kernel messages from spamming the console
+// prevent unimportant kernel messages from spamming the console
 func QuietPrintk() {
 	fname := "/proc/sys/kernel/printk"
 	f, err := os.OpenFile(fname, os.O_TRUNC, 0600)
@@ -174,17 +173,17 @@ func init() {
 	}
 }
 
-//create /sys, /dev, /proc (etc) mounts
+// create /sys, /dev, /proc (etc) mounts
 func EarlyMounts() {
 	for _, m := range emounts {
-		err := mount.Mount(m.dev, m.path, m.fstype, m.data, m.flags)
+		_, err := mount.Mount(m.dev, m.path, m.fstype, m.data, m.flags)
 		if err != nil {
 			log.Logf("error %s mounting %s", err, m.path)
 		}
 	}
 }
 
-//unmount everything mounted by EarlyMounts
+// unmount everything mounted by EarlyMounts
 func EarlyUmounts() {
 	for _, u := range emounts {
 		if strings.Contains(u.data, "remount") {
@@ -198,7 +197,7 @@ func EarlyUmounts() {
 	}
 }
 
-//boot delay - used to display menu and search for volumes
+// boot delay - used to display menu and search for volumes
 var (
 	graceTime = 10 * time.Second
 )
@@ -214,7 +213,7 @@ func commonEnvVars() {
 	os.Setenv("PATH", "/sbin:/bin:/usr/bin:/usr/sbin")
 }
 
-//Loads an encryption key into the kernel keyring
+// Loads an encryption key into the kernel keyring
 type KeyLoader interface {
 	LoadKey()
 }

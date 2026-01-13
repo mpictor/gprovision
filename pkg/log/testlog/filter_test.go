@@ -14,7 +14,7 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-//func FilterLog() LogFilter
+// func FilterLog() LogFilter
 func TestFilterLog(t *testing.T) {
 	tlog := NewTestLog(t, true, false)
 	log.Logf("test log")
@@ -30,7 +30,7 @@ func TestFilterLog(t *testing.T) {
 	}
 }
 
-//func FilterLogPfx(pfx string) LogFilter
+// func FilterLogPfx(pfx string) LogFilter
 func TestFilterLogPfx(t *testing.T) {
 	tlog := NewTestLog(t, true, false)
 	log.Logf("test log")

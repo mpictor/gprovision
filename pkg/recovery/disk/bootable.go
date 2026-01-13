@@ -29,7 +29,7 @@ import (
 
 //this file contains code related to making the system bootable - legacy or uefi
 
-//determine whether system is uefi or legacy and make it bootable. returns list of additional partitions for fstab
+// determine whether system is uefi or legacy and make it bootable. returns list of additional partitions for fstab
 func MakeBootable(disks []*Disk, mainFS, recov *Filesystem, platform *appliance.Variant, extraOpts string) []*Filesystem {
 	if uefi.BootedUEFI() {
 		return ConfigUEFIBoot(recov, nil, false, extraOpts)
@@ -37,9 +37,9 @@ func MakeBootable(disks []*Disk, mainFS, recov *Filesystem, platform *appliance.
 	return WriteLegacyBootParts(disks, mainFS, recov, platform, extraOpts)
 }
 
-//add missing boot entries or overwrite all
-//return the ESP partition as a Filesystem (for adding to fstab)
-//in recovery, boot entries should be correct
+// add missing boot entries or overwrite all
+// return the ESP partition as a Filesystem (for adding to fstab)
+// in recovery, boot entries should be correct
 func ConfigUEFIBoot(recov, ESP *Filesystem, overwriteBootEnts bool, extraOpts string) (bootParts []*Filesystem) {
 	log.Logf("configuring UEFI boot entries...")
 	if recov.mountPoint == "" {
@@ -106,7 +106,7 @@ func ConfigUEFIBoot(recov, ESP *Filesystem, overwriteBootEnts bool, extraOpts st
 	return
 }
 
-//find recovery volume by looking for the fs label
+// find recovery volume by looking for the fs label
 func FindRecovery(platform *appliance.Variant) (recovery *Filesystem) {
 	if platform == nil {
 		log.Msg("unrecognized platform")
@@ -175,7 +175,7 @@ func CreateRecovery(platform *appliance.Variant, recoverySize uint64, extraOpts 
 	return
 }
 
-//install grub4dos to MBR
+// install grub4dos to MBR
 func (fs *Filesystem) InstallGrub4Dos() {
 	dev := fs.UnderlyingDevice()
 	if dev == "" {
@@ -216,14 +216,14 @@ func (fs *Filesystem) InstallGrub4Dos() {
 	}
 }
 
-//apply fixes to grub menu files. used in development and integ tests.
+// apply fixes to grub menu files. used in development and integ tests.
 func fixupGrub(in []byte) []byte {
 	hasConsole := bytes.Contains(in, []byte("console="))
 	args := kArgsFromEnv(hasConsole)
 	return bytes.Replace(in, []byte("quiet"), []byte(args), -1)
 }
 
-//translate env vars into kernel args
+// translate env vars into kernel args
 func kArgsFromEnv(hasConsole bool) string {
 	var args []string
 	if ie := os.Getenv(strs.IntegEnv()); len(ie) > 0 {
@@ -351,7 +351,7 @@ kernel /{{.Kernel}} quiet
 `
 )
 
-//Format boot partitions, write files to them. Ensures that kernel used is most recent of those available.
+// Format boot partitions, write files to them. Ensures that kernel used is most recent of those available.
 func WriteLegacyBootParts(disks []*Disk, target, recov *Filesystem, platform *appliance.Variant, extraOpts string) (bootParts []*Filesystem) {
 	msg := "Writing boot partition..."
 	if platform.HasRaid() {

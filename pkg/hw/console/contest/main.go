@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-//Test app for console package; normal unit test won't work as the vt commands require root privs.
+// Test app for console package; normal unit test won't work as the vt commands require root privs.
 package main
 
 import (
