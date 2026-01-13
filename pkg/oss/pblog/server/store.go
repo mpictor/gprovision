@@ -11,11 +11,11 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/prologic/bitcask"
+	"google.golang.org/protobuf/proto"
+
 	"github.com/mpictor/gprovision/pkg/log"
 	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
-
-	"github.com/golang/protobuf/proto"
-	"github.com/prologic/bitcask"
 )
 
 // A trivial database impl for our data storage needs. Not recommended for any
@@ -65,20 +65,20 @@ func (db *Dbase) RetrieveIpmiMacs(id string) (m pb.MACs, err error) {
 
 const credwarn = "WARNING storage of credentials as plain text is a bad idea."
 
-//WARNING storage of credentials as plain text is a bad idea.
+// WARNING storage of credentials as plain text is a bad idea.
 func (db *Dbase) StorePass(id string, p *pb.Credentials) error {
 	log.Log(credwarn)
 	return db.serialize(key(id, "pas"), p)
 }
 
-//WARNING storage of credentials as plain text is a bad idea.
+// WARNING storage of credentials as plain text is a bad idea.
 func (db *Dbase) RetrievePass(id string) (p *pb.Credentials, err error) {
 	log.Log(credwarn)
 	err = db.deserialize(key(id, "pas"), p)
 	return
 }
 
-//return all ids that have been used when logging or reporting macs/ipmi macs
+// return all ids that have been used when logging or reporting macs/ipmi macs
 func (db *Dbase) Ids() []string {
 	//use a map to deduplicate
 	ids := make(map[string]interface{})

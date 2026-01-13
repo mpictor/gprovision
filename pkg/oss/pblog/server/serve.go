@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/mpictor/gprovision/pkg/log"
+	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 
 	"github.com/soheilhy/cmux"
 	"golang.org/x/sync/errgroup"
@@ -39,6 +40,11 @@ func Flags() {
 }
 
 type allInOneSrvr struct {
+	pb.UnimplementedLogServiceServer
+	pb.UnimplementedRecordKeeperServer
+	pb.UnimplementedSecretsServer
+	pb.UnimplementedTimekeeperServer
+
 	store           Persister
 	lis, glis, hlis net.Listener
 	ah              activityHistory

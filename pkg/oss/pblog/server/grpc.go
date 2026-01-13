@@ -15,8 +15,8 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 
-	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
+	empty "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // Grpc entry point. lis and gsrv may be nil, in which case defaults are used.
@@ -55,13 +55,13 @@ func tsStr(t *pb.Timestamp) string {
 	return time.Unix(0, t.TS).Format(log.TimestampLayout)
 }
 
-//pb.LogServiceServer
+// pb.LogServiceServer
 func (a *allInOneSrvr) Log(ctx context.Context, evt *pb.LogEvent) (*pb.GenericResponse, error) {
 	err := a.store.StoreLog(evt.SN, &pb.LogEvents{Evt: []*pb.LogEvent{evt}})
 	return pberr(err)
 }
 
-//pb.RecordKeeperServer
+// pb.RecordKeeperServer
 func (a *allInOneSrvr) ReportCodename(ctx context.Context, name *pb.Codename) (*pb.GenericResponse, error) {
 	now := time.Now()
 	err := a.addLogEvent(&pb.LogEvent{
@@ -104,7 +104,7 @@ func (a *allInOneSrvr) StoreMACs(ctx context.Context, m *pb.MACs) (*pb.GenericRe
 	return pberr(a.store.StoreMacs(m.SN, *m))
 }
 
-//pb.SecretsServer
+// pb.SecretsServer
 var weakCreds = &pb.Credentials{
 	OS:   "INSECURE11111111",
 	BIOS: "WEAK1",
@@ -120,7 +120,7 @@ func (a *allInOneSrvr) GetCredentials(ctx context.Context, ident *pb.Identifier)
 	return weakCreds, nil
 }
 
-//pb.TimekeeperServer
+// pb.TimekeeperServer
 func (a *allInOneSrvr) GetTime(ctx context.Context, _ *empty.Empty) (*pb.Timestamp, error) {
 	return ts(time.Now()), nil
 }

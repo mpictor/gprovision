@@ -8,4 +8,4 @@
 package pblog
 
 // ============= code gen for protobuf =============
-//disabled go:generate protoc -Ipb log.proto --go_out=plugins=grpc:pb
+// disabled go:generate protoc -Ipb log.proto --go-grpc_opt=paths=source_relative --go-grpc_out=pb --go_opt=paths=source_relative --go_out=pb

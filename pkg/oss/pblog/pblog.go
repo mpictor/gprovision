@@ -22,8 +22,8 @@ import (
 	"github.com/mpictor/gprovision/pkg/log/flags"
 	"github.com/mpictor/gprovision/pkg/oss/pblog/pb"
 
-	empty "github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
+	empty "google.golang.org/protobuf/types/known/emptypb"
 )
 
 const LogIdent = "PBLog"
@@ -340,7 +340,7 @@ func (p *Pbl) StoreDocument(name string, doctype rkeep.PrintedDocType, body []by
 	p.handleGrpcErr(resp, err)
 }
 
-//GetCredentials is part of imaging.Credentialer interface.
+// GetCredentials is part of imaging.Credentialer interface.
 func (p *Pbl) GetCredentials(ident string) common.Credentials {
 	if p.sc == nil {
 		log.FlaggedLogf(flags.NotWire, "pblog: nil sc")
@@ -359,7 +359,7 @@ func (p *Pbl) GetCredentials(ident string) common.Credentials {
 	}
 }
 
-//SetEP is part of imaging.Credentialer interface. no-op.
+// SetEP is part of imaging.Credentialer interface. no-op.
 func (*Pbl) SetEP(string) {}
 
 func (p *Pbl) handleGrpcErr(resp *pb.GenericResponse, err error) {

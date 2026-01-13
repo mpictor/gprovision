@@ -1,5 +1,6 @@
 syntax = "proto3";
 package pb;
+option go_package="github.com/mpictor/gprovision/pkg/oss/pblog/pb";
 
 import "google/protobuf/empty.proto";
 
