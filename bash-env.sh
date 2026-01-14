@@ -15,10 +15,5 @@ fi
   fi
 )
 
-if [[ ! -d vendor/github.com ]]; then
-  echo "running dep ensure"
-  dep ensure
-fi
-
 echo Done.
 mage -l

@@ -1,12 +1,16 @@
 # gprovision
 > [!NOTE]
-> This is the code from github.com/purecloudlabs/gprovision, but updated to use go.mod rather than Gopkg.lock. While this changes the _method_ of tracking dependencies, the dependencies themselves have not been updated in this commit. Some have known vulnerabilities, so exercise caution.
+> This is the code from [github.com/purecloudlabs/gprovision](https://github.com/purecloudlabs/gprovision), but updated to use go.mod rather than Gopkg.lock. Dependencies have also been updated.
 
 [![GoDoc](https://godoc.org/github.com/mpictor/gprovision?status.svg)](https://godoc.org/github.com/mpictor/gprovision)
 
 Source code related to factory restore and provisioning (aka manufacture or imaging). Also includes buildroot files.
 
-Written in [go](https://golang.org).
+Written in [go](https://go.dev).
+
+## known tech debt
+* uses go-bindata rather than embed pkg+directive
+* uses dvyukov's go-fuzz rather than built-in fuzzing
 
 ## target architecture
 
@@ -120,8 +124,6 @@ Your download code should have additional safeguards, such as
 
 ## building
 
-Modules are not supported yet; at least one of our dependencies needs changes before it'll work with modules. This repo may also need changes for modules. Thus, you will need to have GOPATH set up.
-
 Many packages can be built with `go build`, but the initramfs's, kernels, and integ tests require mage.
 
 ### generated code
@@ -133,7 +135,7 @@ If you desire to re-generate pb code (for pkg/oss/pblog), remove `disabled ` fro
 ### PATH (for mage)
 With bash on linux, run
     . ./bash_env.sh
-to set up your env. This adds `bin/` to your PATH, runs `dep ensure` if it looks like you haven't, and lists mage targets.
+to set up your env. This adds `bin/` to your PATH, sets up a git pre-commit hook if not present, and lists mage targets.
 
 For other shells, you'll need to update PATH to include the repo's `/bin` so that our `mage` is found before any version you may have installed.
 
@@ -143,18 +145,15 @@ For integ tests, your /tmp must have plenty of free space. If it has < 8GB or so
 
 Passing tests delete their temp dirs, but failing tests generally do not. Re-running a failed integ test will delete temp dirs from previous runs of that test. This delete is done with a wildcard like `test-gprov-erase*`, so there is a slight but non-zero chance it would delete something it didn't create.
 
-### dep
-dep is needed. Once installed, `cd` to the repo root and run `dep ensure` to download all dependencies.
-
 ### mage
 Using mage is not necessary for simple packages like the crystalfontz code, but it is needed for things like the kernels with embedded initramfs and for integ tests. These integ tests depend on env vars mage sets, and are skipped if the vars are not set.
 
-Due to required dependencies, mage will not run until after you run `dep` - see its section above.
+Due to required dependencies, mage will not run until after you download the dependencies (e.g. `go mod download`).
 
 Mage targets (listed with `mage -l`) are case insensitive, and each corresponds to a public function in `build/`. For example, `mage bins:embedded` runs the function with signature `func (Bins) Embedded(ctx context.Context)`.
 
 ### qemu
-qemu is also needed for integ tests. See `build/qemu/` for a Dockerfile that'll build qemu and copy the necessary files out. A pre-built version is available on github under releases, and is automatically downloaded by mage.
+qemu is also needed for integ tests. See `build/qemu/` for a Dockerfile that'll build qemu and copy the necessary files out. A pre-built version is available on github.com/purecloudlabs/gprovision under releases, and is automatically downloaded by mage.
 
 ### protoc
 Optional: protoc, the protocol buffer compiler, is only needed to regenerate code for `pkg/oss/pblog`.
@@ -169,13 +168,13 @@ The kernel source to download is determined from the name of the `linux-*.config
 Files in `build/brx/` are inputs to build a cpio of non-go binaries. A pre-built version is available on github under releases, and is automatically downloaded by mage.
 
 ### Known to work with...
-Known to work with `go v1.12.5` or higher, the latest `dep`, and `protoc 3.x`.
+Known to work with `go v1.12.5` or higher, and `protoc 3.x`.
 
 ### go packages
 To pull in dependencies:
 
-    cd $GOPATH/src/gprovision
-    dep ensure
+    cd gprovision
+    go mod download
 
 ### verify
 
