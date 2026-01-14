@@ -23,7 +23,7 @@ func TestReadBootVar(t *testing.T) {
 	for n = 0; n < 11; n++ {
 		tlog := testlog.NewTestLogNoBG(t)
 		b := ReadBootVar(n)
-		t.Logf(b.String())
+		t.Logf("%s", b.String())
 		tlog.Freeze()
 	}
 }
