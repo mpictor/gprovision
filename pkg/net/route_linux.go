@@ -367,7 +367,7 @@ func (r *Route) Add() error {
 		Gw:        r.Gw,
 		Dst:       &r.Dest.IPNet,
 		Scope:     r.Scope,
-		Protocol:  r.Proto,
+		Protocol:  netlink.RouteProtocol(r.Proto),
 	}
 	if r.Metric > 0 {
 		// The kernel has RTA_METRIC and RTA_PRIORITY; the former is a set of
