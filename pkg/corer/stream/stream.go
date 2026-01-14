@@ -10,6 +10,7 @@
 package stream
 
 import (
+	"context"
 	"io"
 	"os"
 	"os/exec"
@@ -18,9 +19,9 @@ import (
 	"github.com/mpictor/gprovision/pkg/corer/opts"
 	"github.com/mpictor/gprovision/pkg/log"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	s3manager "github.com/aws/aws-sdk-go-v2/feature/s3/manager"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
 type NextFn func(cfg *opts.Opts, name string, stream io.Reader) error
@@ -41,17 +42,14 @@ func Write(cfg *opts.Opts, suffix string, stream io.Reader) (err error) {
 		log.Logln("no bucket defined, discarding output")
 		return
 	}
-	sess, err := session.NewSession(&aws.Config{
-		Region: &cfg.TmplData.Region,
+	client := s3.NewFromConfig(aws.Config{
+		Region: cfg.TmplData.Region,
 	})
-	if err != nil {
-		log.Logf("creating aws session: %s", err)
-	}
-	uploader := s3manager.NewUploader(sess)
+	uploader := s3manager.NewUploader(client)
 	uploader.Concurrency = 1 //doubt this can benefit from concurrency since it reads from stdout
 
 	key := fp.Join(cfg.S3prefix, suffix)
-	result, err := uploader.Upload(&s3manager.UploadInput{
+	result, err := uploader.Upload(context.Background(), &s3.PutObjectInput{
 		Bucket: aws.String(cfg.S3bkt),
 		Key:    aws.String(key),
 		Body:   stream,
