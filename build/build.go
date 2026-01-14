@@ -23,6 +23,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	fp "path/filepath"
 	"strings"
 
@@ -41,7 +42,7 @@ func BuildAll(ctx context.Context) error {
 
 type Bins mg.Namespace
 
-//binaries for windows
+// binaries for windows
 func (Bins) Win(ctx context.Context) error {
 	mg.CtxDeps(ctx, Bins.Generate, workdir)
 	env := make(map[string]string)
@@ -54,10 +55,10 @@ func (Bins) Win(ctx context.Context) error {
 	return buildeach(env, []string{"release", "light"}, apps...)
 }
 
-//names of cmds built in Bins.Img, for use in Bins.ImgTxz
+// names of cmds built in Bins.Img, for use in Bins.ImgTxz
 var cmdNames []string
 
-//binaries for img
+// binaries for img
 func (Bins) Img(ctx context.Context) error {
 	mg.CtxDeps(ctx, Bins.Generate, workdir, libudev)
 	apps, err := paths.Pkglist(paths.ImgCmds...)
@@ -75,7 +76,7 @@ func (Bins) Img(ctx context.Context) error {
 	return buildeach(env, tags, apps...)
 }
 
-//tarball of binaries for img
+// tarball of binaries for img
 func (Bins) ImgTxz(ctx context.Context) error {
 	mg.CtxDeps(ctx, Bins.Img)
 	args := []string{"cJf", paths.ImgAppsTxz, "-C", paths.WorkDir, "--owner=0", "--group=0"}
@@ -96,11 +97,12 @@ func (Bins) MfgInit(ctx context.Context) error {
 	return Bins{}.buildInit(ctx, []string{"mfg"}, paths.MfgBin)
 }
 
+// kernel builds are lengthy, so we check for deps and skip build if unnecessary
 func (Bins) buildInit(ctx context.Context, addtags []string, tgt string) error {
 	tags := []string{"release"}
 	tags = append(tags, addtags...)
 	pkg := paths.ImportPath + "/cmd/init"
-	deps, err := depDirs(ctx, pkg, tags)
+	deps, err := pkgDeps(ctx, pkg, tags)
 	if err != nil {
 		return err
 	}
@@ -133,7 +135,7 @@ func (Bins) Util(ctx context.Context) error {
 	return sh.Run("go", args...)
 }
 
-//run go generate
+// run go generate
 func (Bins) Generate(ctx context.Context) error {
 	mg.CtxDeps(ctx, goBindata, dataDirs)
 	args := append([]string{"generate"}, paths.GoDirs...)
@@ -185,7 +187,7 @@ func dataDirs(ctx context.Context) error {
 	return nil
 }
 
-//build go code with desired flags
+// build go code with desired flags
 var build func(env map[string]string, args ...string) error
 
 func init() {
@@ -204,7 +206,7 @@ func init() {
 	build = RunWCmd(nil, "go", args...)
 }
 
-//sh.RunCmd modified to call RunWith
+// sh.RunCmd modified to call RunWith
 func RunWCmd(env map[string]string, cmd string, args ...string) func(env2 map[string]string, args ...string) error {
 	return func(env2 map[string]string, args2 ...string) error {
 		var cenv map[string]string
@@ -222,7 +224,7 @@ func RunWCmd(env map[string]string, cmd string, args ...string) func(env2 map[st
 	}
 }
 
-//like build, but outputs to work dir. if GOOS==windows, adds .exe suffix
+// like build, but outputs to work dir. if GOOS==windows, adds .exe suffix
 func buildeach(env map[string]string, tags []string, args ...string) error {
 	var sfx string
 	if env != nil && env["GOOS"] == "windows" {
@@ -252,7 +254,7 @@ func workdir() {
 	_ = os.Mkdir(paths.WorkDir, 0755)
 }
 
-//extract lib and header for compiling/linking. Only for things linking go-udev.
+// extract lib and header for compiling/linking. Only for things linking go-udev.
 func libudev(ctx context.Context) error {
 	tball := fp.Join(paths.RepoRoot, "build/udev.txz")
 	if _, err := os.Stat(tball); os.IsNotExist(err) {
@@ -263,8 +265,8 @@ func libudev(ctx context.Context) error {
 	return sh.Run("tar", "xJf", tball, "-C", paths.WorkDir)
 }
 
-//return paths to pkgs imported by given package.
-func depDirs(ctx context.Context, pkg string, tags []string) ([]string, error) {
+// return paths to pkgs imported by given package.
+func pkgDeps(ctx context.Context, pkg string, tags []string) ([]string, error) {
 	taglist := strings.Join(tags, " ")
 	list := exec.CommandContext(ctx, "go", "list", "-f", "{{range .Deps}}{{.}}\n{{end}}", "-tags", taglist, pkg)
 	out, err := list.CombinedOutput()
@@ -272,20 +274,15 @@ func depDirs(ctx context.Context, pkg string, tags []string) ([]string, error) {
 		return nil, err
 	}
 	allDeps := strings.Split(string(out), "\n")
-	//filter out system deps, transform into absolute paths
 	deps := []string{}
 	for _, l := range allDeps {
 		l = strings.TrimSpace(l)
-		for _, pfx := range []string{
-			paths.ImportPath,
-			"github.com/",
-			"build/",
-			"golang.org/",
-		} {
-			if strings.HasPrefix(l, pfx) {
-				deps = append(deps, strings.Replace(l, paths.ImportPath, paths.RepoRoot, 1))
-			}
+		// filter out external deps, transform into absolute paths
+		if strings.HasPrefix(l, paths.ImportPath) {
+			deps = append(deps, strings.Replace(l, paths.ImportPath, paths.RepoRoot, 1))
 		}
 	}
+	// ensure changes to external dependencies trigger a rebuild
+	deps = append(deps, path.Join(paths.RepoRoot, "go.mod"))
 	return deps, nil
 }
