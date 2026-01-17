@@ -15,7 +15,7 @@ import (
 )
 
 func TestIdentify(t *testing.T) {
-	err := loadJson([]byte(aj_default))
+	err := loadJson(getJson())
 	if err != nil {
 		t.Error(err)
 	}

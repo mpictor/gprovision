@@ -11,6 +11,7 @@ package disk
 
 import (
 	"bytes"
+	_ "embed"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -175,6 +176,9 @@ func CreateRecovery(platform *appliance.Variant, recoverySize uint64, extraOpts 
 	return
 }
 
+//go:embed data/menu.lst
+var menutmpl []byte
+
 // install grub4dos to MBR
 func (fs *Filesystem) InstallGrub4Dos() {
 	dev := fs.UnderlyingDevice()
@@ -192,12 +196,6 @@ func (fs *Filesystem) InstallGrub4Dos() {
 	err = futil.CopyFile("/g4d/grldr", fs.Path()+"/grldr", 0)
 	if err != nil {
 		log.Fatalf("error copying grldr")
-	}
-	menutmpl, err := Asset("menu.lst")
-	if err != nil {
-		log.Log("using default menu.lst")
-		//note, you likely want to set a password on the menu
-		menutmpl = []byte(defaultMenu)
 	}
 	bd := bootData{
 		HddFile:  hddBootFile,
@@ -243,12 +241,10 @@ func kArgsFromEnv(hasConsole bool) string {
 
 var fallbackBootFile = "GPROVFBK.boot"
 
+//go:embed data/GPROVFBK.boot
+var rfm []byte
+
 func (fs *Filesystem) WriteFallbackBootMenu() {
-	rfm, err := Asset(fallbackBootFile)
-	if err != nil {
-		log.Logf("using default content for %s", fallbackBootFile)
-		rfm = []byte(defaultFallback)
-	}
 	bd := bootData{
 		FallFile: fallbackBootFile,
 		Kernel:   strs.BootKernel(),
@@ -282,12 +278,10 @@ func (bd *bootData) processTemplate(in []byte, name string) ([]byte, error) {
 	return out.Bytes(), nil
 }
 
+//go:embed data/GPROVHDD.boot
+var hddboot []byte
+
 func finalizeGrubConf(root_uuid, extra_opts string) []byte {
-	hddboot, err := Asset(hddBootFile)
-	if err != nil {
-		log.Logf("using default content for %s", hddBootFile)
-		hddboot = []byte(defaultHdd)
-	}
 	bd := bootData{
 		Root_uuid:  root_uuid,
 		Extra_opts: extra_opts,
@@ -299,57 +293,6 @@ func finalizeGrubConf(root_uuid, extra_opts string) []byte {
 	}
 	return fixupGrub(out)
 }
-
-const (
-	defaultFallback = `timeout 0
-default 0
-
-title Recovery
-errorcheck off
-find --set-root /{{.FallFile}}
-if not %@root:~5,1%==0 && root (hd0,0)
-errorcheck on
-kernel /{{.Kernel}} quiet
-`
-	defaultHdd = `timeout 0
-default 0
-fallback 1
-
-title Normal
-find --set-root /{{.Kernel}}
-if not %@root:~5,1%==0 && root (hd0,0)
-kernel /{{.Kernel}} real_root=UUID={{.Root_uuid}} quiet {{.Extra_opts}}
-
-title Recovery
-find --set-root /{{.Kernel}}
-if not %@root:~5,1%==0 && root (hd0,0)
-kernel /{{.Kernel}} quiet
-`
-	defaultMenu = `timeout 1
-default 0
-fallback 1
-
-title Detecting active bootmedia
-errorcheck off
-root (hd0,0)
-find --set-root /{{.HddFile}}
-if not %@root:~5,1%==0 && root (hd0,0)
-if exist /{{.HddFile}} && configfile /{{.HddFile}}
-root (hd0,0)
-find --set-root /{{.FallFile}}
-if not %@root:~5,1%==0 && root (hd0,0)
-configfile /{{.FallFile}}
-errorcheck on
-
-title Recovery
-errorcheck off
-root (hd0,0)
-find --set-root /{{.Kernel}}
-if not %@root:~5,1%==0 && root (hd0,0)
-errorcheck on
-kernel /{{.Kernel}} quiet
-`
-)
 
 // Format boot partitions, write files to them. Ensures that kernel used is most recent of those available.
 func WriteLegacyBootParts(disks []*Disk, target, recov *Filesystem, platform *appliance.Variant, extraOpts string) (bootParts []*Filesystem) {

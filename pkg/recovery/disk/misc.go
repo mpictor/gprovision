@@ -24,9 +24,6 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-// cause bindata.go to be generated from files in the data dir
-//go:generate ../../../bin/go-bindata -prefix=../../../proprietary/data/disk -pkg=$GOPACKAGE ../../../proprietary/data/disk
-
 // modified version of io.Copy(). slower, but allows progress reporting
 func IOCopy(dst io.Writer, src io.Reader, progressFunc func(int64)) (written int64, err error) {
 	buf := make([]byte, 32*1024)

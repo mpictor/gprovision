@@ -20,22 +20,6 @@ import (
 	"github.com/mpictor/gprovision/build/paths"
 )
 
-// load json from disk, compare with bindata version
-func TestBindataProprietary(t *testing.T) {
-	aj := fp.Join(paths.RepoRoot, "proprietary/data/appliance/appliance.json")
-	if _, err := os.Stat(aj); err != nil {
-		t.Skipf("no json to embed, nothing to compare")
-	}
-	f, err := ioutil.ReadFile(aj)
-	if err != nil {
-		t.Errorf("loading appliance.json: %s", err)
-	}
-	j := getJson()
-	if !bytes.Equal(j, f) {
-		t.Errorf("bindata and file don't match")
-	}
-}
-
 // check that json is compatible with our struct
 func TestUnmarshal(t *testing.T) {
 	j := getJson()
@@ -86,25 +70,11 @@ func TestApplianceJsonConformance(t *testing.T) {
 		t.Error(err)
 		return
 	}
-	t.Run("default", func(t *testing.T) {
-		f := bytes.NewReader([]byte(aj_default))
-		err = schema.Validate(f)
-		if err != nil {
-			t.Error(err)
-		}
-	})
-	t.Run("embedded", func(t *testing.T) {
-		j, err := Asset("appliance.json")
-		if err != nil {
-			t.Skip("embedded appliance.json not present")
-		}
-		f := bytes.NewReader(j)
-		err = schema.Validate(f)
-		if err != nil {
-			t.Error(err)
-		}
-
-	})
+	f := bytes.NewReader(getJson())
+	err = schema.Validate(f)
+	if err != nil {
+		t.Error(err)
+	}
 }
 
 // test against the platform_facts schema
@@ -118,37 +88,25 @@ func TestPlatFactsJsonConformance(t *testing.T) {
 		name string
 		json []byte
 	}
-	testdata := []tstdata{
-		{name: "default", json: []byte(aj_default)},
+	j := getJson()
+	if err := loadJson(j); err != nil {
+		t.Error(err)
 	}
-	j, err := Asset("appliance.json")
-	if err == nil {
-		testdata = append(testdata, tstdata{name: "embedded", json: j})
-	}
-
-	for _, td := range testdata {
-		t.Run(td.name, func(t *testing.T) {
-			//j := getJson()
-			if err := loadJson(td.json); err != nil {
-				t.Error(err)
+	for _, v := range variants {
+		t.Run(v.DevCodeName, func(t *testing.T) {
+			out := &Variant{
+				i:      v,
+				mfg:    "mfg",
+				prod:   "prod",
+				sku:    "sku",
+				serial: "serial",
 			}
-			for _, v := range variants {
-				t.Run(v.DevCodeName, func(t *testing.T) {
-					out := &Variant{
-						i:      v,
-						mfg:    "mfg",
-						prod:   "prod",
-						sku:    "sku",
-						serial: "serial",
-					}
-					j := out.json()
-					reader := bytes.NewReader(j)
-					err = schema.Validate(reader)
-					if err != nil {
-						t.Error(err)
-						t.Logf("json in question: %s\n", j)
-					}
-				})
+			j := out.json()
+			reader := bytes.NewReader(j)
+			err = schema.Validate(reader)
+			if err != nil {
+				t.Error(err)
+				t.Logf("json in question: %s\n", j)
 			}
 		})
 	}

@@ -9,7 +9,6 @@ Source code related to factory restore and provisioning (aka manufacture or imag
 Written in [go](https://go.dev).
 
 ## known tech debt
-* uses go-bindata rather than embed pkg+directive
 * uses dvyukov's go-fuzz rather than built-in fuzzing
 
 ## target architecture
@@ -128,9 +127,9 @@ Many packages can be built with `go build`, but the initramfs's, kernels, and in
 
 ### generated code
 
-Generated code is used in a number of packages and (with the exception of protocol buffer code) isn't included in the repo. If go-bindata is present, `go generate ./...` will suffice; otherwise, `mage bins:generate` will fetch the correct version and generate code.
-
 If you desire to re-generate pb code (for pkg/oss/pblog), remove `disabled ` from the go:generate line in gen.go first. You'll need protoc installed, as well as the plugins for grpc and go.
+
+In the past, `go-bindata` was used to compress and embed various files. The `//go:embed` directive (+ embed package) are used for this now. Because go:embed does not compress data, the binary size will grow somewhat.
 
 ### PATH (for mage)
 With bash on linux, run

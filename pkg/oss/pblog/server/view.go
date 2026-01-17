@@ -7,10 +7,8 @@
 
 package server
 
-// cause bindata.go to be generated from files in the data dir
-//go:generate ../../../../bin/go-bindata -prefix=data/ -pkg=$GOPACKAGE data/
-
 import (
+	"embed"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -29,14 +27,17 @@ type devStruct struct {
 var viewTmpl *template.Template
 var bgData, cssData []byte
 
+//go:embed data/*
+var embFS embed.FS
+
 func init() {
-	vt, _ := Asset("view.tmpl.html")
+	vt, _ := embFS.ReadFile("view.tmpl.html")
 	funcMap := template.FuncMap{
 		"tsStr": tsStr,
 	}
 	viewTmpl = template.Must(template.New("view").Funcs(funcMap).Parse(string(vt)))
-	bgData, _ = Asset("bg.svg")
-	cssData, _ = Asset("main_css")
+	bgData, _ = embFS.ReadFile("bg.svg")
+	cssData, _ = embFS.ReadFile("main_css")
 }
 
 func css(w http.ResponseWriter, req *http.Request) {

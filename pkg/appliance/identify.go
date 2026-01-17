@@ -10,6 +10,7 @@
 package appliance
 
 import (
+	_ "embed"
 	"fmt"
 	"os"
 	"regexp"
@@ -20,15 +21,11 @@ import (
 	"github.com/mpictor/gprovision/pkg/log"
 )
 
-// cause bindata.go to be generated from files in the data dir
-//go:generate ../../bin/go-bindata -tags !light -prefix=../../proprietary/data/appliance -pkg=$GOPACKAGE ../../proprietary/data/appliance
-
 func init() {
 	if strings.Contains(os.Args[0], ".test") {
 		//compiled/executed by 'go test', so don't load json
 		return
 	}
-	//get either the generic 'aj_default' or the go-bindata version
 	j := getJson()
 	err := loadJson(j)
 	if err != nil {
@@ -221,20 +218,8 @@ func Get(codename string) *Variant {
 	return nil
 }
 
-var aj_default = `{"Variants":[
-{"Familyname":"qemu","DmiMbMfg":"GPROV_QEMU","DmiProdName":"9p2k_dev","DmiProdModelRegex":".*","SerNumField":"system-serial-number","NumDataDisks":1,"Disksize":5368709120,"DiskIsSSD":true,"SwRaidlevel":-1,"Virttype":2,"NICInfo":{"SharedDiagPorts":[],"WANIndex":0,"DefaultNamesNoDiag":["Port 1 (WAN)"]},"RecoveryMedia":{"LocateRDMethod":"9p","ValidateRDMethod":"9p","FsType":"9p","FsOptsAdditional":"trans=virtio,version=9p2000.L"},"Lcd":"none","DevCodeName":"QEMU","Prototype":true},
-{"Familyname":"qemu","DmiMbMfg":"GPROV_QEMU","DmiProdName":"mfg_test","DmiProdModelRegex":".*","SerNumField":"system-serial-number","NumDataDisks":1,"Disksize":21474836480,"DiskIsSSD":true,"SwRaidlevel":-1,"Virttype":2,"NICInfo":{"SharedDiagPorts":[],"WANIndex":0,"DefaultNamesNoDiag":["Port 1 (WAN)"]},"RecoveryMedia":{"LocateRDMethod":"byLabel","ValidateRDMethod":"usb","FsType":"ext3","SSD":true},"Lcd":"none","DevCodeName":"QEMU-mfg-test","Prototype":true},
-{"_comment":"identical to the above, except for prod name & ipmi being enabled",
- "Familyname":"qemu","DmiMbMfg":"GPROV_QEMU","DmiProdName":"mfg_test_ipmi","DmiProdModelRegex":".*","SerNumField":"system-serial-number","NumDataDisks":1,"Disksize":21474836480,"DiskIsSSD":true,"SwRaidlevel":-1,"Virttype":2,"NICInfo":{"SharedDiagPorts":[],"WANIndex":0,"DefaultNamesNoDiag":["Port 1 (WAN)"]},"IPMI":true,"RecoveryMedia":{"LocateRDMethod":"byLabel","ValidateRDMethod":"usb","FsType":"ext3","SSD":true},"Lcd":"none","DevCodeName":"QEMU-mfg-test","Prototype":true},
-{"Familyname":"cputest","DmiMbMfg":"cputest","DmiProdName":"cputest","DmiProdModelRegex":".*","CPU":"someVersion","SerNumField":"system-serial-number","NumDataDisks":1,"Disksize":21474836480,"DiskIsSSD":true,"SwRaidlevel":-1,"Virttype":2,"NICInfo":{"SharedDiagPorts":[],"WANIndex":0,"DefaultNamesNoDiag":["Port 1 (WAN)"]},"RecoveryMedia":{"LocateRDMethod":"byLabel","ValidateRDMethod":"usb","FsType":"ext3","SSD":true},"Lcd":"none","DevCodeName":"cputest1","Prototype":true},
-{"Familyname":"cputest","DmiMbMfg":"cputest","DmiProdName":"cputest","DmiProdModelRegex":".*","CPU":"someOtherVersion","SerNumField":"system-serial-number","NumDataDisks":1,"Disksize":21474836480,"DiskIsSSD":true,"SwRaidlevel":-1,"Virttype":2,"NICInfo":{"SharedDiagPorts":[],"WANIndex":0,"DefaultNamesNoDiag":["Port 1 (WAN)"]},"RecoveryMedia":{"LocateRDMethod":"byLabel","ValidateRDMethod":"usb","FsType":"ext3","SSD":true},"Lcd":"none","DevCodeName":"cputest2","Prototype":true}]}`
+//go:embed data/appliance.json
+var aj []byte
 
-// load embedded data
-func getJson() []byte {
-	j, err := Asset("appliance.json")
-	if err == nil {
-		return j
-	}
-	log.Log("no embedded appliance.json, using default")
-	return []byte(aj_default)
-}
+// return embedded data
+func getJson() []byte { return aj }

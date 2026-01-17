@@ -1,0 +1,12 @@
+<html>
+
+<body>
+    qa.tmpl.html: example qa template
+    {{.SN}} {{ .Img.Sha1 }}
+    {{.Model}} {{ .Cpus.Cores }}
+    {{ .NumPci }} {{ .NumUsb }}
+    {{ range .CfgSteps -}}{{ . }}{{ end -}}
+    passed QA verification blah blah
+</body>
+
+</html>

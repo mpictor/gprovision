@@ -9,6 +9,7 @@ package qa
 
 import (
 	"bytes"
+	_ "embed"
 	"html/template"
 	"strings"
 
@@ -104,21 +105,11 @@ func QASummary(img *xfer.TVFile, detected *Specs, plat *appliance.Variant, cfgst
 	return
 }
 
-// cause bindata.go to be generated from files in the given dir
-//go:generate ../../../bin/go-bindata -prefix=../../../proprietary/data/qa -pkg=$GOPACKAGE ../../../proprietary/data/qa
-
 var qaTmpl *template.Template
 
+//go:embed qa.tmpl.html
+var q []byte
+
 func init() {
-	//template that may be embedded by go-bindata
-	q, err := Asset("qa.tmpl.html")
-	if err != nil {
-		q = []byte(`example qa template (see source):
-{{.SN}} {{ .Img.Sha1 }}
-{{.Model}} {{ .Cpus.Cores }}
-{{ .NumPci }} {{ .NumUsb }}
-{{ range .CfgSteps -}}{{ . }}{{ end -}}
-`)
-	}
 	qaTmpl = template.Must(template.New("qa").Parse(string(q)))
 }

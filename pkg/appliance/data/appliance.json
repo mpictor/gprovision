@@ -1,0 +1,148 @@
+{
+    "Variants": [
+        {
+            "Familyname": "qemu",
+            "DmiMbMfg": "GPROV_QEMU",
+            "DmiProdName": "9p2k_dev",
+            "DmiProdModelRegex": ".*",
+            "SerNumField": "system-serial-number",
+            "NumDataDisks": 1,
+            "Disksize": 5368709120,
+            "DiskIsSSD": true,
+            "SwRaidlevel": -1,
+            "Virttype": 2,
+            "NICInfo": {
+                "SharedDiagPorts": [],
+                "WANIndex": 0,
+                "DefaultNamesNoDiag": [
+                    "Port 1 (WAN)"
+                ]
+            },
+            "RecoveryMedia": {
+                "LocateRDMethod": "9p",
+                "ValidateRDMethod": "9p",
+                "FsType": "9p",
+                "FsOptsAdditional": "trans=virtio,version=9p2000.L"
+            },
+            "Lcd": "none",
+            "DevCodeName": "QEMU",
+            "Prototype": true
+        },
+        {
+            "Familyname": "qemu",
+            "DmiMbMfg": "GPROV_QEMU",
+            "DmiProdName": "mfg_test",
+            "DmiProdModelRegex": ".*",
+            "SerNumField": "system-serial-number",
+            "NumDataDisks": 1,
+            "Disksize": 21474836480,
+            "DiskIsSSD": true,
+            "SwRaidlevel": -1,
+            "Virttype": 2,
+            "NICInfo": {
+                "SharedDiagPorts": [],
+                "WANIndex": 0,
+                "DefaultNamesNoDiag": [
+                    "Port 1 (WAN)"
+                ]
+            },
+            "RecoveryMedia": {
+                "LocateRDMethod": "byLabel",
+                "ValidateRDMethod": "usb",
+                "FsType": "ext3",
+                "SSD": true
+            },
+            "Lcd": "none",
+            "DevCodeName": "QEMU-mfg-test",
+            "Prototype": true
+        },
+        {
+            "_comment": "identical to the above, except for prod name & ipmi being enabled",
+            "Familyname": "qemu",
+            "DmiMbMfg": "GPROV_QEMU",
+            "DmiProdName": "mfg_test_ipmi",
+            "DmiProdModelRegex": ".*",
+            "SerNumField": "system-serial-number",
+            "NumDataDisks": 1,
+            "Disksize": 21474836480,
+            "DiskIsSSD": true,
+            "SwRaidlevel": -1,
+            "Virttype": 2,
+            "NICInfo": {
+                "SharedDiagPorts": [],
+                "WANIndex": 0,
+                "DefaultNamesNoDiag": [
+                    "Port 1 (WAN)"
+                ]
+            },
+            "IPMI": true,
+            "RecoveryMedia": {
+                "LocateRDMethod": "byLabel",
+                "ValidateRDMethod": "usb",
+                "FsType": "ext3",
+                "SSD": true
+            },
+            "Lcd": "none",
+            "DevCodeName": "QEMU-mfg-test",
+            "Prototype": true
+        },
+        {
+            "Familyname": "cputest",
+            "DmiMbMfg": "cputest",
+            "DmiProdName": "cputest",
+            "DmiProdModelRegex": ".*",
+            "CPU": "someVersion",
+            "SerNumField": "system-serial-number",
+            "NumDataDisks": 1,
+            "Disksize": 21474836480,
+            "DiskIsSSD": true,
+            "SwRaidlevel": -1,
+            "Virttype": 2,
+            "NICInfo": {
+                "SharedDiagPorts": [],
+                "WANIndex": 0,
+                "DefaultNamesNoDiag": [
+                    "Port 1 (WAN)"
+                ]
+            },
+            "RecoveryMedia": {
+                "LocateRDMethod": "byLabel",
+                "ValidateRDMethod": "usb",
+                "FsType": "ext3",
+                "SSD": true
+            },
+            "Lcd": "none",
+            "DevCodeName": "cputest1",
+            "Prototype": true
+        },
+        {
+            "Familyname": "cputest",
+            "DmiMbMfg": "cputest",
+            "DmiProdName": "cputest",
+            "DmiProdModelRegex": ".*",
+            "CPU": "someOtherVersion",
+            "SerNumField": "system-serial-number",
+            "NumDataDisks": 1,
+            "Disksize": 21474836480,
+            "DiskIsSSD": true,
+            "SwRaidlevel": -1,
+            "Virttype": 2,
+            "NICInfo": {
+                "SharedDiagPorts": [],
+                "WANIndex": 0,
+                "DefaultNamesNoDiag": [
+                    "Port 1 (WAN)"
+                ]
+            },
+            "RecoveryMedia": {
+                "LocateRDMethod": "byLabel",
+                "ValidateRDMethod": "usb",
+                "FsType": "ext3",
+                "SSD": true
+            },
+            "Lcd": "none",
+            "DevCodeName": "cputest2",
+            "Prototype": true
+        }
+    ]
+}

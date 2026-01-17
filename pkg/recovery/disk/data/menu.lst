@@ -1,0 +1,23 @@
+timeout 1
+default 0
+fallback 1
+
+title Detecting active bootmedia
+errorcheck off
+root (hd0,0)
+find --set-root /{{.HddFile}}
+if not %@root:~5,1%==0 && root (hd0,0)
+if exist /{{.HddFile}} && configfile /{{.HddFile}}
+root (hd0,0)
+find --set-root /{{.FallFile}}
+if not %@root:~5,1%==0 && root (hd0,0)
+configfile /{{.FallFile}}
+errorcheck on
+
+title Recovery
+errorcheck off
+root (hd0,0)
+find --set-root /{{.Kernel}}
+if not %@root:~5,1%==0 && root (hd0,0)
+errorcheck on
+kernel /{{.Kernel}} quiet

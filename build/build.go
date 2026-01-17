@@ -135,54 +135,8 @@ func (Bins) Util(ctx context.Context) error {
 
 // run go generate
 func (Bins) Generate(ctx context.Context) error {
-	mg.CtxDeps(ctx, goBindata, dataDirs)
 	args := append([]string{"generate"}, paths.GoDirs...)
 	return sh.RunV("go", args...)
-}
-
-func goBindata(ctx context.Context) error {
-	gbdbin := fp.Join(paths.RepoRoot, "bin/go-bindata")
-	sl, err := fp.EvalSymlinks(gbdbin)
-	if err == nil {
-		_, err = os.Stat(sl)
-	}
-	if err == nil {
-		fmt.Println("found go-bindata. assuming output is compatible. in the event of errors, build the vendored version and ensure it is first in $PATH.")
-		return nil
-	}
-	gbdCmdPath := "github.com/jteeuwen/go-bindata/go-bindata"
-	gbdSrc := fp.Join(paths.RepoRoot, "vendor", gbdCmdPath)
-	var out []byte
-
-	if _, err = os.Stat(fp.Join(gbdSrc)); err != nil {
-		fmt.Println("go-bindata not vendored?!")
-		return err
-	}
-	fmt.Println("building", gbdbin)
-	//build, writing to dir we expect it to be in
-	build := exec.CommandContext(ctx, "go", "build", "-o", gbdbin, gbdSrc)
-	out, err = build.CombinedOutput()
-	if err != nil {
-		fmt.Printf("getting %s: error %s\noutput: %s", gbdCmdPath, err, out)
-	}
-	return err
-}
-
-func dataDirs(ctx context.Context) error {
-	for _, d := range []string{
-		"appliance",
-		"disk",
-		"qa",
-	} {
-		// Dirs must exist else go-bindata exits with error. Add files to the
-		// dirs to override the defaults - search for uses of Asset() in pkgs.
-		err := os.MkdirAll(fp.Join(paths.RepoRoot, "proprietary/data", d), 0755)
-		if err != nil {
-			fmt.Printf("creating data dir %s: %s", d, err)
-			return err
-		}
-	}
-	return nil
 }
 
 // build go code with desired flags

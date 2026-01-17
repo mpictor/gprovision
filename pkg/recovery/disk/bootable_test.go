@@ -29,15 +29,15 @@ func TestFinalizeGrubConf(t *testing.T) {
 func TestDefaultTemplates(t *testing.T) {
 	for _, td := range []struct {
 		name string
-		in   string
+		in   []byte
 	}{
-		{name: "hdd", in: defaultHdd},
-		{name: "fb", in: defaultFallback},
-		{name: "mnu", in: defaultMenu},
+		{name: "hdd", in: hddboot},
+		{name: "fb", in: rfm},
+		{name: "mnu", in: menutmpl},
 	} {
 		t.Run(td.name, func(t *testing.T) {
 			bd := &bootData{}
-			out, err := bd.processTemplate([]byte(td.in), td.name)
+			out, err := bd.processTemplate(td.in, td.name)
 			if err != nil {
 				t.Error(err)
 				t.Log(string(out))

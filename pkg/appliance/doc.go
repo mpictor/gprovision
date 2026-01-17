@@ -21,20 +21,9 @@
 // release: non-release builds include extra functionality for use in testing
 // other packages.
 //
-// # Generated code
+// # Embedded data
 //
-// `go generate` runs go-bindata, encoding files and embedding them in the binary.
-//
-//	//go:generate ../../bin/go-bindata -tags !light -prefix=../../proprietary/data/appliance -pkg=$GOPACKAGE ../../proprietary/data/appliance
-//
-// In this repo, there are no files in the referenced dir, so a lookup of
-// embedded file `appliance.json` returns nothing. In this case we fall back to
-// the contents of string `aj_default`, defined in identify.go.
-//
-// To override aj_default, create a file appliance.json in the dir listed above
-// ($GOPATH/src/github.com/mpictor/gprovision/proprietary/data/appliance) with content like the
-// following, a portion of aj_default. Note that appliance.json overrides
-// aj_default, rather than adding to it.
+// Modify data/appliance.json to add your own device(s) under Variants.
 //
 //	{
 //	  "Variants": [
